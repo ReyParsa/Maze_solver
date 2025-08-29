@@ -8,7 +8,7 @@ setup(
     packages=[package_name],
     data_files=[
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/planners_launch.py']),
+        ('share/' + package_name + '/launch', ['launch/planners_launch.py', 'launch/planners_launch_fixed.py']),
         ('share/' + package_name + '/resource', ['resource/robot_maze_planners']),
     ],
     install_requires=['setuptools'],

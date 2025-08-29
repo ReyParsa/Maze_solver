@@ -1,7 +1,7 @@
 import os
+import subprocess
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import xacro
@@ -17,11 +17,11 @@ def generate_launch_description():
     robot_description = doc.toprettyxml(indent='  ')
 
     return LaunchDescription([
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
-            ),
-            launch_arguments={'gz_args': f'-r {world_file}'}.items()
+        # Launch Gazebo with direct gz command
+        ExecuteProcess(
+            cmd=['gz', 'sim', '-r', world_file],
+            output='screen',
+            name='gazebo'
         ),
         Node(
             package='robot_state_publisher',
