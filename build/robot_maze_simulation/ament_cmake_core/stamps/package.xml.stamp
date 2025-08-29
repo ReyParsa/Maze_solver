@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>robot_maze_simulation</name>
+  <version>1.0.0</version>
+  <description>Gazebo simulation package for robot maze solver</description>
+  <maintainer email="user@example.com">Robot Maze Team</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>gazebo_ros</depend>
+  <depend>robot_maze_description</depend>
+  <depend>launch_ros</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

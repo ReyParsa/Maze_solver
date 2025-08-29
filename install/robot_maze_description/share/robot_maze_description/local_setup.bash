@@ -1,0 +1,1 @@
+/home/rey/Desktop/Maze Solver/robot_maze_ws/build/robot_maze_description/ament_cmake_environment_hooks/local_setup.bash

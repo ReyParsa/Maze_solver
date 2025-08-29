@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: robot-maze-planners
+Version: 1.0.0
+Summary: Path planning algorithms (A*, RRT, RRT*) for robot maze solver
+Maintainer: Robot Maze Team
+Maintainer-email: user@example.com
+License: Apache-2.0

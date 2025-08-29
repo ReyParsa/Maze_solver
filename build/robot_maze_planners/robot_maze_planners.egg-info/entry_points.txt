@@ -1,0 +1,4 @@
+[console_scripts]
+planner_astar_node = robot_maze_planners.nodes.planner_astar_node:main
+planner_rrt_node = robot_maze_planners.nodes.planner_rrt_node:main
+planner_rrtstar_node = robot_maze_planners.nodes.planner_rrtstar_node:main

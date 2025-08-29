@@ -1,0 +1,17 @@
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/robot.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/launch/description_launch.py
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/package_run_dependencies/robot_maze_description
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/parent_prefix_path/robot_maze_description
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/environment/ament_prefix_path.sh
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/environment/ament_prefix_path.dsv
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/environment/path.sh
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/environment/path.dsv
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/local_setup.bash
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/local_setup.sh
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/local_setup.zsh
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/local_setup.dsv
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/package.dsv
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/packages/robot_maze_description
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/cmake/robot_maze_descriptionConfig.cmake
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/cmake/robot_maze_descriptionConfig-version.cmake
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/package.xml

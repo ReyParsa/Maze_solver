@@ -1,0 +1,5 @@
+gazebo:
+  use_sim_time: true
+  physics:
+    max_step_size: 0.001
+    real_time_factor: 1.0

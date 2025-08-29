@@ -1,0 +1,1 @@
+/home/rey/Desktop/Maze Solver/robot_maze_ws/build/robot_maze_simulation/ament_cmake_environment_hooks/local_setup.sh
