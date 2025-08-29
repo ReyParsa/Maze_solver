@@ -1,0 +1,162 @@
+# ROS 2 Workspace Files
+build/
+install/
+log/
+.colcon_cd/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# C/C++
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+CTestTestfile.cmake
+Testing/
+compile_commands.json
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Gazebo
+.gazebo/
+*.log
+*.world~
+
+# ROS Specific
+msg_gen/
+srv_gen/
+msg/*Action.msg
+msg/*ActionFeedback.msg
+msg/*ActionGoal.msg
+msg/*ActionResult.msg
+msg/*Feedback.msg
+msg/*Goal.msg
+msg/*Result.msg
+msg/_*.py
+build_isolated/
+devel_isolated/
+
+# Qt Creator
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Backup files
+*~
+*.bak
+*.backup
+*.orig
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation
+doc/html/
+doc/latex/
+
+# Generated files
+*_generated.h
+*_generated.cpp
+
+# Custom build directories
+bin/
+lib/
+
+# ROS bags
+*.bag
+*.bag.active
+
+# Configuration files (keep template versions)
+*.cfg
+!*.cfg.template
+
+# URDF/SDF generated files
+*.urdf
+!*.urdf.xacro
+
+# Test results
+test_results/
+gtest_results/
+
+# Simulation specific
+*.sdf~
+*.world~
+models/
+media/
+
+# Environment files
+.env
+.envrc
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.lnk
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Development artifacts
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# RViz configuration (optional - you might want to keep these)
+*.rviz~
+
+# Launch file backups
+*.launch~
+*.launch.xml~
+*.py~
