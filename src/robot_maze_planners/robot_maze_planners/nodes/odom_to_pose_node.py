@@ -26,7 +26,8 @@ class OdomToPoseNode(Node):
         ps.header = msg.header
         ps.pose = msg.pose.pose
         self.pose_pub.publish(ps)
-        self.get_logger().info('Published robot_pose')
+        # reduce noise: only debug per pose republish
+        self.get_logger().debug('Published robot_pose')
 
 
 def main(args=None):

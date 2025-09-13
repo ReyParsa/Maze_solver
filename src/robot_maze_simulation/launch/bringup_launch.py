@@ -233,8 +233,8 @@ def generate_launch_description():
                         output='screen',
                         parameters=[
                             {
-                                'goal_x': 2.0,
-                                'goal_y': 2.0,
+                                'goal_x': PythonExpression([LaunchConfiguration('maze_cols'), " * ", LaunchConfiguration('cell_size')]),
+                                'goal_y': PythonExpression([LaunchConfiguration('maze_rows'), " * ", LaunchConfiguration('cell_size')]),
                                 'plan_on_timer': True,
                                 'plan_rate_hz': 0.5,
                                 # algorithm-specific (unused by A* if irrelevant)

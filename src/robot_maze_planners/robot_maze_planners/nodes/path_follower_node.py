@@ -9,31 +9,39 @@ import math
 class PathFollowerNode(Node):
     def __init__(self):
         super().__init__('path_follower_node')
-        self.path = []
-        self.current_idx = 0
-        self.pose = None
+        # Parameters
         self.declare_parameter('linear_gain', 0.8)
         self.declare_parameter('angular_gain', 2.0)
         self.declare_parameter('goal_tolerance', 0.15)
         self.declare_parameter('max_linear_speed', 0.6)
         self.declare_parameter('max_angular_speed', 1.0)
         self.declare_parameter('odom_topic', '/model/slambot/odom')
-        self.linear_gain = self.get_parameter('linear_gain').get_parameter_value().double_value
-        self.angular_gain = self.get_parameter('angular_gain').get_parameter_value().double_value
-        self.goal_tolerance = self.get_parameter('goal_tolerance').get_parameter_value().double_value
-        self.max_linear_speed = self.get_parameter('max_linear_speed').get_parameter_value().double_value
-        self.max_angular_speed = self.get_parameter('max_angular_speed').get_parameter_value().double_value
-        self.odom_topic = self.get_parameter('odom_topic').get_parameter_value().string_value or '/model/slambot/odom'
 
-        # subscriptions and publishers (moved inside __init__)
+        # Parameter values
+        gp = self.get_parameter
+        self.linear_gain = gp('linear_gain').get_parameter_value().double_value
+        self.angular_gain = gp('angular_gain').get_parameter_value().double_value
+        self.goal_tolerance = gp('goal_tolerance').get_parameter_value().double_value
+        self.max_linear_speed = gp('max_linear_speed').get_parameter_value().double_value
+        self.max_angular_speed = gp('max_angular_speed').get_parameter_value().double_value
+        self.odom_topic = gp('odom_topic').get_parameter_value().string_value or '/model/slambot/odom'
+
+        # State
+        self.path = []
+        self.current_idx = 0
+        self.pose = None
+        self._stopped = False
+
+        # Subscriptions
         self.path_sub = self.create_subscription(Path, 'planned_path', self.path_cb, 10)
         self.odom_sub = self.create_subscription(Odometry, self.odom_topic, self.odom_cb, 10)
-        # publish to the Gazebo model-specific cmd_vel topic so the bridge/Gazebo plugin receives it
-        self.cmd_pub = self.create_publisher(Twist, '/model/slambot/cmd_vel', 10)
 
-        # control loop timer
+        # Publishers (model-specific and generic)
+        self.cmd_pub_model = self.create_publisher(Twist, '/model/slambot/cmd_vel', 10)
+        self.cmd_pub_generic = self.create_publisher(Twist, 'cmd_vel', 10)
+
+        # Control loop timer
         self.timer = self.create_timer(0.1, self.timer_cb)
-        self._stopped = False
         self.get_logger().info('Path follower started')
 
     def path_cb(self, msg: Path):
@@ -58,7 +66,9 @@ class PathFollowerNode(Node):
         if self.current_idx >= len(self.path):
             # reached end
             if not self._stopped:
-                self.cmd_pub.publish(Twist())
+                stop_msg = Twist()
+                self.cmd_pub_model.publish(stop_msg)
+                self.cmd_pub_generic.publish(stop_msg)
                 self.get_logger().info('Reached final waypoint; stopping.')
                 self._stopped = True
             return
@@ -86,7 +96,8 @@ class PathFollowerNode(Node):
             twist.linear.x = max(0.0, min(self.max_linear_speed, self.linear_gain * dist))
             twist.angular.z = max(-self.max_angular_speed, min(self.max_angular_speed, self.angular_gain * ang_error))
 
-        self.cmd_pub.publish(twist)
+        self.cmd_pub_model.publish(twist)
+        self.cmd_pub_generic.publish(twist)
 
     def _angle_diff(self, a, b):
         d = a - b

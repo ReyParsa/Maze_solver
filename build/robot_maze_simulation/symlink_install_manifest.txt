@@ -1,5 +1,6 @@
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/__pycache__/bringup_launch.cpython-312.pyc
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/__pycache__/sim_launch.cpython-312.pyc
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/__pycache__/sim_launch_direct.cpython-312.pyc
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/bringup_launch.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/sim_launch.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/sim_launch_direct.py

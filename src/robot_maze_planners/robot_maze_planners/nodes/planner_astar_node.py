@@ -11,39 +11,80 @@ import logging
 
 class PlannerAStarNode(Node):
     def __init__(self):
-        super().__init__('planner_astar_node')
-        # parameters
-        self.declare_parameter('resolution', 0.1)
-        self.declare_parameter('goal_x', 2.0)
-        self.declare_parameter('goal_y', 2.0)
-        self.declare_parameter('plan_on_timer', False)
-        self.declare_parameter('plan_rate_hz', 1.0)
-        self.resolution = self.get_parameter('resolution').get_parameter_value().double_value
-        self.goal = (
-            self.get_parameter('goal_x').get_parameter_value().double_value,
-            self.get_parameter('goal_y').get_parameter_value().double_value,
-        )
-        self.plan_on_timer = self.get_parameter('plan_on_timer').get_parameter_value().bool_value
-        self.plan_rate_hz = self.get_parameter('plan_rate_hz').get_parameter_value().double_value
+        """Initialize the A* planner node.
 
-        # publishers / subscribers
+        This re-written method ensures consistent 4-space indentation (avoids mixed tabs/spaces)
+        and cleanly declares/reads parameters before setting up publishers/subscribers/state.
+        """
+        super().__init__('planner_astar_node')
+
+        # ---- Parameters ----
+        param_defaults = {
+            'resolution': 0.1,  # retained for backward compat (alias of cell_size)
+            'cell_size': 0.4,
+            'goal_x': 2.0,
+            'goal_y': 2.0,
+            'plan_on_timer': False,
+            'plan_rate_hz': 1.0,
+            'allow_start_default': True,
+            'default_start_x': 0.0,
+            'default_start_y': 0.0,
+        }
+        for name, value in param_defaults.items():
+            self.declare_parameter(name, value)
+
+        # read back (correct indentation)
+        gp = self.get_parameter
+        self.resolution = gp('resolution').get_parameter_value().double_value
+        self.cell_size = gp('cell_size').get_parameter_value().double_value or self.resolution
+        self.goal = (
+            gp('goal_x').get_parameter_value().double_value,
+            gp('goal_y').get_parameter_value().double_value,
+        )
+        self.plan_on_timer = gp('plan_on_timer').get_parameter_value().bool_value
+        self.plan_rate_hz = gp('plan_rate_hz').get_parameter_value().double_value
+        self.allow_start_default = gp('allow_start_default').get_parameter_value().bool_value
+        self.default_start = (
+            gp('default_start_x').get_parameter_value().double_value,
+            gp('default_start_y').get_parameter_value().double_value,
+        )
+
+        # ---- Interfaces ----
         self.path_pub = self.create_publisher(Path, 'planned_path', 10)
         self.pose_sub = self.create_subscription(PoseStamped, 'robot_pose', self.pose_callback, 10)
-        # fallback: subscribe to odometry if robot_pose not available
         self.odom_sub = self.create_subscription(Odometry, '/model/slambot/odom', self.odom_cb, 10)
         self.maze_sub = self.create_subscription(Path, 'maze_occupancy', self.maze_callback, 10)
 
-        # state
+        # ---- State ----
         self.grid = None
         self.start = None
-        # goal already set from params
         self._last_logged_state = (None, None, None)  # (start, goal, grid_set)
         self._received_first_pose = False
         self._planning_timer = None
         if self.plan_on_timer:
             period = 1.0 / max(self.plan_rate_hz, 0.1)
             self._planning_timer = self.create_timer(period, self.try_plan)
-        self.get_logger().info(f"A* planner node started. goal={self.goal} resolution={self.resolution}")
+
+        # watchdog to warn if start never arrives (and optionally set default start)
+        self._start_watchdog = self.create_timer(2.0, self._check_start)
+
+        self.get_logger().info(
+            f"A* planner node started. goal={self.goal} cell_size={self.cell_size} plan_on_timer={self.plan_on_timer}"
+        )
+
+    def _check_start(self):
+        if self.start is None:
+            if self.allow_start_default:
+                self.start = self.default_start
+                self.get_logger().warn(f'No start pose received yet; using default start {self.start}')
+                self.try_plan()
+            else:
+                self.get_logger().warn('No start pose received yet (still waiting for /robot_pose or /model/slambot/odom).')
+        else:
+            # once we have start, remove the watchdog timer
+            if self._start_watchdog is not None:
+                self._start_watchdog.cancel()
+                self._start_watchdog = None
     def pose_callback(self, msg):
         self.start = (msg.pose.position.x, msg.pose.position.y)
         if not self._received_first_pose:
@@ -78,11 +119,10 @@ class PlannerAStarNode(Node):
 
         if not self.start or not self.goal:
             return
-
-        grid = self.grid if self.grid is not None else parse_maze(None)
+        grid = self.grid if self.grid is not None else parse_maze(None, rows=25, cols=25)
 
         try:
-            planner = AStarPlanner(grid, self.start, self.goal, self.resolution)
+            planner = AStarPlanner(grid, self.start, self.goal, cell_size=self.cell_size)
             path_points = planner.plan()
         except Exception as exc:
             self.get_logger().error(f'Planning failed: {exc}')
