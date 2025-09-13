@@ -1,0 +1,54 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <world name='maze_world'>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+      <model name='ground'>
+    <static>true</static>
+    <link name='link'>
+      <collision name='collision'>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>3.5999999999999996 3.5999999999999996</size>
+          </plane>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>3.5999999999999996 3.5999999999999996</size>
+          </plane>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+  <model name='maze'>
+    <static>true</static>
+    <link name='link'>
+      <visual name='visual'>
+        <geometry>
+          <mesh>
+            <uri>file:///home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/generated/maze_seed777_r6_c6_cs0p30_mesh.sdf.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <uri>file:///home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/generated/maze_seed777_r6_c6_cs0p30_mesh.sdf.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+
+  </world>
+</sdf>

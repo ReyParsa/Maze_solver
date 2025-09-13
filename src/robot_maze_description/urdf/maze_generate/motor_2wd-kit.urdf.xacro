@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/inertial_macros.urdf.xacro" />
+    <!-- Motor constants -->
+    <xacro:property name="motor_length" value="0.07"/>
+    <xacro:property name="motor_width" value="0.018"/>
+    <xacro:property name="motor_height" value="0.022"/>
+    <xacro:property name="motor_mass" value="0.05"/>
+
+    <!-- Motor Axis constants -->
+    <xacro:property name="motor_axis_radius" value="0.0025"/>
+    <xacro:property name="motor_axis_length" value="0.03285"/>
+    <xacro:property name="motor_axis_mass" value="0.003"/>
+
+    <!-- Motor Axis offsets -->
+    <xacro:property name="motor_axis_xoff" value="${motor_length/2 - motor_height/2}"/>
+    <xacro:property name="motor_axis_yoff" value="0"/>
+    <xacro:property name="motor_axis_zoff" value="0"/>
+
+  <xacro:macro name="motor" params="parent child xyz rpy motor_color axis_color">
+
+    <link name="${child}_main">
+        <visual>
+            <geometry>
+                <box size="${motor_length} ${motor_width} ${motor_height}"/>
+            </geometry>
+            <material name="${motor_color}"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${motor_length} ${motor_width} ${motor_height}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="${motor_mass-motor_axis_mass}" x="${motor_length}" y="${motor_width}" z="${motor_height}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <joint name="${parent}_to_${child}_main_joint" type="fixed">
+        <origin xyz="${xyz}" rpy="${rpy}" />
+        <parent link="${parent}" />
+        <child link="${child}_main" />
+    </joint>   
+
+    <gazebo reference="${child}_main">
+        <material>Gazebo/Yellow</material>
+    </gazebo> 
+
+    <link name="${child}">
+        <visual>
+            <geometry>
+                <cylinder radius="${motor_axis_radius}" length="${motor_axis_length}"/>
+            </geometry>
+            <material name="${axis_color}"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${motor_axis_radius}" length="${motor_axis_length}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="${motor_axis_mass}" length="${motor_axis_length}" radius="${motor_axis_radius}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+    <joint name="${parent}_to_${child}_axis_joint" type="fixed">
+        <origin xyz="${motor_axis_xoff} ${motor_axis_yoff} ${motor_axis_zoff}" rpy="${pi/2} 0 0"/>
+        <parent link="${child}_main"/>
+        <child link="${child}"/>
+    </joint>
+    <gazebo reference="${child}">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

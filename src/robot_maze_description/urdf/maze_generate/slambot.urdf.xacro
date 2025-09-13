@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot name="slambot" xmlns:xacro="http://wiki.ros.org/xacro">
+  <!-- Define include files -->
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/materials.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/chassis_2wd.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/wheel_general.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/motor_2wd-kit.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/servo_sensor_platform.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/ultrasonic_sensor.urdf.xacro"/>
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/lidar.urdf.xacro"/>
+  <!-- Define robot constants -->
+    <!-- Motor constants -->
+    <xacro:property name="motor_gap" value="0.001"/>
+
+    <!-- Wheel constants -->
+    <xacro:property name="wheel_radius" value="0.034"/>
+    <xacro:property name="wheel_width" value="0.027"/>
+    <xacro:property name="wheel_gap" value="0.002"/>
+    <xacro:property name="wheel_mass" value="0.1"/>
+
+    <!-- Caster constants -->
+    <xacro:property name="caster_mass" value="0.4"/>
+
+    <!-- Sensor Platform constants -->
+    <xacro:property name="sensor_platform_radius" value="0.007"/>
+    <xacro:property name="sensor_platform_height" value="0.03"/>
+    <xacro:property name="sensor_platform_mass" value="0.1"/>
+
+    <!-- Ultrasonic Sensor constants -->
+    <xacro:property name="sensor_width" value="0.03"/>
+    <xacro:property name="sensor_height" value="0.012"/>
+    <xacro:property name="sensor_length" value="0.005"/>
+    <xacro:property name="sensor_mass" value="0.1"/>
+
+  <!-- Define robot offsets -->
+    <!-- Motor offsets -->
+    <xacro:property name="motor_xoff" value="-0.0125"/>
+    <xacro:property name="motor_yoff" value="${(chassis_width/2)-(motor_width/2)-motor_gap}"/>
+    <xacro:property name="motor_zoff" value="${-motor_height/2}"/>
+
+    <!-- Wheel offsets -->
+    <xacro:property name="wheel_xoff" value="0"/>
+    <xacro:property name="wheel_yoff" value="0"/>
+    <xacro:property name="wheel_zoff" value="${-((wheel_width+motor_width)/2 + motor_gap + wheel_gap)}"/>
+
+    <!-- Sensor Platform offsets -->
+    <xacro:property name="sensor_platform_xoff" value="0.07"/>
+    <xacro:property name="sensor_platform_yoff" value="0"/>
+    <xacro:property name="sensor_platform_zoff" value="${sensor_platform_height/2 + chassis_height}"/>
+
+    <!-- Sensor offsets -->
+    <xacro:property name="sensor_xoff" value="${sensor_platform_radius + 0.002/2}"/>
+    <xacro:property name="sensor_yoff" value="0"/>
+    <xacro:property name="sensor_zoff" value="${sensor_platform_height/2 - sensor_height/2}"/>
+
+    <!-- Chassis offsets -->
+    <xacro:property name="chassis_xoff" value="0"/>
+    <xacro:property name="chassis_yoff" value="0"/>
+    <xacro:property name="chassis_zoff" value="${(motor_height/2)+wheel_radius}"/>
+
+    <!-- Caster Wheel offsets -->
+    <xacro:property name="caster_radius" value="${(chassis_zoff)/2}"/>
+    <xacro:property name="caster_xoff" value="${-(chassis_length/2 - 0.01)}"/>
+    <xacro:property name="caster_yoff" value="0"/>
+    <xacro:property name="caster_zoff" value="${-caster_radius}"/>
+
+    <!-- Lidar offsets -->
+    <xacro:property name="lidar_xoff" value="-0.05"/>
+    <xacro:property name="lidar_yoff" value="0.00"/>
+    <xacro:property name="lidar_zoff" value="0.00"/>
+
+  <!-- Define robot links -->
+  <link name="base_link"/>
+
+  <!-- BASE_FOOTPRINT LINK -->
+  <link name="base_footprint">
+  </link>
+  <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="base_footprint"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Chassis -->
+  <xacro:chassis parent="base_link" child="chassis_link" xyz="${chassis_xoff} ${chassis_yoff} ${chassis_zoff}" rpy="0 0 0" color="transparent"/>
+
+  <!-- Motor -->
+  <xacro:motor parent="chassis_link" child="motor_left_link" xyz="${motor_xoff} ${motor_yoff} ${motor_zoff}" rpy="0 0 0" motor_color="yellow" axis_color="white"/>
+  <xacro:motor parent="chassis_link" child="motor_right_link" xyz="${motor_xoff} ${-motor_yoff} ${motor_zoff}" rpy="${pi} 0 0" motor_color="yellow" axis_color="white"/>
+
+  <!-- Wheel --> 
+  <xacro:wheel parent="motor_left_link" prefix="wheel_left" radius="${wheel_radius}" width="${wheel_width}" xyz="${wheel_xoff} ${wheel_yoff} ${wheel_zoff}" rpy="0 ${pi} 0" type="diff" color="black" mass="${wheel_mass}"/>
+  <xacro:wheel parent="motor_right_link" prefix="wheel_right" radius="${wheel_radius}" width="${wheel_width}" xyz="${wheel_xoff} ${wheel_yoff} ${wheel_zoff}" rpy="0 0 0" type="diff" color="black" mass="${wheel_mass}"/>
+
+  <!-- Caster Wheel -->
+  <xacro:wheel parent="chassis_link" prefix="caster" radius="${caster_radius}" width="${wheel_width}" xyz="${caster_xoff} ${caster_yoff} ${caster_zoff}" rpy="0 0 0" type="omni" color="white" mass="${caster_mass}"/>
+
+  <!-- Servo for Ultrasonic Sensor -->
+  <xacro:servo_sensor_platform parent="chassis" child="servo_platform" xyz="${sensor_platform_xoff} ${sensor_platform_yoff} ${sensor_platform_zoff}" rpy="0 0 0" color="white" radius="${sensor_platform_radius}" height="${sensor_platform_height}" mass="${sensor_platform_mass}"/>
+
+  <!-- Ultrasonic Sensor -->
+  <xacro:ultrasonic_sensor parent="servo_platform" child="ultrasonic_sensor" xyz="${sensor_xoff} ${sensor_yoff} ${sensor_zoff}" rpy="0 0 0" color="white" width="${sensor_width}" height="${sensor_height}" length="${sensor_length}" mass="${sensor_mass}"/>
+
+  <!-- Lidar -->
+  <xacro:rplidar parent="chassis" child="rplidar" x="${lidar_xoff}" y="${lidar_yoff}" z="${lidar_zoff}" rpy="0 0 ${pi}"/>
+
+  <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/gazebo_control.xacro"/>
+
+</robot>

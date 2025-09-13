@@ -1,3 +1,14 @@
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/chassis-2WD.stl
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/chassis_2wd.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/gazebo_control.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/inertial_macros.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/lidar.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/materials.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/motor_2wd-kit.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/servo_sensor_platform.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/slambot.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/ultrasonic_sensor.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/wheel_general.urdf.xacro
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/robot.urdf.xacro
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/launch/description_launch.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/package_run_dependencies/robot_maze_description

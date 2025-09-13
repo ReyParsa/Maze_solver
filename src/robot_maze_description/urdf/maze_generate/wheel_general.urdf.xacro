@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/inertial_macros.urdf.xacro" />
+  <xacro:macro name="wheel" params="parent prefix xyz rpy type width radius color mass">
+    <xacro:if value="${type == 'diff'}">
+        <link name="${prefix}_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${radius}" length="${width}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${radius}" length="${width}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${mass}" length="${width}" radius="${radius}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+        </link>
+
+        <joint name="${prefix}_joint" type="continuous">
+            <axis xyz="0 0 1"/>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}" />
+            <child link="${prefix}_link" />
+        </joint>    
+
+        <gazebo reference="${prefix}_link">
+            <material>Gazebo/Black</material>
+            <mu1>1.0</mu1>
+            <mu2>1.0</mu2>
+        </gazebo>
+    </xacro:if>
+
+    <xacro:if value="${type == 'omni'}">
+        <link name="${prefix}_link">
+            <visual>
+                <geometry>
+                    <sphere radius="${radius}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <sphere radius="${radius}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_sphere mass="${mass}" radius="${radius}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_sphere>
+        </link>
+        <joint name="${prefix}_joint" type="fixed">
+            <axis xyz="0.0 0.0 1"/>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}" />
+            <child link="${prefix}_link" />
+        </joint>
+        <gazebo reference="${prefix}_link">
+            <material>Gazebo/White</material>
+            <mu1>0.01</mu1>
+            <mu2>0.01</mu2>
+        </gazebo>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

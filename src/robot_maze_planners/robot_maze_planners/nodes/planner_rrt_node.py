@@ -34,8 +34,12 @@ class PlannerRRTNode(Node):
         self.try_plan()
 
     def try_plan(self):
-        if self.grid and self.start and self.goal:
-            planner = RRTPlanner(self.grid, self.start, self.goal, self.step_size, self.max_iter)
+        if self.start and self.goal:
+            grid = self.grid
+            if grid is None:
+                from robot_maze_planners.utils.maze_helpers import parse_maze
+                grid = parse_maze(None)
+            planner = RRTPlanner(grid, self.start, self.goal, self.step_size, self.max_iter)
             path_points = planner.plan()
             path_msg = Path()
             path_msg.header = Header()

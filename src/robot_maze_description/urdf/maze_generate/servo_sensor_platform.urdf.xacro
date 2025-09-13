@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/inertial_macros.urdf.xacro" />
+   <xacro:macro name="servo_sensor_platform" params="parent child xyz rpy color height radius mass">
+        <link name="${child}_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${radius}" length="${height}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${radius}" length="${height}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${mass}" length="${height}" radius="${radius}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+        </link>
+        <joint name="${child}_joint" type="fixed">
+            <axis xyz="0 0 1"/>
+            <limit velocity="6.5" effort="1000" lower="0" upper="0" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}_link" />
+            <child link="${child}_link" />
+        </joint>
+        <gazebo reference="${child}_link">
+            <material>Gazebo/White</material>
+        </gazebo>
+   </xacro:macro>
+</robot>

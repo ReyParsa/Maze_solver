@@ -1,4 +1,7 @@
 [console_scripts]
+maze_publisher_node = robot_maze_planners.nodes.maze_publisher_node:main
+odom_to_pose_node = robot_maze_planners.nodes.odom_to_pose_node:main
+path_follower_node = robot_maze_planners.nodes.path_follower_node:main
 planner_astar_node = robot_maze_planners.nodes.planner_astar_node:main
 planner_rrt_node = robot_maze_planners.nodes.planner_rrt_node:main
 planner_rrtstar_node = robot_maze_planners.nodes.planner_rrtstar_node:main

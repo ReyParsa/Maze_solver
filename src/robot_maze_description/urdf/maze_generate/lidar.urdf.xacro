@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/inertial_macros.urdf.xacro" />
+   <xacro:macro name="rplidar" params="parent child x y z rpy">
+        <xacro:property name="cylinder_height" value="0.02"/>
+        <xacro:property name="cylinder_radius" value="0.035"/>
+        <xacro:property name="platform_height" value="0.031"/>
+        <xacro:property name="color" value="black"/>
+        <xacro:property name="mass" value="0.1"/>
+        <xacro:property name="x_offset" value="${x}"/>
+        <xacro:property name="y_offset" value="${y}"/>
+        <xacro:property name="z_offset" value="${z + cylinder_height/2 + platform_height}"/>
+
+        <link name="${child}_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_height}"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <visual>
+                <origin xyz="0 0 -${platform_height/2 + cylinder_height/2}"/>
+                <geometry>
+                    <cylinder radius="0.01" length="${platform_height}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_height}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="0.1" radius="${cylinder_radius}" length="${cylinder_height}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+        </link>
+
+        <joint name="${child}_joint" type="fixed">
+            <axis xyz="0 0 1"/>
+            <limit velocity="6.5" effort="1000" lower="0" upper="0" />
+            <origin rpy="${rpy}" xyz="${x_offset} ${y_offset} ${z_offset}" />
+            <parent link="${parent}_link" />
+            <child link="${child}_link" />
+        </joint>
+
+        <gazebo reference="${child}_link">
+            <material>Gazebo/Black</material>
+            <sensor name="laser" type="gpu_lidar">
+                <pose> 0 0 0 0 0 0 </pose>
+                <always_on>true</always_on>
+                <visualize>true</visualize>
+                <update_rate>10</update_rate>
+                <topic>lidarscan</topic>
+                <gz_frame_id>${child}_link</gz_frame_id>
+                <lidar>
+                    <scan>
+                        <horizontal>
+                            <samples>360</samples>
+                            <min_angle>-3.14</min_angle>
+                            <max_angle>3.14</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>0.15</min>
+                        <max>12</max>
+                    </range>
+                </lidar>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

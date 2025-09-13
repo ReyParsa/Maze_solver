@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_maze_description)/urdf/maze_generate/inertial_macros.urdf.xacro" />
+    <xacro:macro name="ultrasonic_sensor" params="parent child xyz rpy color height width length mass">
+        <xacro:property name="pcb_thickness" value="0.002"/>
+        <xacro:property name="pcb_mass" value="0.005"/>
+        <xacro:property name="cylinder_radius" value="${height/2 - 0.001}"/>
+        <xacro:property name="cylinder_length" value="${length-pcb_thickness}"/>
+        <xacro:property name="cylinder_mass" value="${(mass-pcb_mass)/2}"/>
+        <xacro:property name="cyinder_xoff" value="${pcb_thickness/2 + cylinder_length/2}"/>
+        <xacro:property name="cyinder_yoff" value="${width/2-cylinder_radius - (height/2-cylinder_radius)}"/>
+        <xacro:property name="cyinder_zoff" value="0"/>
+
+        <xacro:property name="topic" value="slambot/ultrasonic"/>
+        <xacro:property name="update_rate" value="10"/>
+        <xacro:property name="samples" value="1"/>
+        <xacro:property name="fov" value="0.1"/>
+        <xacro:property name="range_min" value="0.1"/>
+        <xacro:property name="range_max" value="10"/>
+        <xacro:property name="range_stddev" value="0.01"/>
+
+        <link name="${child}_link">
+            <visual>
+                <geometry>
+                    <box size="${pcb_thickness} ${width} ${height}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${length} ${width} ${height}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_box mass="${pcb_mass}" x="${length}" y="${width}" z="${height}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_box>
+        </link>
+        <joint name="${child}_joint" type="fixed">
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}_link" />
+            <child link="${child}_link" />
+
+            <limit upper="0" lower="0" effort="0" velocity="0" />
+            <axis xyz="1 0 0"/>
+        </joint>
+        <gazebo reference="${child}_link">
+            <material>Gazebo/White</material>
+        </gazebo>
+
+
+        <link name="${child}_transmitter_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_length}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_length}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${cylinder_mass}" radius="${cylinder_radius}" length="${cylinder_length}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+        </link>
+        <joint name="${child}_transmitter_joint" type="fixed">
+            <origin xyz="${cyinder_xoff} ${-cyinder_yoff} ${cyinder_zoff}" rpy="0 ${pi/2} 0" />
+            <parent link="${child}_link" />
+            <child link="${child}_transmitter_link" />
+        </joint>
+        <gazebo reference="${child}_transmitter_link">
+            <material>Gazebo/White</material>
+        </gazebo>
+
+
+
+        <link name="${child}_receiver_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_length}"/>
+                </geometry>
+                <material name="${color}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${cylinder_radius}" length="${cylinder_length}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${cylinder_mass}" radius="${cylinder_radius}" length="${cylinder_length}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+        </link>
+        <joint name="${child}_receiver_joint" type="fixed">
+            <origin xyz="${cyinder_xoff} ${cyinder_yoff} ${cyinder_zoff}" rpy="0 ${pi/2} 0" />
+            <parent link="${child}_link" />
+            <child link="${child}_receiver_link" />
+        </joint>
+        <gazebo reference="${child}_receiver_link">
+            <material>Gazebo/White</material>
+        </gazebo>
+
+        <!-- 
+        <gazebo reference="${child}_link">
+            <sensor type="ray" name="${child}_sensor">
+                <always_on>true</always_on>
+                <visualize>true</visualize>
+                <update_rate>${update_rate}</update_rate>
+                <ray>
+                    <scan>
+                        <horizontal>
+                            <samples>${samples}</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-${0.5*fov}</min_angle>
+                            <max_angle>${0.5*fov}</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>${range_min}</min>
+                        <max>${range_max}</max>
+                        <resolution>0.01</resolution>
+                    </range>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>
+                        <stddev>${range_stddev}</stddev>
+                    </noise>
+                </ray>
+                <update_rate>30</update_rate>
+                <plugin name="${child}_controller" filename="libgazebo_ros_ray_sensor.so">
+                    <ros>
+                        <namespace>/slambot</namespace>
+                        <remapping>~/out:=ultrasonic</remapping>
+                    </ros>
+                    <output_type>sensor_msgs/LaserScan</output_type>
+                    <frameName>${child}_link</frameName>
+                </plugin>
+            </sensor>
+        </gazebo>
+        -->
+    </xacro:macro>
+</robot>

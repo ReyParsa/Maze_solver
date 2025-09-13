@@ -32,8 +32,13 @@ class PlannerAStarNode(Node):
         self.try_plan()
 
     def try_plan(self):
-        if self.grid and self.start and self.goal:
-            planner = AStarPlanner(self.grid, self.start, self.goal, self.resolution)
+        if self.start and self.goal:
+            grid = self.grid
+            if grid is None:
+                # fallback empty grid
+                from robot_maze_planners.utils.maze_helpers import parse_maze
+                grid = parse_maze(None)
+            planner = AStarPlanner(grid, self.start, self.goal, self.resolution)
             path_points = planner.plan()
             path_msg = Path()
             path_msg.header = Header()
