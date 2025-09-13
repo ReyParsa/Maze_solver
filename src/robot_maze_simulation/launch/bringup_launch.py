@@ -25,7 +25,7 @@ def generate_launch_description():
     robot_description = doc.toxml()  # compact robot_description
 
     planner_arg = DeclareLaunchArgument(
-        'planner', default_value='astar', description='Planner type: astar, rrt, rrt_star'
+        'planner', default_value='astar', description='Planner type: astar | rrt | rrt_star'
     )
 
     headless_arg = DeclareLaunchArgument(
@@ -231,6 +231,19 @@ def generate_launch_description():
                         executable=planner_exec,
                         name='maze_planner',
                         output='screen',
+                        parameters=[
+                            {
+                                'goal_x': 2.0,
+                                'goal_y': 2.0,
+                                'plan_on_timer': True,
+                                'plan_rate_hz': 0.5,
+                                # algorithm-specific (unused by A* if irrelevant)
+                                'step_size': 0.2,
+                                'max_iter': 500,
+                                'radius': 0.5,
+                                'resolution': 0.1
+                            }
+                        ],
                     )
                 ])
             ]
