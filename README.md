@@ -59,3 +59,65 @@ rviz2 -d src/robot_maze_simulation/config/maze_visualization.rviz
 ## Author
 
 Built following ROS 2 best practices and REP-2004 quality guidelines.
+
+
+commands
+# 0) From workspace root
+cd "/home/rey/Desktop/Maze Solver/robot_maze_ws"
+
+# 1) Build (ignore build/install/log if stale)
+colcon build --symlink-install
+
+# 2) Source overlay
+source install/setup.bash
+
+# 3) Launch (forces regen of maze, A* planner)
+ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
+
+# (Optional headless)
+# ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=true
+
+# 4) Inspect running nodes
+ros2 node list
+
+# 5) Check planner parameters
+ros2 param list /maze_planner
+ros2 param get /maze_planner goal_x
+ros2 param get /maze_planner goal_y
+ros2 param get /maze_planner allow_start_default
+
+# 6) Verify robot pose (may need a few seconds after launch)
+ros2 topic echo -n 1 /robot_pose
+
+# 7) Verify odom bridge
+ros2 topic echo -n 1 /model/slambot/odom
+
+# 8) Inspect maze occupancy (wall segments as paired poses)
+ros2 topic echo -n 1 /maze_occupancy
+
+# 9) Check planned path
+ros2 topic echo -n 1 /planned_path
+
+# 10) See velocity commands sent to Gazebo model
+ros2 topic echo -n 5 /model/slambot/cmd_vel
+
+# 11) List topic publishers/subscribers (ensure connections)
+ros2 topic info /planned_path
+ros2 topic info /maze_occupancy
+ros2 topic info /robot_pose
+
+# 12) TF frames (if needed)
+ros2 run tf2_tools view_frames
+# (Generates frames.pdf after a short delay)
+
+# 13) RQT graph (optional GUI)
+rqt_graph
+
+# 14) Re-run only the planner (if you change planners) without full sim restart
+ros2 run robot_maze_planners planner_astar_node
+# or
+# ros2 run robot_maze_planners planner_rrtnode
+# ros2 run robot_maze_planners planner_rrtstarnode
+
+# 15) Clean build artifacts (only if necessary)
+rm -rf build/ install/ log/ && colcon build --symlink-install

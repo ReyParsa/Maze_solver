@@ -71,6 +71,9 @@ class PlannerAStarNode(Node):
         self.get_logger().info(
             f"A* planner node started. goal={self.goal} cell_size={self.cell_size} plan_on_timer={self.plan_on_timer}"
         )
+        self.get_logger().info(
+            f"Params: allow_start_default={self.allow_start_default} default_start={self.default_start} plan_rate_hz={self.plan_rate_hz}"
+        )
 
     def _check_start(self):
         if self.start is None:
@@ -103,7 +106,8 @@ class PlannerAStarNode(Node):
         self.try_plan()
 
     def maze_callback(self, msg):
-        self.grid = parse_maze(msg)
+        # Convert incoming wall segments path to occupancy grid with current cell_size.
+        self.grid = parse_maze(msg, cell_size=self.cell_size)
         if self._last_logged_state[2] != (self.grid is not None):
             self.get_logger().info('Received maze occupancy.')
             self._last_logged_state = (self._last_logged_state[0], self._last_logged_state[1], (self.grid is not None))
@@ -119,7 +123,12 @@ class PlannerAStarNode(Node):
 
         if not self.start or not self.goal:
             return
-        grid = self.grid if self.grid is not None else parse_maze(None, rows=25, cols=25)
+        self.get_logger().debug(f'Planning attempt: start={self.start} goal={self.goal} grid_ready={self.grid is not None}')
+        if self.grid is not None:
+            grid = self.grid
+        else:
+            # still waiting for maze publication; use temporary empty grid just to allow motion
+            grid = parse_maze(None, rows=25, cols=25, cell_size=self.cell_size)
 
         try:
             planner = AStarPlanner(grid, self.start, self.goal, cell_size=self.cell_size)

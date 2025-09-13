@@ -45,8 +45,12 @@ class PathFollowerNode(Node):
         self.get_logger().info('Path follower started')
 
     def path_cb(self, msg: Path):
-        self.path = [(p.pose.position.x, p.pose.position.y) for p in msg.poses]
+        new_path = [(p.pose.position.x, p.pose.position.y) for p in msg.poses]
+        if new_path == self.path and self.path:
+            return  # ignore identical re-publications
+        self.path = new_path
         self.current_idx = 0
+        self._stopped = False
         self.get_logger().info(f'Received planned path with {len(self.path)} points')
 
     def odom_cb(self, msg: Odometry):

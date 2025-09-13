@@ -10,6 +10,7 @@
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/ultrasonic_sensor.urdf.xacro
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/maze_generate/wheel_general.urdf.xacro
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/urdf/robot.urdf.xacro
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/launch/__pycache__/description_launch.cpython-312.pyc
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/robot_maze_description/launch/description_launch.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/package_run_dependencies/robot_maze_description
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_description/share/ament_index/resource_index/parent_prefix_path/robot_maze_description

@@ -4,3 +4,6 @@ source;share/robot_maze_planners/hook/pythonpath.sh
 source;share/robot_maze_planners/hook/ament_prefix_path.ps1
 source;share/robot_maze_planners/hook/ament_prefix_path.dsv
 source;share/robot_maze_planners/hook/ament_prefix_path.sh
+source;../../build/robot_maze_planners/share/robot_maze_planners/hook/pythonpath_develop.ps1
+source;../../build/robot_maze_planners/share/robot_maze_planners/hook/pythonpath_develop.dsv
+source;../../build/robot_maze_planners/share/robot_maze_planners/hook/pythonpath_develop.sh

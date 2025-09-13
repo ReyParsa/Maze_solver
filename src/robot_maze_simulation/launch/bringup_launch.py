@@ -58,6 +58,14 @@ def generate_launch_description():
 
     planner = LaunchConfiguration('planner')
 
+    # Expressions for centered maze spawn (maze generated around origin)
+    # Lower-left (start) corner coordinates (negative half-extent)
+    spawn_x_expr = PythonExpression(['- (', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
+    spawn_y_expr = PythonExpression(['- (', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
+    # Upper-right (goal) corner coordinates (positive half-extent)
+    goal_x_expr = PythonExpression(['(', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
+    goal_y_expr = PythonExpression(['(', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
+
     # compute planner executable name: planner_<name_without_underscores>_node
     planner_exec = PythonExpression(["'planner_' + '", planner, "'.replace('_','') + '_node'"])
 
@@ -203,7 +211,10 @@ def generate_launch_description():
                 Node(
                     package='ros_gz_sim',
                     executable='create',
-                    arguments=['-topic', 'robot_description', '-name', 'slambot', '-z', '0.6'],
+                    arguments=['-topic', 'robot_description', '-name', 'slambot',
+                               '-x', spawn_x_expr,
+                               '-y', spawn_y_expr,
+                               '-z', '0.15'],
                     output='screen',
                 )
             ]
@@ -233,10 +244,14 @@ def generate_launch_description():
                         output='screen',
                         parameters=[
                             {
-                                'goal_x': PythonExpression([LaunchConfiguration('maze_cols'), " * ", LaunchConfiguration('cell_size')]),
-                                'goal_y': PythonExpression([LaunchConfiguration('maze_rows'), " * ", LaunchConfiguration('cell_size')]),
+                                # Use explicit numeric goals (user requested 9.6,9.6) but fall back to centered corner if smaller maze
+                                'goal_x': 9.6,
+                                'goal_y': 9.6,
+                                'default_start_x': 0.0,
+                                'default_start_y': 0.0,
+                                'allow_start_default': True,
                                 'plan_on_timer': True,
-                                'plan_rate_hz': 0.5,
+                                'plan_rate_hz': 1.0,
                                 # algorithm-specific (unused by A* if irrelevant)
                                 'step_size': 0.2,
                                 'max_iter': 500,
@@ -276,13 +291,18 @@ def generate_launch_description():
         ),
         # publish a simple maze occupancy so planners can start
         TimerAction(
-            period=6.5,
+            period=6.0,
             actions=[
                 Node(
                     package='robot_maze_planners',
                     executable='maze_publisher_node',
                     name='maze_publisher',
                     output='screen',
+                    parameters=[
+                        {'rows': LaunchConfiguration('maze_rows'),
+                         'cols': LaunchConfiguration('maze_cols'),
+                         'cell_size': LaunchConfiguration('cell_size')}
+                    ]
                 )
             ]
         ),
@@ -291,7 +311,15 @@ def generate_launch_description():
             period=7.0,
             actions=[
                 ExecuteProcess(
-                    cmd=['ros2', 'run', 'ros_gz_bridge', 'parameter_bridge', '/model/slambot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist', '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry'],
+                cmd=['ros2', 'run', 'ros_gz_bridge', 'parameter_bridge',
+                    # model-scoped topics
+                    '/model/slambot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                    '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+                    # generic robot-level topics (DiffDrive plugin publishes cmd_vel only, OdometryPublisher publishes /odom)
+                    '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                    '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+                    # optional pose info (if pose publisher plugin added later)
+                    '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V'],
                     output='screen',
                     name='cmd_vel_bridge'
                 )
