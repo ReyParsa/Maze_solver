@@ -1,4 +1,3 @@
-README.md
 package.xml
 setup.cfg
 setup.py
@@ -13,6 +12,13 @@ launch/planners_launch.py
 launch/planners_launch_fixed.py
 resource/robot_maze_planners
 robot_maze_planners/__init__.py
+robot_maze_planners.egg-info/PKG-INFO
+robot_maze_planners.egg-info/SOURCES.txt
+robot_maze_planners.egg-info/dependency_links.txt
+robot_maze_planners.egg-info/entry_points.txt
+robot_maze_planners.egg-info/requires.txt
+robot_maze_planners.egg-info/top_level.txt
+robot_maze_planners.egg-info/zip-safe
 robot_maze_planners/nodes/__init__.py
 robot_maze_planners/nodes/maze_publisher_node.py
 robot_maze_planners/nodes/odom_to_pose_node.py

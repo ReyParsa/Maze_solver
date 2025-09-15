@@ -103,7 +103,8 @@ class PlannerAStarNode(Node):
             self.get_logger().info(f'Received first robot_pose: {self.start}')
             self._received_first_pose = True
         elif self._last_logged_state[0] != self.start:
-            self.get_logger().info(f'Received robot pose: {self.start}')
+            # Log at debug to reduce spam; info on state-change publication already covers visibility
+            self.get_logger().debug(f'Updated robot pose: {self.start}')
             self._last_logged_state = (self.start, self._last_logged_state[1], self._last_logged_state[2])
         if self.replan_on_pose:
             self.try_plan()
@@ -111,7 +112,7 @@ class PlannerAStarNode(Node):
     def odom_cb(self, msg: Odometry):
         self.start = (msg.pose.pose.position.x, msg.pose.pose.position.y)
         if self._last_logged_state[0] != self.start:
-            self.get_logger().info(f'Received odom pose: {self.start}')
+            self.get_logger().debug(f'Updated odom pose: {self.start}')
             self._last_logged_state = (self.start, self._last_logged_state[1], self._last_logged_state[2])
         if self.replan_on_pose:
             self.try_plan()

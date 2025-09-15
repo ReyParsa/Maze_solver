@@ -1,7 +1,7 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction, SetEnvironmentVariable
+from launch.substitutions import LaunchConfiguration, PythonExpression, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import ExecuteProcess, TimerAction, SetLaunchConfiguration
 from launch.conditions import IfCondition
@@ -15,314 +15,263 @@ def generate_launch_description():
     simulation_pkg = get_package_share_directory('robot_maze_simulation')
     planners_pkg = get_package_share_directory('robot_maze_planners')
     description_pkg = get_package_share_directory('robot_maze_description')
-    # use fixed maze world (pre-generated) to avoid MazeGenerate plugin dependency
-    world_file = os.path.join(simulation_pkg, 'worlds', 'maze_world_fixed.sdf')
-    # use slambot from MazeGenerate integration
+
+    # Fixed world path (generated externally)
+    world_candidates = [
+        os.path.join(os.getcwd(), 'src', 'robot_maze_simulation', 'worlds', 'maze.world'),
+        os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'worlds', 'maze.world')),
+        os.path.join(simulation_pkg, 'worlds', 'maze.world'),
+    ]
+    world_file = next((p for p in world_candidates if os.path.exists(p)), world_candidates[0])
+
+    if not os.path.exists(world_file):
+        raise RuntimeError(
+            "maze.world not found. Generate it first at one of these locations: "
+            f"{world_candidates[0]} (preferred), {world_candidates[2]} (installed)."
+        )
+
+    # Robot URDF
     urdf_file = os.path.join(description_pkg, 'urdf', 'maze_generate', 'slambot.urdf.xacro')
-    
-    # Process xacro file
     doc = xacro.process_file(urdf_file)
-    robot_description = doc.toxml()  # compact robot_description
+    robot_description = doc.toxml()
 
-    planner_arg = DeclareLaunchArgument(
-        'planner', default_value='astar', description='Planner type: astar | rrt | rrt_star'
-    )
+    # Args
+    planner_arg = DeclareLaunchArgument('planner', default_value='astar', description='Planner type: astar | rrt | rrt_star')
+    with_rviz_arg = DeclareLaunchArgument('with_rviz', default_value='true', description='Launch RViz2 alongside Gazebo')
+    headless_arg = DeclareLaunchArgument('headless', default_value='false', description='Run server-only if true')
+    sw_render_arg = DeclareLaunchArgument('force_software_rendering', default_value='true', description='Force llvmpipe for GUI')
+    maze_rows_arg = DeclareLaunchArgument('maze_rows', default_value='10', description='Maze rows (cells)')
+    maze_cols_arg = DeclareLaunchArgument('maze_cols', default_value='10', description='Maze cols (cells)')
+    maze_compact_arg = DeclareLaunchArgument('maze_compact', default_value='true', description='Compact maze model')
+    maze_cell_size_arg = DeclareLaunchArgument('cell_size', default_value='0.4', description='Maze cell size (m)')
+    maze_seed_arg = DeclareLaunchArgument('maze_seed', default_value='', description='Optional seed')
+    maze_force_regen_arg = DeclareLaunchArgument('maze_force_regen', default_value='false', description='No-op (compat)')
+    minimal_gui_arg = DeclareLaunchArgument('minimal_gui', default_value='true', description='Minimal GUI plugins')
+    maze_single_mesh_arg = DeclareLaunchArgument('maze_single_mesh', default_value='false', description='No-op (compat)')
 
-    headless_arg = DeclareLaunchArgument(
-        'headless', default_value='false', description='Run gz sim headless (server-only) if true'
-    )
-
-    maze_rows_arg = DeclareLaunchArgument(
-        'maze_rows', default_value='10', description='Maze rows (cells)')
-    maze_cols_arg = DeclareLaunchArgument(
-        'maze_cols', default_value='10', description='Maze cols (cells)')
-    maze_compact_arg = DeclareLaunchArgument(
-        'maze_compact', default_value='true', description='Use compact mode for maze (single model)')
-
-    maze_cell_size_arg = DeclareLaunchArgument(
-        'cell_size', default_value='0.4', description='Size of a maze cell in meters')
-    maze_seed_arg = DeclareLaunchArgument(
-        'maze_seed', default_value='', description='Optional integer seed for deterministic maze generation')
-    maze_force_regen_arg = DeclareLaunchArgument(
-        'maze_force_regen', default_value='false', description='If true, force regeneration even when cached seeded world exists')
-
+    # LCs
     maze_rows = LaunchConfiguration('maze_rows')
     maze_cols = LaunchConfiguration('maze_cols')
-    maze_compact = LaunchConfiguration('maze_compact')
-    maze_single_mesh_arg = DeclareLaunchArgument(
-        'maze_single_mesh', default_value='false', description='Export single mesh STL and reference it in the SDF')
-    maze_single_mesh = LaunchConfiguration('maze_single_mesh')
     maze_cell_size = LaunchConfiguration('cell_size')
-    maze_seed = LaunchConfiguration('maze_seed')
-    maze_force_regen = LaunchConfiguration('maze_force_regen')
-
     planner = LaunchConfiguration('planner')
+    force_sw = LaunchConfiguration('force_software_rendering')
+    with_rviz = LaunchConfiguration('with_rviz')
 
-    # Expressions for centered maze spawn (maze generated around origin)
-    # Lower-left (start) corner coordinates (negative half-extent)
+    # Spawn and goal expressions (center the maze around origin)
     spawn_x_expr = PythonExpression(['- (', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
     spawn_y_expr = PythonExpression(['- (', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
-    # Upper-right (goal) corner coordinates (positive half-extent)
     goal_x_expr = PythonExpression(['(', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
     goal_y_expr = PythonExpression(['(', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
 
-    # compute planner executable name: planner_<name_without_underscores>_node
+    # Planner executable name
     planner_exec = PythonExpression(["'planner_' + '", planner, "'.replace('_','') + '_node'"])
 
-    # generate a random maze SDF each run and prefer it
-    generated_world = '/tmp/maze_world_generated.sdf'
-    # Prefer workspace src path (development), then source-relative path, then installed share
-    workspace_src_candidate = os.path.join(os.getcwd(), 'src', 'robot_maze_simulation', 'tools', 'generate_maze_sdf.py')
-    generator_py_src = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'tools', 'generate_maze_sdf.py'))
-    generator_py_installed = os.path.join(simulation_pkg, 'tools', 'generate_maze_sdf.py')
-    if os.path.exists(workspace_src_candidate):
-        generator_py = workspace_src_candidate
-    elif os.path.exists(generator_py_src):
-        generator_py = generator_py_src
-    elif os.path.exists(generator_py_installed):
-        generator_py = generator_py_installed
-    else:
-        generator_py = workspace_src_candidate  # fallback for error message
-    print('Generator candidates: workspace_src=%s, src=%s, installed=%s' % (workspace_src_candidate, generator_py_src, generator_py_installed))
-    print('Selected generator:', generator_py)
-
-    # world launch configuration (will be set at runtime by generator action)
-    world_arg = DeclareLaunchArgument('world', default_value=world_file)
-
-    def _run_generator_and_set_world(context, *args, **kwargs):
-        # context-aware runtime generator function executed via OpaqueFunction
-        try:
-            rows_val = int(context.perform_substitution(maze_rows))
-            cols_val = int(context.perform_substitution(maze_cols))
-        except Exception:
-            rows_val = 10
-            cols_val = 10
-        compact_flag = context.perform_substitution(maze_compact).lower() in ('true', '1', 'yes')
-        single_mesh_flag = context.perform_substitution(maze_single_mesh).lower() in ('true','1','yes')
-        try:
-            cell_size_val = float(context.perform_substitution(maze_cell_size))
-        except Exception:
-            cell_size_val = 0.4
-        seed_raw = context.perform_substitution(maze_seed)
-        seed_val = None
-        if seed_raw and seed_raw.strip() not in ('', 'None', 'none'):
-            try:
-                seed_val = int(seed_raw)
-            except Exception:
-                seed_val = None
-
-        force_regen_flag = context.perform_substitution(maze_force_regen).lower() in ('true', '1', 'yes')
-
-        # compute generated world path
-        generated_world_local = generated_world
-        if seed_val is not None:
-            cs_str = f"{cell_size_val:.2f}".replace('.', 'p')
-            mesh_suffix = '_mesh' if single_mesh_flag else ''
-            cache_dir = os.path.join(simulation_pkg, 'generated')
-            os.makedirs(cache_dir, exist_ok=True)
-            generated_world_local = os.path.join(cache_dir, f'maze_seed{seed_val}_r{rows_val}_c{cols_val}_cs{cs_str}{mesh_suffix}.sdf')
-
-        # decide whether to run generator
-        if seed_val is not None and os.path.exists(generated_world_local) and not force_regen_flag:
-            print('Using cached generated world at', generated_world_local)
-        else:
-            if not os.path.exists(generator_py):
-                print('Maze generator script not found at', generator_py)
-            else:
-                cmd = ['python3', generator_py, '--rows', str(rows_val), '--cols', str(cols_val), '--cell_size', str(cell_size_val), '--output', generated_world_local]
-                if seed_val is not None:
-                    cmd.extend(['--seed', str(seed_val)])
-                if compact_flag:
-                    cmd.append('--compact')
-                if single_mesh_flag:
-                    cmd.append('--single-mesh')
-                print('Running maze generator (using):', generator_py)
-                print('Command:', ' '.join(cmd))
-                try:
-                    subprocess.run(cmd, check=True)
-                except subprocess.CalledProcessError as e:
-                    print('Maze generator failed:', e)
-
-        # return action to set the world launch configuration to the generated path
-        return [SetLaunchConfiguration(name='world', value=generated_world_local)]
-
-    # runtime generator action (resolves launch substitutions correctly)
-    generator_action = OpaqueFunction(function=_run_generator_and_set_world)
-
-    world_to_run = generated_world if os.path.exists(generated_world) else world_file
-    # debug info about selected world
+    # Optional static map (map_server) — resolve YAML and check package presence
+    map_candidates = [
+        os.path.join(os.getcwd(), 'src', 'robot_maze_simulation', 'maps', 'maze_map.yaml'),
+        os.path.join(simulation_pkg, 'maps', 'maze_map.yaml'),
+    ]
+    map_yaml = next((p for p in map_candidates if os.path.exists(p)), map_candidates[0])
+    have_map_yaml = os.path.exists(map_yaml)
+    have_map_server_pkg = False
     try:
-        exists = os.path.exists(world_to_run)
-        size = os.path.getsize(world_to_run) if exists else 0
-        wall_count = 0
-        if exists:
-            with open(world_to_run, 'r') as wf:
-                data = wf.read()
-            wall_count = data.count("<model name='wall_") + data.count('<model name="wall_')
-        print(f"World to run: {world_to_run} (exists={exists}, size={size} bytes, wall_models={wall_count})")
-    except Exception as e:
-        print('Failed to stat world file:', e)
+        r = subprocess.run(['ros2', 'pkg', 'prefix', 'nav2_map_server'], capture_output=True, text=True)
+        have_map_server_pkg = (r.returncode == 0)
+    except Exception:
+        have_map_server_pkg = False
 
-    return LaunchDescription([
-        planner_arg,
-        headless_arg,
-        maze_rows_arg,
-        maze_cols_arg,
-        maze_compact_arg,
-        maze_single_mesh_arg,
-        maze_cell_size_arg,
-        maze_seed_arg,
-        maze_force_regen_arg,
-        world_arg,
-        generator_action,
-        # start gz directly to avoid launch include issues with paths containing spaces
-        # start gz sim with verbose logging (-v 4). use server-only (-s) when headless==true
-        # GUI (default)
+    # Check lifecycle manager availability
+    have_lifecycle_pkg = False
+    try:
+        r = subprocess.run(['ros2', 'pkg', 'prefix', 'nav2_lifecycle_manager'], capture_output=True, text=True)
+        have_lifecycle_pkg = (r.returncode == 0)
+    except Exception:
+        have_lifecycle_pkg = False
+
+    map_server_actions = []
+    if have_map_server_pkg and have_map_yaml:
+        # Params file shipped with this package
+        map_params_file = os.path.join(simulation_pkg, 'config', 'map_server_params.yaml')
+        map_server_actions.append(
+            Node(
+                package='nav2_map_server',
+                executable='map_server',
+                name='map_server',
+                output='screen',
+                parameters=[map_params_file, {'yaml_filename': map_yaml}],
+            )
+        )
+        # Lifecycle manager to auto-configure / activate map_server
+        if have_lifecycle_pkg:
+            map_server_actions.append(
+                Node(
+                    package='nav2_lifecycle_manager',
+                    executable='lifecycle_manager',
+                    name='lifecycle_manager_map',
+                    output='screen',
+                    parameters=[{'autostart': True, 'node_names': ['map_server']}],
+                )
+            )
+
+    actions = [
+        planner_arg, with_rviz_arg, headless_arg, sw_render_arg,
+        maze_rows_arg, maze_cols_arg, maze_compact_arg, maze_single_mesh_arg,
+        maze_cell_size_arg, maze_seed_arg, maze_force_regen_arg, minimal_gui_arg,
+
+        # Minimal GUI config and VM-friendly GL env
+        SetEnvironmentVariable('GZ_GUI_CONFIG_PATH', os.path.join(simulation_pkg, 'config', 'gui_minimal.config')),
+        SetEnvironmentVariable('LIBGL_DRI3_DISABLE', '1', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' "]))),
+        SetEnvironmentVariable('MESA_NO_ERROR', '1', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' "]))),
+        SetEnvironmentVariable('LIBGL_ALWAYS_SOFTWARE', '1', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+        SetEnvironmentVariable('GALLIUM_DRIVER', 'llvmpipe', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+        SetEnvironmentVariable('QT_OPENGL', 'software', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+        SetEnvironmentVariable('QSG_RHI_BACKEND', 'software', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+        SetEnvironmentVariable('MESA_GL_VERSION_OVERRIDE', '3.3', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+        SetEnvironmentVariable('MESA_GLSL_VERSION_OVERRIDE', '330', condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' and '", force_sw, "' == 'true' "]))),
+
+        # Gazebo GUI/server
         ExecuteProcess(
-            condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false'"])),
-            cmd=['gz', 'sim', '-v', '4', '-r', LaunchConfiguration('world')],
+            condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' "])) ,
+            cmd=['gz', 'sim', '-v', '4', '-r', world_file],
             output='screen',
             name='gazebo_gui'
         ),
-        # start the GUI client (separate process) when not headless to ensure a window appears
         TimerAction(
             period=1.0,
             actions=[
                 ExecuteProcess(
-                    condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false'"])),
-                    cmd=['gz', 'gui'],
+                    condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'false' "])) ,
+                    cmd=['gz', 'gui', '-c', PathJoinSubstitution([simulation_pkg, 'config', 'gui_minimal.config'])],
                     output='screen',
                     name='gazebo_gui_client'
                 )
             ]
         ),
-        # server-only (headless)
         ExecuteProcess(
-            condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'true'"])),
-            cmd=['gz', 'sim', '-v', '4', '-r', '-s', LaunchConfiguration('world')],
+            condition=IfCondition(PythonExpression(["'", LaunchConfiguration('headless'), "' == 'true' "])) ,
+            cmd=['gz', 'sim', '-v', '4', '-r', '-s', world_file],
             output='screen',
             name='gazebo_server'
         ),
-        # delay spawn slightly so gz sim finishes loading the world
+
+        # Spawn robot after world loads
         TimerAction(
-            # give the server + GUI a bit more time to initialize before spawning the robot
             period=6.0,
             actions=[
                 Node(
-                    package='ros_gz_sim',
-                    executable='create',
-                    arguments=['-topic', 'robot_description', '-name', 'slambot',
-                               '-x', spawn_x_expr,
-                               '-y', spawn_y_expr,
-                               '-z', '0.15'],
-                    output='screen',
+                    package='ros_gz_sim', executable='create', output='screen',
+                    arguments=['-topic', 'robot_description', '-name', 'slambot', '-x', spawn_x_expr, '-y', spawn_y_expr, '-z', '0.15']
                 )
             ]
         ),
+
         Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            name='robot_state_publisher',
-            output='screen',
+            package='robot_state_publisher', executable='robot_state_publisher', name='robot_state_publisher', output='screen',
             parameters=[{'robot_description': robot_description}]
         ),
         Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
-            name='joint_state_publisher',
-            output='screen',
+            package='joint_state_publisher', executable='joint_state_publisher', name='joint_state_publisher', output='screen'
         ),
-        # Delay planner startup to allow robot spawn and physics to settle
+
+        # Static TF: map -> odom (identity) so RViz and nodes can transform between frames
+        Node(
+            package='tf2_ros', executable='static_transform_publisher', name='static_map_to_odom', output='screen',
+            arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
+        ),
+
+        # Start planner (and optional map_server) after spawn settles
         TimerAction(
             period=8.0,
             actions=[
-                GroupAction([
-                    Node(
-                        package='robot_maze_planners',
-                        executable=planner_exec,
-                        name='maze_planner',
-                        output='screen',
-                        parameters=[
-                            {
-                                # Fixed goal per user request (9.6, 9.6)
-                                'goal_x': 9.6,
-                                'goal_y': 9.6,
+                GroupAction(
+                    map_server_actions + [
+                        Node(
+                            package='robot_maze_planners', executable=planner_exec, name='maze_planner', output='screen',
+                            parameters=[{
+                                'goal_x': goal_x_expr, 'goal_y': goal_y_expr,
                                 'default_start_x': PythonExpression(['- (', LaunchConfiguration('maze_cols'), ' - 1) * ', LaunchConfiguration('cell_size'), ' / 2.0']),
                                 'default_start_y': PythonExpression(['- (', LaunchConfiguration('maze_rows'), ' - 1) * ', LaunchConfiguration('cell_size'), ' / 2.0']),
                                 'allow_start_default': True,
                                 'plan_on_timer': True,
                                 'plan_rate_hz': 1.0,
-                                # algorithm-specific (unused by A* if irrelevant)
                                 'step_size': 0.2,
                                 'max_iter': 500,
                                 'radius': 0.5,
                                 'resolution': 0.1
-                            }
-                        ],
-                    )
-                ])
-            ]
-        )
-        ,
-        # Start path follower after planner has had time to publish a planned_path
-        TimerAction(
-            period=11.0,
-            actions=[
-                Node(
-                    package='robot_maze_planners',
-                    executable='path_follower_node',
-                    name='path_follower',
-                    output='screen',
-                )
-            ]
-        )
-        ,
-        # Start odom->pose republisher after spawn so planners get PoseStamped on 'robot_pose'
-        TimerAction(
-            period=7.5,
-            actions=[
-                Node(
-                    package='robot_maze_planners',
-                    executable='odom_to_pose_node',
-                    name='odom_to_pose',
-                    output='screen',
-                )
-            ]
-        ),
-        # publish a simple maze occupancy so planners can start
-        TimerAction(
-            period=6.0,
-            actions=[
-                Node(
-                    package='robot_maze_planners',
-                    executable='maze_publisher_node',
-                    name='maze_publisher',
-                    output='screen',
-                    parameters=[
-                        {'rows': LaunchConfiguration('maze_rows'),
-                         'cols': LaunchConfiguration('maze_cols'),
-                         'cell_size': LaunchConfiguration('cell_size')}
+                            }]
+                        )
                     ]
                 )
             ]
         ),
-        # Start a ros_gz_bridge parameter_bridge for the Gazebo model cmd_vel topic so Gazebo subscribes to ROS messages
+
+        # Follower starts later
+        TimerAction(
+            period=11.0,
+            actions=[
+                Node(
+                    package='robot_maze_planners', executable='path_follower_node', name='path_follower', output='screen',
+                    parameters=[{
+                        # Safer, more conservative defaults for tight maze corridors
+                        'linear_gain': 0.6,
+                        'max_linear_speed': 0.25,
+                        'lookahead_distance': 0.5,
+                        'ang_slowdown_threshold': 1.0,
+                        'angular_gain': 2.8,
+                        'max_angular_speed': 1.6,
+                        'min_linear_speed': 0.08,
+                        'recovery_forward_speed': 0.15,
+                        'no_progress_timeout': 2.5,
+                        'progress_min_delta': 0.05,
+                    }]
+                )
+            ]
+        ),
+
+        # Odom->Pose republisher
+        TimerAction(
+            period=7.5,
+            actions=[
+                Node(package='robot_maze_planners', executable='odom_to_pose_node', name='odom_to_pose', output='screen')
+            ]
+        ),
+
+        # Maze publisher (kept; planner can subscribe to this or /map)
+        TimerAction(
+            period=6.0,
+            actions=[
+                Node(
+                    package='robot_maze_planners', executable='maze_publisher_node', name='maze_publisher', output='screen',
+                    parameters=[{'rows': LaunchConfiguration('maze_rows'), 'cols': LaunchConfiguration('maze_cols'), 'cell_size': LaunchConfiguration('cell_size')}]
+                )
+            ]
+        ),
+
+        # Bridges
         TimerAction(
             period=7.0,
             actions=[
                 ExecuteProcess(
-                cmd=['ros2', 'run', 'ros_gz_bridge', 'parameter_bridge',
-                    # model-scoped topics
-                    '/model/slambot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-                    '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-                    # generic robot-level topics (DiffDrive plugin publishes cmd_vel only, OdometryPublisher publishes /odom)
-                    '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-                    '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-                    # optional pose info (if pose publisher plugin added later)
-                    '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V'],
-                    output='screen',
-                    name='cmd_vel_bridge'
+                    cmd=['ros2', 'run', 'ros_gz_bridge', 'parameter_bridge',
+                         '/model/slambot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                         '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+                         '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                         '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+                         '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V'],
+                    output='screen', name='cmd_vel_bridge')
+            ]
+        ),
+
+        # RViz
+        TimerAction(
+            period=9.0,
+            actions=[
+                Node(
+                    condition=IfCondition(with_rviz), package='rviz2', executable='rviz2', name='rviz2',
+                    arguments=['-d', PathJoinSubstitution([simulation_pkg, 'config', 'maze_nav_demo.rviz'])], output='screen'
                 )
             ]
-        )
-    ])
+        ),
+    ]
+
+    return LaunchDescription(actions)

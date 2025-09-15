@@ -1,0 +1,8 @@
+# Minimal Gazebo GUI plugin set to reduce load in software rendering
+plugins:
+  - name: MinimalScene
+    filename: libMinimalScene.so
+  - name: WorldControl
+    filename: libWorldControl.so
+  - name: WorldStats
+    filename: libWorldStats.so

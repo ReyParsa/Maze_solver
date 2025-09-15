@@ -1,25 +1,30 @@
 ```
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ROS_LOG_LEVEL=info ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
+Package 'robot_maze_simulation' not found: "package 'robot_maze_simulation' not found, searching: ['/opt/ros/jazzy']"
 rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ source install/setup.bash
 rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ROS_LOG_LEVEL=info ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
-[INFO] [launch]: All log files can be found below /home/rey/.ros/log/2025-09-15-16-06-50-931375-ubuntu-robotics-VM-5961
+[INFO] [launch]: All log files can be found below /home/rey/.ros/log/2025-09-15-16-33-32-899137-ubuntu-robotics-VM-21643
 [INFO] [launch]: Default logging verbosity is set to INFO
 Generator candidates: workspace_src=/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py, src=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py, installed=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py
 Selected generator: /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
-World to run: /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze_world_fixed.sdf (exists=True, size=3723 bytes, wall_models=4)
+World to run: /tmp/maze_world_generated.sdf (exists=True, size=53926 bytes, wall_models=0)
 Running maze generator (using): /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
 Command: python3 /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py --rows 10 --cols 10 --cell_size 0.4 --output /tmp/maze_world_generated.sdf --compact
-Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compact=True)
-[INFO] [gazebo_gui-1]: process started with pid [5970]
-[INFO] [robot_state_publisher-2]: process started with pid [5971]
-[INFO] [joint_state_publisher-3]: process started with pid [5972]
-[robot_state_publisher-2] [INFO] [1757939811.488819479] [robot_state_publisher]: Robot initialized
-[joint_state_publisher-3] [INFO] [1757939811.884271851] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
-[gazebo_gui-1] Gtk-Message: 16:06:52.103: Failed to load module "canberra-gtk-module"
-[gazebo_gui-1] Gtk-Message: 16:06:52.104: Failed to load module "canberra-gtk-module"
-[INFO] [gazebo_gui_client-4]: process started with pid [6040]
-[gazebo_gui_client-4] QSocketNotifier: Can only be used with threads started with QThread
-[gazebo_gui_client-4] Gtk-Message: 16:06:52.685: Failed to load module "canberra-gtk-module"
-[gazebo_gui_client-4] Gtk-Message: 16:06:52.691: Failed to load module "canberra-gtk-module"
+Wrote maze world to /tmp/maze_world_generated.sdf with 115 wall segments (compact=True)
+[INFO] [gazebo_gui-1]: process started with pid [21647]
+[INFO] [robot_state_publisher-2]: process started with pid [21648]
+[INFO] [joint_state_publisher-3]: process started with pid [21649]
+[robot_state_publisher-2] [INFO] [1757941413.257022957] [robot_state_publisher]: Robot initialized
+[gazebo_gui-1] Gtk-Message: 16:33:33.879: Failed to load module "canberra-gtk-module"
+[gazebo_gui-1] Gtk-Message: 16:33:33.880: Failed to load module "canberra-gtk-module"
+[INFO] [gazebo_gui_client-4]: process started with pid [21704]
+[joint_state_publisher-3] [INFO] [1757941414.371515210] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
 [gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
 [gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
 [gazebo_gui-1] [Dbg] [gz.cc:166] Subscribing to [/gazebo/starting_world].
@@ -53,15 +58,12 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [Msg] Serving world SDF generation service on [/world/maze_world/generate_world_sdf]
 [gazebo_gui-1] [Msg] Serving world names on [/gazebo/worlds]
 [gazebo_gui-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gazebo_gui_client-4] QSocketNotifier: Can only be used with threads started with QThread
 [gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
 [gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
 [gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui_client-4] Gtk-Message: 16:33:34.724: Failed to load module "canberra-gtk-module"
+[gazebo_gui_client-4] Gtk-Message: 16:33:34.730: Failed to load module "canberra-gtk-module"
 [gazebo_gui-1] [Msg] Resource path get servi[Msg] Gazebo Sim GUI    v8.9.0
 [gazebo_gui-1] [Msg] Detected Wayland. Setting Qt to use the xcb plugin: 'QT_QPA_PLATFORM=xcb'.
 [gazebo_gui-1] [Dbg] [Gui.cc:275] Waiting for subscribers to [/gazebo/starting_world]...
@@ -69,8 +71,8 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [Dbg] [Application.cc:170] Qt using OpenGL graphics interface
 [gazebo_gui-1] [GUI] [Dbg] [Application.cc:657] Create main window
 [gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:68] Requesting resource paths through [/gazebo/resource_paths/get]
-[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:57] Received resource paths.
 [gazebo_gui-1] [GUI] [Dbg] [Gui.cc:355] GUI requesting list of world names. The server may be busy downloading resources. Please be patient.
+[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:57] Received resource paths.
 [gazebo_gui-1] [GUI] [Dbg] [Gui.cc:413] Requesting GUI from [/world/maze_world/gui/info]...
 [gazebo_gui-1] [GUI] [Dbg] [GuiRunner.cc:149] Requesting initial state from [/world/maze_world/state]...
 [gazebo_gui-1] [GUI] [Msg] Loading config [/home/rey/.gz/sim/8/gui.config]
@@ -157,19 +159,18 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityTree]
 [gazebo_gui-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
 [gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/WorldStats/WorldStats.qml:53:3: QML RowLayout: Binding loop detected for property "x"
-[INFO] [create-5]: process started with pid [6126]
-[INFO] [maze_publisher_node-6]: process started with pid [6127]
-[create-5] [INFO] [1757939817.355122394] [ros_gz_sim]: Requesting list of world names.
 [gazebo_gui-1] VMware: No 3D enabled (0, Success).
 [gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
-[create-5] [INFO] [1757939817.568928516] [ros_gz_sim]: Waiting messages on topic [robot_description].
 [gazebo_gui-1] MESA: error: ZINK: failed to choose pdev
 [gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
 [gazebo_gui-1] VMware: No 3D enabled (0, Success).
 [gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
-[INFO] [cmd_vel_bridge-7]: process started with pid [6170]
-[create-5] [INFO] [1757939818.189284794] [ros_gz_sim]: Entity creation successful.
-[INFO] [create-5]: process has finished cleanly [pid 6126]
+[gazebo_gui-1] [GUI] [Wrn] [Ogre2RenderTarget.cc:668] Anti-aliasing level of ' is not supported; valid FSAA levels are: [ 0 4 ]. Setting to 1
+[INFO] [create-5]: process started with pid [21811]
+[INFO] [maze_publisher_node-6]: process started with pid [21812]
+[create-5] [INFO] [1757941419.231637813] [ros_gz_sim]: Requesting list of world names.
+[create-5] [INFO] [1757941419.671112025] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-5] [INFO] [1757941419.698755222] [ros_gz_sim]: Entity creation successful.
 [gazebo_gui-1] [Gce on [/gazebo/resource_paths/get].
 [gazebo_gui-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
 [gazebo_gui-1] [Msg] Resource paths published on [/gazebo/resource_paths].
@@ -187,11 +188,8 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [Msg] Publishing state changes on [/world/maze_world/state]
 [gazebo_gui-1] [Msg] Publishing pose messages on [/world/maze_world/pose/info]
 [gazebo_gui-1] [Msg] Publishing dynamic pose messages on [/world/maze_world/dynamic_pose/info]
-[gazebo_gui-1] [Dbg] [EntityComponentManager.cc:1656] Updated state thread iterators: 2 threads processing around 176 entities each.
+[gazebo_gui-1] [Dbg] [EntityComponentManager.cc:1656] Updated state thread iterators: 2 threads processing around 178 entities each.
 [gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
-[maze_publisher_node-6] [INFO] [1757939818.652121697] [maze_publisher]: Maze publisher: rows=10 cols=10 cell_size=0.4 segments=121
-[gazebo_gui-1] [GUI] [Wrn] [Ogre2RenderTarget.cc:668] Anti-aliasing level of ' is not supported; valid FSAA levels are: [ 0 4 ]. Setting to 1
-[INFO] [odom_to_pose_node-8]: process started with pid [6172]
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
@@ -220,7 +218,8 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
 [gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
-[INFO] [planner_astar_node-9]: process started with pid [6182]
+[INFO] [create-5]: process has finished cleanly [pid 21811]
+[maze_publisher_node-6] [INFO] [1757941419.942060548] [maze_publisher]: Maze publisher: rows=10 cols=10 cell_size=0.4 segments=121
 [gazebo_gui-1] UI] [Msg] Added plugin [Entity tree] to main window
 [gazebo_gui-1] [GUI] [Msg] Loaded plugin [EntityTree] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityTree.so]
 [gazebo_gui-1] [GUI] [Dbg] [Application.cc:398] Loading window config
@@ -231,52 +230,297 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [GUI] [Msg] Loading plugin [gz-rendering-ogre2]
 [gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:749] Create scene [scene]
 [gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:1037] Creating texture node render interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [TransformControl.cc:453] TransformControl plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [Spawn.cc:308] Spawn plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [SelectEntities.cc:452] SelectEntities plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:169] Advertise /marker/list service.
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:179] Advertise /marker/list.
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:189] Advertise /marker_array.
+[gazebo_gui-1] [GUI] [Dbg] [CameraTracking.cc:205] CameraTrackingPrivate plugin is moving camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Msg] Move to service on [/gui/move_to]
+[gazebo_gui-1] [GUI] [Msg] Follow service on [/gui/follow] (deprecated)
+[gazebo_gui-1] [GUI] [Msg] Tracking topic on [/gui/track]
+[gazebo_gui-1] [GUI] [Msg] Tracking status topic on [/gui/currently_tracked]
+[gazebo_gui-1] [GUI] [Msg] Move to pose service on [/gui/move_to/pose]
+[gazebo_gui-1] [GUI] [Msg] Camera pose topic advertised on [/gui/camera/pose]
+[gazebo_gui-1] [GUI] [Msg] Follow offset service on [/gui/follow/offset] (deprecated)
+[gazebo_gui-1] [GUI] [Dbg] [InteractiveViewControl.cc:176] InteractiveViewControl plugin is moving camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [EntityContextMenuPlugin.cc:79] Entity context menu plugin is using camera [scene::Camera(65527)]
 [gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<data-string>:L431]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
-[cmd_vel_bridge-7] [INFO] [1757939820.597446555] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/cmd_vel (gz.msgs.Twist) -> /model/slambot/cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.623051401] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/cmd_vel (geometry_msgs/msg/Twist) -> /model/slambot/cmd_vel (gz.msgs.Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.627398708] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/odom (gz.msgs.Odometry) -> /model/slambot/odom (nav_msgs/msg/Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.641842045] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/odom (nav_msgs/msg/Odometry) -> /model/slambot/odom (gz.msgs.Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.647949059] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.652306002] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.655876450] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.659340086] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.665688299] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> /tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.708555092] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/tf (tf2_msgs/msg/TFMessage) -> /tf (gz.msgs.Pose_V)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757939820.723034008] [ros_gz_bridge]: Passing message from ROS tf2_msgs/msg/TFMessage to Gazebo gz.msgs.Pose_V (showing msg only once per type)
-[odom_to_pose_node-8] [INFO] [1757939821.183012711] [odom_to_pose]: Odom->Pose republisher started (listening on /model/slambot/odom and /odom)
-[odom_to_pose_node-8] [INFO] [1757939821.197649652] [odom_to_pose]: First odom received at (-1.80,-1.80) from unknown (either /model/slambot/odom or /odom)
-[planner_astar_node-9] [INFO] [1757939821.737364414] [maze_planner]: A* planner node started. goal=(9.6, 9.6) cell_size=0.4 plan_on_timer=True replan_on_pose=False
-[planner_astar_node-9] [INFO] [1757939821.743630575] [maze_planner]: Params: allow_start_default=True default_start=(-1.8, -1.8) plan_rate_hz=1.0
-[INFO] [path_follower_node-10]: process started with pid [6278]
-[planner_astar_node-9] [INFO] [1757939822.618428391] [maze_planner]: Received maze occupancy.
-[path_follower_node-10] [INFO] [1757939823.319940641] [path_follower]: Path follower started
-[planner_astar_node-9] [WARN] [1757939823.634063551] [maze_planner]: No start pose received yet; using default start (-1.8, -1.8)
+[INFO] [cmd_vel_bridge-7]: process started with pid [21851]
+[cmd_vel_bridge-7] [INFO] [1757941420.607012255] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/cmd_vel (gz.msgs.Twist) -> /model/slambot/cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.610945290] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/cmd_vel (geometry_msgs/msg/Twist) -> /model/slambot/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.611914025] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/odom (gz.msgs.Odometry) -> /model/slambot/odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.613983284] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/odom (nav_msgs/msg/Odometry) -> /model/slambot/odom (gz.msgs.Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.614756188] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.616370082] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.616966401] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.617459062] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.620354577] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> /tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757941420.624816454] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/tf (tf2_msgs/msg/TFMessage) -> /tf (gz.msgs.Pose_V)] (Lazy 0)
+[INFO] [odom_to_pose_node-8]: process started with pid [21875]
+[cmd_vel_bridge-7] [INFO] [1757941420.801906822] [ros_gz_bridge]: Passing message from ROS tf2_msgs/msg/TFMessage to Gazebo gz.msgs.Pose_V (showing msg only once per type)
+[INFO] [planner_astar_node-9]: process started with pid [21878]
+[odom_to_pose_node-8] [INFO] [1757941421.939747902] [odom_to_pose]: Odom->Pose republisher started (listening on /model/slambot/odom and /odom)
+[planner_astar_node-9] [INFO] [1757941422.106740285] [maze_planner]: A* planner node started. goal=(9.6, 9.6) cell_size=0.4 plan_on_timer=True replan_on_pose=False
+[planner_astar_node-9] [INFO] [1757941422.107396554] [maze_planner]: Params: allow_start_default=True default_start=(-1.8, -1.8) plan_rate_hz=1.0
+[planner_astar_node-9] [INFO] [1757941423.902798575] [maze_planner]: Received maze occupancy.
+[odom_to_pose_node-8] [WARN] [1757941423.941052377] [odom_to_pose]: Still no /model/slambot/odom received. Check bridge and topic names.
+[planner_astar_node-9] [WARN] [1757941424.076405966] [maze_planner]: No start pose received yet; using default start (-1.8, -1.8)
 [planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] [INFO] [1757939823.655779089] [maze_planner]: Published A* path with 118 poses (state change).
-[planner_astar_node-9] [INFO] [1757939824.153700047] [maze_planner]: Received first robot_pose: (-1.7999999999800533, -1.8)
-[planner_astar_node-9] [INFO] [1757939824.154430393] [maze_planner]: Received robot pose: (-1.7999999999800533, -1.8)
+[planner_astar_node-9] [INFO] [1757941424.105559186] [maze_planner]: Published A* path with 118 poses (state change).
+[INFO] [path_follower_node-10]: process started with pid [21953]
+[odom_to_pose_node-8] [INFO] [1757941424.618585040] [odom_to_pose]: First odom received at (-1.80,-1.80) from unknown (either /model/slambot/odom or /odom)
+[planner_astar_node-9] [INFO] [1757941424.623492785] [maze_planner]: Received first robot_pose: (-1.7999999999800533, -1.8)
+[planner_astar_node-9] [INFO] [1757941424.626045127] [maze_planner]: Received robot pose: (-1.7999999999800533, -1.8)
 [planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[path_follower_node-10] [INFO] [1757941425.707266741] [path_follower]: Path follower started
 [planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[path_follower_node-10] [INFO] [1757939825.651118255] [path_follower]: Received planned path with 118 points
-[planner_astar_node-9] [INFO] [1757939826.608845981] [maze_planner]: Cleared start cell at (20,20) (was 1). world_start=(-1.7999999999800533, -1.8) origin=(-10.00,-10.00)
-[path_follower_node-10] [INFO] [1757939826.644282009] [path_follower]: Received planned path with 120 points
+[path_follower_node-10] [INFO] [1757941426.106705946] [path_follower]: Received planned path with 118 points
 [planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[path_follower_node-10] [INFO] [1757939830.636014709] [path_follower]: Received planned path with 118 points
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planG:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[path_follower_node-10] [INFO] [1757941427.490744861] [path_follower]: First odom pose=(-1.800,-1.800,0.000)
+[cmd_vel_bridge-7] [INFO] [1757941427.543735548] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[path_follower_node-10] [INFO] [1757941427.544025939] [path_follower]: cmd_vel pub #1: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941427.605428286] [maze_planner]: Received robot pose: (-1.7999999998260123, -1.8000022526814206)
+[path_follower_node-10] [INFO] [1757941427.643058184] [path_follower]: cmd_vel pub #2: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941427.659570156] [maze_planner]: Received robot pose: (-1.7999999920482133, -1.8000138921779967)
+[planner_astar_node-9] [INFO] [1757941427.730607101] [maze_planner]: Received robot pose: (-1.7999999469400867, -1.8000354393168425)
+[path_follower_node-10] [INFO] [1757941427.746368382] [path_follower]: cmd_vel pub #3: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941427.775813065] [maze_planner]: Received robot pose: (-1.7999998092376683, -1.8000668938829736)
+[planner_astar_node-9] [INFO] [1757941427.821418655] [maze_planner]: Received robot pose: (-1.7999994980711962, -1.800108255254578)
+[path_follower_node-10] [INFO] [1757941427.841041055] [path_follower]: cmd_vel pub #4: idx=0/118 pose=(-1.80,-1.80,0.01) target=(-2.20,-1.80) dist=0.40 ang_err=3.13 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941427.863755894] [maze_planner]: Received robot pose: (-1.7999989069690583, -1.8001595220551487)
+[planner_astar_node-9] [INFO] [1757941427.893797428] [maze_planner]: Received robot pose: (-1.7999979038662886, -1.8002206916953283)
+[planner_astar_node-9] [INFO] [1757941427.929957704] [maze_planner]: Cleared start cell at (20,20) (was 1). world_start=(-1.7999979038662886, -1.8002206916953283) origin=(-10.00,-10.00)
+[path_follower_node-10] [INFO] [1757941427.942293940] [path_follower]: cmd_vel pub #5: idx=0/118 pose=(-1.80,-1.80,0.02) target=(-2.20,-1.80) dist=0.40 ang_err=3.12 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941427.993010737] [maze_planner]: Received robot pose: (-1.7999963311204994, -1.8002917598045638)
+[planner_astar_node-9] [INFO] [1757941427.993997909] [maze_planner]: Received robot pose: (-1.7999940055384798, -1.8003727195526953)
+[path_follower_node-10] [INFO] [1757941427.997919951] [path_follower]: Received planned path with 120 points
+[planner_astar_node-9] [INFO] [1757941428.041885157] [maze_planner]: Received robot pose: (-1.7999907184177844, -1.8004635608616437)
+[path_follower_node-10] [INFO] [1757941428.144066406] [path_follower]: cmd_vel pub #6: idx=1/120 pose=(-1.80,-1.80,0.04) target=(-2.00,-1.80) dist=0.20 ang_err=3.10 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.167487404] [maze_planner]: Received robot pose: (-1.7999862356078822, -1.800564269507551)
+[path_follower_node-10] [INFO] [1757941428.248144148] [path_follower]: cmd_vel pub #7: idx=1/120 pose=(-1.80,-1.80,0.05) target=(-2.00,-1.80) dist=0.20 ang_err=3.09 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.253059008] [maze_planner]: Received robot pose: (-1.799980297596383, -1.8006748261138086)
+[planner_astar_node-9] [INFO] [1757941428.310441487] [maze_planner]: Received robot pose: (-1.799972619626317, -1.800795205035661)
+[path_follower_node-10] [INFO] [1757941428.347031814] [path_follower]: cmd_vel pub #8: idx=1/120 pose=(-1.80,-1.80,0.07) target=(-2.00,-1.80) dist=0.20 ang_err=3.07 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.398996419] [maze_planner]: Received robot pose: (-1.79996289185127, -1.8009253731372934)
+[planner_astar_node-9] [INFO] [1757941428.444971305] [maze_planner]: Received robot pose: (-1.7999507795356255, -1.8010652884625296)
+[path_follower_node-10] [INFO] [1757941428.452675737] [path_follower]: cmd_vel pub #9: idx=1/120 pose=(-1.80,-1.80,0.08) target=(-2.00,-1.80) dist=0.20 ang_err=3.06 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.546776649] [maze_planner]: Received robot pose: (-1.7999359233079855, -1.801214898800838)
+[path_follower_node-10] [INFO] [1757941428.546815932] [path_follower]: cmd_vel pub #10: idx=1/120 pose=(-1.80,-1.80,0.09) target=(-2.00,-1.80) dist=0.20 ang_err=3.04 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.593633555] [maze_planner]: Received robot pose: (-1.7999179394763167, -1.8013741401505168)
+[path_follower_node-10] [INFO] [1757941428.645107958] [path_follower]: cmd_vel pub #11: idx=1/120 pose=(-1.80,-1.80,0.13) target=(-2.00,-1.80) dist=0.20 ang_err=3.00 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.647356613] [maze_planner]: Received robot pose: (-1.7998964204139898, -1.8015429350815848)
+[planner_astar_node-9] [INFO] [1757941428.685404949] [maze_planner]: Received robot pose: (-1.799870935027376, -1.801721190955234)
+[planner_astar_node-9] [INFO] [1757941428.720335426] [maze_planner]: Received robot pose: (-1.7998410293138023, -1.8019087981124016)
+[planner_astar_node-9] [INFO] [1757941428.739600233] [maze_planner]: Received robot pose: (-1.799806227018801, -1.8021056280602972)
+[path_follower_node-10] [INFO] [1757941428.741560455] [path_follower]: cmd_vel pub #12: idx=1/120 pose=(-1.80,-1.80,0.18) target=(-2.00,-1.80) dist=0.20 ang_err=2.95 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.769051010] [maze_planner]: Received robot pose: (-1.7997660304094387, -1.8023115313996336)
+[planner_astar_node-9] [INFO] [1757941428.789789305] [maze_planner]: Received robot pose: (-1.7997199211713673, -1.802526335744023)
+[planner_astar_node-9] [INFO] [1757941428.811893961] [maze_planner]: Received robot pose: (-1.799667361442594, -1.8027498435687885)
+[planner_astar_node-9] [INFO] [1757941428.838286616] [maze_planner]: Received robot pose: (-1.7996077949967768, -1.8029818299966145)
+[path_follower_node-10] [INFO] [1757941428.841964647] [path_follower]: cmd_vel pub #13: idx=1/120 pose=(-1.80,-1.80,0.26) target=(-2.00,-1.80) dist=0.20 ang_err=2.86 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941428.857626199] [maze_planner]: Received robot pose: (-1.7995412774497508, -1.8032198763112661)
+[planner_astar_node-9] [INFO] [1757941428.886118157] [maze_planner]: Received robot pose: (-1.7994695034587787, -1.803456934463422)
+[planner_astar_node-9] [INFO] [1757941428.937223187] [maze_planner]: Received robot pose: (-1.799392640656161, -1.8036923918463503)
+[path_follower_node-10] [INFO] [1757941428.945650092] [path_follower]: cmd_vel pub #14: idx=1/120 pose=(-1.80,-1.80,0.33) target=(-2.00,-1.80) dist=0.20 ang_err=2.80 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.011246425] [maze_planner]: Received robot pose: (-1.799310724696146, -1.8039261392468808)
+[path_follower_node-10] [INFO] [1757941429.042944297] [path_follower]: cmd_vel pub #15: idx=1/120 pose=(-1.80,-1.80,0.35) target=(-2.00,-1.80) dist=0.20 ang_err=2.77 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.063784270] [maze_planner]: Received robot pose: (-1.799223793577011, -1.8041580682450156)
+[planner_astar_node-9] [INFO] [1757941429.142133778] [maze_planner]: Received robot pose: (-1.7991318876234401, -1.8043880712640914)
+[path_follower_node-10] [INFO] [1757941429.145355208] [path_follower]: cmd_vel pub #16: idx=1/120 pose=(-1.80,-1.80,0.37) target=(-2.00,-1.80) dist=0.20 ang_err=2.75 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.189389808] [maze_planner]: Received robot pose: (-1.7990350494678484, -1.8046160416208488)
+[planner_astar_node-9] [INFO] [1757941429.252912477] [maze_planner]: Received robot pose: (-1.7989333240305925, -1.8048418735747411)
+[path_follower_node-10] [INFO] [1757941429.250868941] [path_follower]: cmd_vel pub #17: idx=1/120 pose=(-1.80,-1.80,0.43) target=(-2.00,-1.80) dist=0.20 ang_err=2.68 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.317837055] [maze_planner]: Received robot pose: (-1.7988267584991264, -1.8050654623770386)
+[path_follower_node-10] [INFO] [1757941429.342849905] [path_follower]: cmd_vel pub #18: idx=1/120 pose=(-1.80,-1.81,0.46) target=(-2.00,-1.80) dist=0.20 ang_err=2.66 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.390198094] [maze_planner]: Received robot pose: (-1.7987154023061362, -1.8052867043194332)
+[planner_astar_node-9] [INFO] [1757941429.441267521] [maze_planner]: Received robot pose: (-1.798599307106592, -1.8055054967820088)
+[path_follower_node-10] [INFO] [1757941429.443201150] [path_follower]: cmd_vel pub #19: idx=1/120 pose=(-1.80,-1.81,0.50) target=(-2.00,-1.80) dist=0.20 ang_err=2.62 cmd=(0.00,1.00)
+[path_follower_node-10] [INFO] [1757941429.540837067] [path_follower]: cmd_vel pub #20: idx=1/120 pose=(-1.80,-1.81,0.52) target=(-2.00,-1.80) dist=0.20 ang_err=2.59 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941429.541667034] [maze_planner]: Received robot pose: (-1.7984785267538088, -1.8057217382809718)
+[planner_astar_node-9] [INFO] [1757941429.579864772] [maze_planner]: Received robot pose: (-1.7983531172744598, -1.8059353285156319)
+[planner_astar_node-9] [INFO] [1757941429.613966376] [maze_planner]: Received robot pose: (-1.7982231368425827, -1.8061461684148679)
+[planner_astar_node-9] [INFO] [1757941429.634302161] [maze_planner]: Received robot pose: (-1.798088645752613, -1.806354160183199)
+[planner_astar_node-9] [INFO] [1757941429.656145622] [maze_planner]: Received robot pose: (-1.7979497063928642, -1.8065592073247316)
+[planner_astar_node-9] [INFO] [1757941429.683491440] [maze_planner]: Received robot pose: (-1.7978063832207454, -1.8067612146313985)
+[planner_astar_node-9] [INFO] [1757941429.706245201] [maze_planner]: Received robot pose: (-1.7976587427222257, -1.8069600883839074)
+[planner_astar_node-9] [INFO] [1757941429.721948022] [maze_planner]: Received robot pose: (-1.7975068533853353, -1.807155736327717)
+[planner_astar_node-9] [INFO] [1757941429.746113786] [maze_planner]: Received robot pose: (-1.7973507856690414, -1.807348067704753)
+[planner_astar_node-9] [INFO] [1757941429.772158848] [maze_planner]: Received robot pose: (-1.7971906119705867, -1.8075369932954928)
+[planner_astar_node-9] [INFO] [1757941429.789287487] [maze_planner]: Received robot pose: (-1.7970264065919377, -1.807722425460322)
+[planner_astar_node-9] [INFO] [1757941429.814677290] [maze_planner]: Received robot pose: (-1.7968582457053597, -1.8079042781802837)
+[planner_astar_node-9] [INFO] [1757941429.834727919] [maze_planner]: Received robot pose: (-1.7966862073179857, -1.8080824670968798)
+[planner_astar_node-9] [INFO] [1757941429.860744582] [maze_planner]: Received robot pose: (-1.7965103712356474, -1.8082569095511636)
+[planner_astar_node-9] [INFO] [1757941429.881805194] [maze_planner]: Received robot pose: (-1.7963308190258893, -1.808427524622139)
+[planner_astar_node-9] [INFO] [1757941429.900892670] [maze_planner]: Received robot pose: (-1.7961476339801508, -1.8085942331642773)
+[planner_astar_node-9] [INFO] [1757941429.929809115] [maze_planner]: Received robot pose: (-1.7959609010751814, -1.8087569578443303)
+[planner_astar_node-9] [INFO] [1757941429.945923895] [maze_planner]: Received robot pose: (-1.7957707069335425, -1.80891562317708)
+[planner_astar_node-9] [INFO] [1757941429.974663882] [maze_planner]: Received robot pose: (-1.7955771397834162, -1.8090701555603086)
+[planner_astar_node-9] [INFO] [1757941430.016823274] [maze_planner]: Received robot pose: (-1.7953802894177309, -1.8092204833090328)
+[planner_astar_node-9] [INFO] [1757941430.099868578] [maze_planner]: Received robot pose: (-1.7951802471525247, -1.8093665366887404)
+[planner_astar_node-9] [INFO] [1757941430.112257015] [maze_planner]: Received robot pose: (-1.7949771058062478, -1.8095082479462605)
+[planner_astar_node-9] [INFO] [1757941430.148414012] [maze_planner]: Received robot pose: (-1.7947709597014194, -1.8096455513384582)
+[planner_astar_node-9] [INFO] [1757941430.185307029] [maze_planner]: Received robot pose: (-1.7945619044677656, -1.8097783831731424)
+[planner_astar_node-9] [INFO] [1757941430.256841448] [maze_planner]: Received robot pose: (-1.7943500370735876, -1.8099066818331309)
+[planner_astar_node-9] [INFO] [1757941430.314146449] [maze_planner]: Received robot pose: (-1.7941354557914748, -1.8100303878041)
+[planner_astar_node-9] [INFO] [1757941430.382844309] [maze_planner]: Received robot pose: (-1.7939182601526338, -1.8101494437021854)
+[planner_astar_node-9] [INFO] [1757941430.438833124] [maze_planner]: Received robot pose: (-1.7936985509008265, -1.8102637943006028)
+[planner_astar_node-9] [INFO] [1757941430.471825666] [maze_planner]: Received robot pose: (-1.7934764299455745, -1.8103733865552587)
+[planner_astar_node-9] [INFO] [1757941430.494603091] [maze_planner]: Received robot pose: (-1.7932520003149344, -1.8104781696293546)
+[planner_astar_node-9] [INFO] [1757941430.519685224] [maze_planner]: Received robot pose: (-1.7930253661077518, -1.8105780949169705)
+[planner_astar_node-9] [INFO] [1757941430.539308081] [maze_planner]: Received robot pose: (-1.7927966324453182, -1.8106731160656009)
+[path_follower_node-10] [INFO] [1757941430.541404380] [path_follower]: cmd_vel pub #30: idx=1/120 pose=(-1.79,-1.81,1.19) target=(-2.00,-1.80) dist=0.21 ang_err=1.90 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941430.565360291] [maze_planner]: Received robot pose: (-1.7925659054226988, -1.810763188997662)
+[planner_astar_node-9] [INFO] [1757941430.593918413] [maze_planner]: Received robot pose: (-1.7923332920594652, -1.81084827193093)
+[planner_astar_node-9] [INFO] [1757941430.619402376] [maze_planner]: Received robot pose: (-1.7920989002501333, -1.8109283253979256)
+[planner_astar_node-9] [INFO] [1757941430.638792328] [maze_planner]: Received robot pose: (-1.7918628387140647, -1.8110033122642124)
+[planner_astar_node-9] [INFO] [1757941430.674527684] [maze_planner]: Received robot pose: (-1.7916252169451141, -1.8110731977456311)
+[planner_astar_node-9] [INFO] [1757941430.728370009] [maze_planner]: Received robot pose: (-1.7913861451607969, -1.8111379494244204)
+[planner_astar_node-9] [INFO] [1757941430.776494595] [maze_planner]: Received robot pose: (-1.7911457342512316, -1.8111975372642661)
+[planner_astar_node-9] [INFO] [1757941430.832849199] [maze_planner]: Received robot pose: (-1.7909040957276672, -1.811251933624218)
+[planner_astar_node-9] [INFO] [1757941430.879703156] [maze_planner]: Received robot pose: (-1.7906613416708195, -1.8113011132715269)
+[planner_astar_node-9] [INFO] [1757941430.932324990] [maze_planner]: Received robot pose: (-1.7904175846788515, -1.8113450533933306)
+[planner_astar_node-9] [INFO] [1757941431.000958473] [maze_planner]: Received robot pose: (-1.7901729378320639, -1.8113837336069256)
+[planner_astar_node-9] [INFO] [1757941431.036251840] [maze_planner]: Received robot pose: (-1.7899275147172051, -1.8114171359683444)
+[planner_astar_node-9] [INFO] [1757941431.100033075] [maze_planner]: Received robot pose: (-1.7896814291962575, -1.81144524498448)
+[planner_astar_node-9] [INFO] [1757941431.141424570] [maze_planner]: Received robot pose: (-1.7894347954166385, -1.8114680476180522)
+[planner_astar_node-9] [INFO] [1757941431.223518983] [maze_planner]: Received robot pose: (-1.7891877277763348, -1.811485533293013)
+[planner_astar_node-9] [INFO] [1757941431.260424351] [maze_planner]: Received robot pose: (-1.7889403408708717, -1.811497693899194)
+[planner_astar_node-9] [INFO] [1757941431.293527212] [maze_planner]: Received robot pose: (-1.7886927494407572, -1.8115045237957845)
+[planner_astar_node-9] [INFO] [1757941431.334812474] [maze_planner]: Received robot pose: (-1.7884450683214315, -1.8115060198457966)
+[planner_astar_node-9] [INFO] [1757941431.363632942] [maze_planner]: Received robot pose: (-1.7881974124417033, -1.8115021814506855)
+[planner_astar_node-9] [INFO] [1757941431.423408696] [maze_planner]: Received robot pose: (-1.787949896689128, -1.8114930102637796)
+[planner_astar_node-9] [INFO] [1757941431.482709400] [maze_planner]: Received robot pose: (-1.7877026358627321, -1.8114785105395692)
+[planner_astar_node-9] [INFO] [1757941431.536720797] [maze_planner]: Received robot pose: (-1.7874557446457697, -1.8114586890033972)
+[path_follower_node-10] [INFO] [1757941431.543297697] [path_follower]: cmd_vel pub #40: idx=1/120 pose=(-1.79,-1.81,1.66) target=(-2.00,-1.80) dist=0.21 ang_err=1.43 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941431.600920695] [maze_planner]: Received robot pose: (-1.7872093375534874, -1.8114335548485683)
+[planner_astar_node-9] [INFO] [1757941431.633772331] [maze_planner]: Received robot pose: (-1.7869635288803545, -1.8114031197323746)
+[planner_astar_node-9] [INFO] [1757941431.671565199] [maze_planner]: Received robot pose: (-1.786718432646852, -1.8113673977709241)
+[planner_astar_node-9] [INFO] [1757941431.713741638] [maze_planner]: Received robot pose: (-1.7864741626020428, -1.8113264055341705)
+[planner_astar_node-9] [INFO] [1757941431.761865897] [maze_planner]: Received robot pose: (-1.7862308321307814, -1.811280162038291)
+[planner_astar_node-9] [INFO] [1757941431.803450333] [maze_planner]: Received robot pose: (-1.7859885540989293, -1.8112286887339988)
+[planner_astar_node-9] [INFO] [1757941431.841717134] [maze_planner]: Received robot pose: (-1.7857474408834966, -1.8111720094979609)
+[planner_astar_node-9] [INFO] [1757941431.889756742] [maze_planner]: Received robot pose: (-1.7855076043211464, -1.8111101506217433)
+[planner_astar_node-9] [INFO] [1757941431.957333316] [maze_planner]: Received robot pose: (-1.7852691556563431, -1.8110431407996241)
+[planner_astar_node-9] [INFO] [1757941431.999051074] [maze_planner]: Received robot pose: (-1.7850322054897507, -1.810971011115269)
+[planner_astar_node-9] [INFO] [1757941432.045270128] [maze_planner]: Received robot pose: (-1.7847968637269618, -1.8108937950273332)
+[planner_astar_node-9] [INFO] [1757941432.071738393] [maze_planner]: Received robot pose: (-1.7845632395275206, -1.8108115283539252)
+[planner_astar_node-9] [INFO] [1757941432.107742979] [maze_planner]: Received robot pose: (-1.7843314412543172, -1.810724249256012)
+[planner_astar_node-9] [INFO] [1757941432.129521194] [maze_planner]: Received robot pose: (-1.7841015764233246, -1.8106319982197032)
+[planner_astar_node-9] [INFO] [1757941432.154554840] [maze_planner]: Received robot pose: (-1.7838737516537562, -1.8105348180374883)
+[planner_astar_node-9] [INFO] [1757941432.184351570] [maze_planner]: Received robot pose: (-1.7836480726186144, -1.810432753788375)
+[planner_astar_node-9] [INFO] [1757941432.207784021] [maze_planner]: Received robot pose: (-1.7834246439957024, -1.8103258528169948)
+[planner_astar_node-9] [INFO] [1757941432.241227350] [maze_planner]: Received robot pose: (-1.783203569419068, -1.8102141647116303)
+[planner_astar_node-9] [INFO] [1757941432.278122642] [maze_planner]: Received robot pose: (-1.7829849514309641, -1.8100977412812298)
+[planner_astar_node-9] [INFO] [1757941432.303005877] [maze_planner]: Received robot pose: (-1.7827688914342847, -1.8099766365313616)
+[planner_astar_node-9] [INFO] [1757941432.339404542] [maze_planner]: Received robot pose: (-1.782555489645558, -1.8098509066391835)
+[planner_astar_node-9] [INFO] [1757941432.361993728] [maze_planner]: Received robot pose: (-1.7823448450484582, -1.809720609927366)
+[planner_astar_node-9] [INFO] [1757941432.391900152] [maze_planner]: Received robot pose: (-1.7821370553479248, -1.809585806837062)
+[planner_astar_node-9] [INFO] [1757941432.417727517] [maze_planner]: Received robot pose: (-1.7819322169517111, -1.8094465599016962)
+[planner_astar_node-9] [INFO] [1757941432.460918634] [maze_planner]: Received robot pose: (-1.7817304249694426, -1.8093029337212887)
+[planner_astar_node-9] [INFO] [1757941432.531491816] [maze_planner]: Received robot pose: (-1.78153177301721, -1.8091549949221684)
+[path_follower_node-10] [INFO] [1757941432.541727398] [path_follower]: cmd_vel pub #50: idx=1/120 pose=(-1.78,-1.81,2.22) target=(-2.00,-1.80) dist=0.22 ang_err=0.88 cmd=(0.00,1.00)
+[planner_astar_node-9] [INFO] [1757941432.571995711] [maze_planner]: Received robot pose: (-1.7813363532466666, -1.8090028121307147)
+[planner_astar_node-9] [INFO] [1757941432.617489976] [maze_planner]: Received robot pose: (-1.7811442563100441, -1.8088464559420272)
+[planner_astar_node-9] [INFO] [1757941432.664186426] [maze_planner]: Received robot pose: (-1.7809555713181033, -1.808685998887192)
+[planner_astar_node-9] [INFO] [1757941432.711030553] [maze_planner]: Received robot pose: (-1.7807703857988153, -1.8085215153996241)
+[planner_astar_node-9] [INFO] [1757941432.771548603] [maze_planner]: Received robot pose: (-1.7805887856567608, -1.8083530817805578)
+[planner_astar_node-9] [INFO] [1757941432.822387816] [maze_planner]: Received robot pose: (-1.780410855133291, -1.8081807761636366)
+[planner_astar_node-9] [INFO] [1757941432.854122831] [maze_planner]: Received robot pose: (-1.7802366767674525, -1.8080046784786887)
+[planner_astar_node-9] [INFO] [1757941432.905472509] [maze_planner]: Received robot pose: (-1.7800663313577108, -1.80782487041464)
+[planner_astar_node-9] [INFO] [1757941432.927934258] [maze_planner]: Received robot pose: (-1.779899897924467, -1.8076414353816366)
+[planner_astar_node-9] [INFO] [1757941432.952455258] [maze_planner]: Received robot pose: (-1.779737453673412, -1.807454458472345)
+[planner_astar_node-9] [INFO] [1757941432.989739332] [maze_planner]: Received robot pose: (-1.7795790739597115, -1.8072640264224995)
+[planner_astar_node-9] [INFO] [1757941433.008294168] [maze_planner]: Received robot pose: (-1.7794248322530566, -1.8070702275706627)
+[planner_astar_node-9] [INFO] [1757941433.030633390] [maze_planner]: Received robot pose: (-1.779274800103583, -1.806873151817259)
+[planner_astar_node-9] [INFO] [1757941433.050254103] [maze_planner]: Received robot pose: (-1.7791290471086811, -1.8066728905828857)
+[planner_astar_node-9] [INFO] [1757941433.099408059] [maze_planner]: Received robot pose: (-1.7789876408825371, -1.8064695367929346)
+[planner_astar_node-9] [INFO] [1757941433.112957265] [maze_planner]: Received robot pose: (-1.7788506470265677, -1.8062631848658153)
+[planner_astar_node-9] [INFO] [1757941433.134465892] [maze_planner]: Received robot pose: (-1.7787181290891476, -1.8060539305233543)
+[planner_astar_node-9] [INFO] [1757941433.155566657] [maze_planner]: Received robot pose: (-1.7785901485418463, -1.8058418708262471)
+[planner_astar_node-9] [INFO] [1757941433.183942428] [maze_planner]: Received robot pose: (-1.7784667647514218, -1.8056271041362226)
+[planner_astar_node-9] [INFO] [1757941433.209484277] [maze_planner]: Received robot pose: (-1.778348034952283, -1.805409730070523)
+[planner_astar_node-9] [INFO] [1757941433.228691657] [maze_planner]: Received robot pose: (-1.7782340142199449, -1.8051898494556298)
+[planner_astar_node-9] [INFO] [1757941433.250774132] [maze_planner]: Received robot pose: (-1.7781249158929726, -1.8049678991416407)
+[planner_astar_node-9] [INFO] [1757941433.273284261] [maze_planner]: Received robot pose: (-1.778023631321214, -1.8047503089156192)
+[planner_astar_node-9] [INFO] [1757941433.306326860] [maze_planner]: Received robot pose: (-1.777930816078131, -1.8045397573885933)
+[planner_astar_node-9] [INFO] [1757941433.330602391] [maze_planner]: Received robot pose: (-1.777845570146978, -1.8043356042299643)
+[planner_astar_node-9] [INFO] [1757941433.349535626] [maze_planner]: Received robot pose: (-1.77778715159763, -1.8041157361082838)
+[planner_astar_node-9] [INFO] [1757941433.371811487] [maze_planner]: Received robot pose: (-1.7792043801851183, -1.8031223909634122)
+[planner_astar_node-9] [INFO] [1757941433.399379849] [maze_planner]: Received robot pose: (-1.782337456905415, -1.8017590328246373)
+[planner_astar_node-9] [INFO] [1757941433.420902062] [maze_planner]: Received robot pose: (-1.7856338342369114, -1.8004361149114982)
+[planner_astar_node-9] [INFO] [1757941433.443173637] [maze_planner]: Received robot pose: (-1.788961863044422, -1.7991724959878383)
+[planner_astar_node-9] [INFO] [1757941433.469069039] [maze_planner]: Received robot pose: (-1.7921687792893004, -1.7980133365621933)
+[planner_astar_node-9] [INFO] [1757941433.491958589] [maze_planner]: Received robot pose: (-1.7953669244157242, -1.7969173446690438)
+[planner_astar_node-9] [INFO] [1757941433.532517236] [maze_planner]: Received robot pose: (-1.7985828460937454, -1.7958761952958424)
+[path_follower_node-10] [INFO] [1757941433.541440123] [path_follower]: cmd_vel pub #60: idx=1/120 pose=(-1.80,-1.80,2.88) target=(-2.00,-1.80) dist=0.20 ang_err=0.28 cmd=(0.16,0.56)
+[planner_astar_node-9] [INFO] [1757941433.622916864] [maze_planner]: Received robot pose: (-1.8016966838801247, -1.7949186340770127)
+[planner_astar_node-9] [INFO] [1757941433.650702653] [maze_planner]: Received robot pose: (-1.8047935947849338, -1.7940139231701622)
+[planner_astar_node-9] [INFO] [1757941433.674461843] [maze_planner]: Received robot pose: (-1.8078615896788781, -1.793159485812731)
+[planner_astar_node-9] [INFO] [1757941433.691600869] [maze_planner]: Received robot pose: (-1.8109318652662152, -1.7923439516637947)
+[planner_astar_node-9] [INFO] [1757941433.713959692] [maze_planner]: Received robot pose: (-1.814011495950226, -1.7915644884454007)
+[planner_astar_node-9] [INFO] [1757941433.736362673] [maze_planner]: Received robot pose: (-1.817100057970322, -1.7908212034136621)
+[planner_astar_node-9] [INFO] [1757941433.760361099] [maze_planner]: Received robot pose: (-1.8200667457929955, -1.790145393939979)
+[planner_astar_node-9] [INFO] [1757941433.786865080] [maze_planner]: Received robot pose: (-1.822932978249592, -1.789524790809264)
+[planner_astar_node-9] [INFO] [1757941433.811147308] [maze_planner]: Received robot pose: (-1.8258064126233013, -1.7889395181657366)
+[planner_astar_node-9] [INFO] [1757941433.834046145] [maze_planner]: Received robot pose: (-1.8286856908817846, -1.7883837101054847)
+[planner_astar_node-9] [INFO] [1757941433.854712929] [maze_planner]: Received robot pose: (-1.8315032304363656, -1.7878713044777503)
+[planner_astar_node-9] [INFO] [1757941433.886731537] [maze_planner]: Received robot pose: (-1.8342129921905022, -1.7874058788043938)
+[planner_astar_node-9] [INFO] [1757941433.903038232] [maze_planner]: Received robot pose: (-1.836927297641281, -1.7869683918822212)
+[planner_astar_node-9] [INFO] [1757941433.919710086] [maze_planner]: Received robot pose: (-1.8396455003276748, -1.7865558109134396)
+[planner_astar_node-9] [INFO] [1757941433.941383027] [maze_planner]: Received robot pose: (-1.842367371722018, -1.7861681705808512)
+[planner_astar_node-9] [INFO] [1757941433.967365787] [maze_planner]: Received robot pose: (-1.8449742136144751, -1.785823540439833)
+[planner_astar_node-9] [INFO] [1757941433.988987417] [maze_planner]: Received robot pose: (-1.847488659711289, -1.785512941860693)
+[planner_astar_node-9] [INFO] [1757941434.046409344] [maze_planner]: Received robot pose: (-1.850005707141725, -1.7852248664843633)
+[planner_astar_node-9] [INFO] [1757941434.118486713] [maze_planner]: Received robot pose: (-1.852458927027355, -1.78496489971335)
+[planner_astar_node-9] [INFO] [1757941434.207855766] [maze_planner]: Received robot pose: (-1.854899945364864, -1.7847256814079606)
+[planner_astar_node-9] [INFO] [1757941434.244860633] [maze_planner]: Received robot pose: (-1.857342708297314, -1.7845049888750724)
+[planner_astar_node-9] [INFO] [1757941434.285087616] [maze_planner]: Received robot pose: (-1.86078178911178, -1.7842342923919203)
+[planner_astar_node-9] [INFO] [1757941434.345448292] [maze_planner]: Received robot pose: (-1.8661410882541805, -1.7839391289081425)
+[planner_astar_node-9] [INFO] [1757941434.414717907] [maze_planner]: Received robot pose: (-1.8715719378468785, -1.783687295151204)
+[planner_astar_node-9] [INFO] [1757941434.475973787] [maze_planner]: Received robot pose: (-1.876928055691759, -1.7834766771231716)
+[planner_astar_node-9] [INFO] [1757941434.531591254] [maze_planner]: Received robot pose: (-1.8821865125008048, -1.7832977066064517)
+[planner_astar_node-9] [INFO] [1757941434.593382626] [maze_planner]: Received robot pose: (-1.8839656480329314, -1.782764939397895)
+[path_follower_node-10] [INFO] [1757941434.645373747] [path_follower]: cmd_vel pub #70: idx=2/120 pose=(-1.88,-1.78,3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.06 cmd=(0.25,0.11)
+[planner_astar_node-9] [INFO] [1757941434.659782785] [maze_planner]: Received robot pose: (-1.8838769278076661, -1.7825708884598082)
+[planner_astar_node-9] [INFO] [1757941434.712749412] [maze_planner]: Received robot pose: (-1.8840573960933957, -1.7826559059430116)
+[planner_astar_node-9] [INFO] [1757941434.759371107] [maze_planner]: Received robot pose: (-1.8840469452802402, -1.7826577012717935)
+[planner_astar_node-9] [INFO] [1757941434.794989538] [maze_planner]: Received robot pose: (-1.8840387854760896, -1.7826591013556554)
+[planner_astar_node-9] [INFO] [1757941434.846924200] [maze_planner]: Received robot pose: (-1.8840317238205753, -1.7826603133003802)
+[planner_astar_node-9] [INFO] [1757941434.883065625] [maze_planner]: Received robot pose: (-1.8840259481235255, -1.7826613048207425)
+[planner_astar_node-9] [INFO] [1757941434.920166840] [maze_planner]: Received robot pose: (-1.8840212241942658, -1.7826621160216807)
+[planner_astar_node-9] [INFO] [1757941434.978435703] [maze_planner]: Received robot pose: (-1.8840173604953994, -1.7826627797287158)
+[planner_astar_node-9] [INFO] [1757941435.016169453] [maze_planner]: Received robot pose: (-1.884014058430375, -1.7826633471934938)
+[planner_astar_node-9] [INFO] [1757941435.056896363] [maze_planner]: Received robot pose: (-1.8840114996075643, -1.7826637871431146)
+[planner_astar_node-9] [INFO] [1757941435.123982325] [maze_planner]: Received robot pose: (-1.8840095976076319, -1.782664114338741)
+[planner_astar_node-9] [INFO] [1757941435.157470934] [maze_planner]: Received robot pose: (-1.8840077726383944, -1.782664428488781)
+[planner_astar_node-9] [INFO] [1757941435.211037847] [maze_planner]: Received robot pose: (-1.8840064225999806, -1.7826646610738013)
+[planner_astar_node-9] [INFO] [1757941435.260712518] [maze_planner]: Received robot pose: (-1.8840055246904663, -1.7826648158939893)
+[planner_astar_node-9] [INFO] [1757941435.361972343] [maze_planner]: Received robot pose: (-1.8840042132046195, -1.7826650422994559)
+[planner_astar_node-9] [INFO] [1757941435.426773677] [maze_planner]: Received robot pose: (-1.8840037729034094, -1.782665118414092)
+[planner_astar_node-9] [INFO] [1757941435.481902622] [maze_planner]: Received robot pose: (-1.8840029067500634, -1.7826652683797015)
+[planner_astar_node-9] [INFO] [1757941435.518250009] [maze_planner]: Received robot pose: (-1.8840024759132419, -1.7826653431392134)
+[planner_astar_node-9] [INFO] [1757941435.561858112] [maze_planner]: Received robot pose: (-1.8840020466202978, -1.7826654177945616)
+[planner_astar_node-9] [INFO] [1757941435.589812040] [maze_planner]: Received robot pose: (-1.8840016093395664, -1.782665494039666)
+[path_follower_node-10] [INFO] [1757941435.645525381] [path_follower]: cmd_vel pub #80: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[planner_astar_node-9] [INFO] [1757941435.673134126] [maze_planner]: Received robot pose: (-1.8840011802173149, -1.7826655688894104)
+[planner_astar_node-9] [INFO] [1757941435.811999393] [maze_planner]: Received robot pose: (-1.8840007531377652, -1.7826656433863808)
+[planner_astar_node-9] [INFO] [1757941435.979652253] [maze_planner]: Received robot pose: (-1.8840003306141349, -1.7826657170875873)
+[path_follower_node-10] [INFO] [1757941436.643234910] [path_follower]: cmd_vel pub #90: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941437.642775318] [path_follower]: cmd_vel pub #100: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941438.643268065] [path_follower]: cmd_vel pub #110: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941439.643162896] [path_follower]: cmd_vel pub #120: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941440.642717619] [path_follower]: cmd_vel pub #130: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941441.643304770] [path_follower]: cmd_vel pub #140: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941442.641868084] [path_follower]: cmd_vel pub #150: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941443.643546759] [path_follower]: cmd_vel pub #160: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941444.642950205] [path_follower]: cmd_vel pub #170: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941445.642004896] [path_follower]: cmd_vel pub #180: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
+[path_follower_node-10] [INFO] [1757941446.641617085] [path_follower]: cmd_vel pub #190: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
 ^C[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
-[cmd_vel_bridge-7] [INFO] [1757940116.930967259] [rclcpp]: signal_handler(signum=2)
+[robot_state_publisher-2] [INFO] [1757941447.065380020] [rclcpp]: signal_handler(signum=2)
+[cmd_vel_bridge-7] [INFO] [1757941447.065894087] [rclcpp]: signal_handler(signum=2)
 [maze_publisher_node-6] Traceback (most recent call last):
 [maze_publisher_node-6]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node", line 33, in <module>
 [maze_publisher_node-6]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'maze_publisher_node')())
@@ -292,16 +536,11 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [maze_publisher_node-6]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 [maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
 [maze_publisher_node-6]     return next(self._cb_iter)
-[maze_publisher_node-6]            ^^^^^^^^^^^^^^^^^^^
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
-[maze_publisher_node-6]     wait_set.wait(timeout_nsec)
-[maze_publisher_node-6] KeyboardInterrupt
-[robot_state_publisher-2] [INFO] [1757940116.932454547] [rclcpp]: signal_handler(signum=2)
 [planner_astar_node-9] Traceback (most recent call last):
 [planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node", line 33, in <module>
 [planner_astar_node-9]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'planner_astar_node')())
 [planner_astar_node-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/planner_astar_node.py", line 249, in main
+[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/planner_astar_node.py", line 250, in main
 [planner_astar_node-9]     rclpy.spin(node)
 [planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
 [planner_astar_node-9]     executor.spin_once()
@@ -320,7 +559,7 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node", line 33, in <module>
 [path_follower_node-10]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'path_follower_node')())
 [path_follower_node-10]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/path_follower_node.py", line 139, in main
+[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/path_follower_node.py", line 142, in main
 [path_follower_node-10]     rclpy.spin(node)
 [path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
 [path_follower_node-10]     executor.spin_once()
@@ -335,6 +574,10 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
 [path_follower_node-10]     wait_set.wait(timeout_nsec)
 [path_follower_node-10] KeyboardInterrupt
+[maze_publisher_node-6]            ^^^^^^^^^^^^^^^^^^^
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
+[maze_publisher_node-6]     wait_set.wait(timeout_nsec)
+[maze_publisher_node-6] KeyboardInterrupt
 [odom_to_pose_node-8] Traceback (most recent call last):
 [odom_to_pose_node-8]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node", line 33, in <module>
 [odom_to_pose_node-8]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'odom_to_pose_node')())
@@ -348,43 +591,25 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
 [odom_to_pose_node-8]     self.__context.shutdown()
 [odom_to_pose_node-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333
-[ERROR] [maze_publisher_node-6]: process has died [pid 6127, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node --ros-args -r __node:=maze_publisher --params-file /tmp/launch_params_vxqcxkal'].
-[ERROR] [path_follower_node-10]: process has died [pid 6278, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node --ros-args -r __node:=path_follower'].
-[INFO] [cmd_vel_bridge-7]: process has finished cleanly [pid 6170]
-[ERROR] [planner_astar_node-9]: process has died [pid 6182, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node --ros-args -r __node:=maze_planner --params-file /tmp/launch_params_4mgewe4z'].
-[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 5971]
-[ERROR] [odom_to_pose_node-8]: process has died [pid 6172, exit code 1, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node --ros-args -r __node:=odom_to_pose'].
-[INFO] [joint_state_publisher-3]: process has finished cleanly [pid 5972]
-[INFO] [gazebo_gui_client-4]: process has finished cleanly [pid 6040]
-[gazebo_gui-1] [GUI] [Dbg] [TransformControl.cc:453] TransformControl plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [Spawn.cc:308] Spawn plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [SelectEntities.cc:452] SelectEntities plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:169] Advertise /marker/list service.
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:179] Advertise /marker/list.
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:189] Advertise /marker_array.
-[gazebo_gui-1] [GUI] [Dbg] [CameraTracking.cc:205] CameraTrackingPrivate plugin is moving camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Msg] Move to service on [/gui/move_to]
-[gazebo_gui-1] [GUI] [Msg] Follow service on [/gui/follow] (deprecated)
-[gazebo_gui-1] [GUI] [Msg] Tracking topic on [/gui/track]
-[gazebo_gui-1] [GUI] [Msg] Tracking status topic on [/gui/currently_tracked]
-[gazebo_gui-1] [GUI] [Msg] Move to pose service on [/gui/move_to/pose]
-[gazebo_gui-1] [GUI] [Msg] Camera pose topic advertised on [/gui/camera/pose]
-[gazebo_gui-1] [GUI] [Msg] Follow offset service on [/gui/follow/offset] (deprecated)
-[gazebo_gui-1] [GUI] [Dbg] [InteractiveViewControl.cc:176] InteractiveViewControl plugin is moving camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [EntityContextMenuPlugin.cc:79] Entity context menu plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [SignalHandler.cc:142] Received signal[2].
-[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:535] Shutting down gz-sim-gui
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:237] Terminating application.
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:841] Destroy scene [scene]
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 21648]
+[INFO] [gazebo_gui_client-4]: process has finished cleanly [pid 21704]
+[ERROR] [path_follower_node-10]: process has died [pid 21953, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node --ros-args -r __node:=path_follower'].
+[ERROR] [maze_publisher_node-6]: process has died [pid 21812, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node --ros-args -r __node:=maze_publisher --params-file /tmp/launch_params_bj0y5dll'].
+[INFO] [cmd_vel_bridge-7]: process has finished cleanly [pid 21851]
+[ERROR] [odom_to_pose_node-8]: process has died [pid 21875, exit code 1, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node --ros-args -r __node:=odom_to_pose'].
+[ERROR] [planner_astar_node-9]: process has died [pid 21878, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node --ros-args -r __node:=maze_planner --params-file /tmp/launch_params_y3ehz21a'].
+[INFO] [joint_state_publisher-3]: process has finished cleanly [pid 21649]
+[ERROR] [gazebo_gui-1]: process[gazebo_gui-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [gazebo_gui-1]: sending signal 'SIGTERM' to process[gazebo_gui-1]
 [gazebo_gui-1] [Msg] DiffDrive subscribing to twist messages on [cmd_vel]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::DiffDrive] for entity [353]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [353]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::DiffDrive] for entity [356]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [356]
 [gazebo_gui-1] [Dbg] [OdometryPublisher.cc:201] OdometryPublisher system plugin missing <dimensions>, defaults to "2"
 [gazebo_gui-1] [Msg] OdometryPublisher publishing odometry on [odom]
 [gazebo_gui-1] [Msg] OdometryPublisher publishing odometry with covariance on [/model/slambot/odometry_with_covariance]
 [gazebo_gui-1] [Msg] OdometryPublisher publishing Pose_V (TF) on [tf]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [353]
-[gazebo_gui-1] [Dbg] [UserCommands.cc:1318] Created entity [353] named [slambot]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [356]
+[gazebo_gui-1] [Dbg] [UserCommands.cc:1318] Created entity [356] named [slambot]
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 5
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
@@ -394,363 +619,43 @@ Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compac
 [gazebo_gui-1] [Dbg] [SignalHandler.cc:142] Received signal[2].
 [gazebo_gui-1] [Dbg] [ServerPrivate.cc:122] Server received signal[2]
 [gazebo_gui-1] [Dbg] [gz.cc:434] Shutting down gz-sim-server
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (2)
 [gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (3)
-[INFO] [gazebo_gui-1]: process has finished cleanly [pid 5970]
+[gazebo_gui-1] /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:201:in `kill': No such process (Errno::ESRCH)
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:201:in `killProcess'
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:569:in `handle_signal'
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:579:in `block in execute'
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:584:in `wait2'
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:584:in `execute'
+[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz:316:in `<main>'
+[gazebo_gui-1] Escalating to SIGKILL on [Gazebo Sim GUI]
+[ERROR] [gazebo_gui-1]: process has died [pid 21647, exit code 1, cmd 'gz sim -v 4 -r /tmp/maze_world_generated.sdf'].
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ 
 ```
 ------------------------------------------------------------------------------------------
 other  terminal:
 ```
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ source install/setup.bash
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner replan_on_pose false
-Node not found
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner plan_on_timer false
-Set parameter successful
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /planned_path | head -n 120
-header:
-  stamp:
-    sec: 1757939934
-    nanosec: 603456933
-  frame_id: map
-poses:
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -1.799999999999999
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -1.599999999999999
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -1.399999999999999
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -1.1999999999999988
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -0.999999999999999
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -0.7999999999999989
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -0.5999999999999988
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-- header:
-    stamp:
-      sec: 1757939934
-      nanosec: 603456933
-    frame_id: map
-  pose:
-    position:
-      x: -2.1999999999999993
-      y: -0.3999999999999988
-^CTraceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Error in sys.excepthook:
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
-    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
-    report.add_package_info()
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
-    self["Dependencies"] = self._get_transitive_dependencies(package)
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
-    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 373, in _customized_package_suffix
-    origin = packaging.get_package_origin(package)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 318, in get_package_origin
-    pkg = self._apt_pkg(package).installed
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
-    return self._cache()[package]
-           ~~~~~~~~~~~~~^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apt/cache.py", line 273, in __getitem__
-    def __getitem__(self, key: object) -> Package:
-
-KeyboardInterrupt
-
-Original exception was:
-Traceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner plan_on_timer false
-Set parameter successful
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic info /planned_path
-ros2 topic hz /planned_path
-ros2 topic bw /planned_path
-Type: nav_msgs/msg/Path
-Publisher count: 1
-Subscription count: 1
-average rate: 1.342
-        min: 0.030s max: 1.002s std dev: 0.41324s window: 4
-average rate: 1.205
-        min: 0.030s max: 1.006s std dev: 0.35808s window: 6
-average rate: 1.336
-        min: 0.030s max: 1.006s std dev: 0.40855s window: 8
-average rate: 1.254
-        min: 0.030s max: 1.006s std dev: 0.37849s window: 10
-average rate: 1.208
-        min: 0.030s max: 1.006s std dev: 0.35216s window: 12
-average rate: 1.275
-        min: 0.030s max: 1.006s std dev: 0.38702s window: 14
-average rate: 1.232
-        min: 0.030s max: 1.010s std dev: 0.36931s window: 16
-average rate: 1.269
-        min: 0.030s max: 1.010s std dev: 0.38418s window: 19
-average rate: 1.252
-        min: 0.030s max: 1.010s std dev: 0.37746s window: 20
-average rate: 1.237
-        min: 0.030s max: 1.010s std dev: 0.37092s window: 21
-average rate: 1.279
-        min: 0.030s max: 1.010s std dev: 0.38985s window: 23
-^CSubscribed to [/planned_path]
-10.11 KB/s from 2 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-9.52 KB/s from 3 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-11.55 KB/s from 5 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-10.91 KB/s from 6 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-10.49 KB/s from 7 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-10.20 KB/s from 8 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-11.09 KB/s from 10 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-10.79 KB/s from 11 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-10.56 KB/s from 12 messages
-        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
-^Crey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /model/slambot/cmd_vel | head -n 40
-^C
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 node list
-# Pick the planner and follower from the list (likely /maze_planner and /path_follower):
-ros2 node info /maze_planner
-ros2 node info /path_follower
-ros2 param get /maze_planner replan_on_pose
-ros2 param get /maze_planner plan_on_timer
-/joint_state_publisher
-/maze_planner
-/maze_publisher
-/odom_to_pose
-/path_follower
-/robot_state_publisher
-/ros_gz_bridge
-/maze_planner
-  Subscribers:
-    /maze_occupancy: nav_msgs/msg/Path
-    /model/slambot/odom: nav_msgs/msg/Odometry
-    /robot_pose: geometry_msgs/msg/PoseStamped
-  Publishers:
-    /parameter_events: rcl_interfaces/msg/ParameterEvent
-    /planned_path: nav_msgs/msg/Path
-    /rosout: rcl_interfaces/msg/Log
-  Service Servers:
-    /maze_planner/describe_parameters: rcl_interfaces/srv/DescribeParameters
-    /maze_planner/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
-    /maze_planner/get_parameters: rcl_interfaces/srv/GetParameters
-    /maze_planner/get_type_description: type_description_interfaces/srv/GetTypeDescription
-    /maze_planner/list_parameters: rcl_interfaces/srv/ListParameters
-    /maze_planner/set_parameters: rcl_interfaces/srv/SetParameters
-    /maze_planner/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
-  Service Clients:
-
-  Action Servers:
-
-  Action Clients:
-
-/path_follower
-  Subscribers:
-    /model/slambot/odom: nav_msgs/msg/Odometry
-    /planned_path: nav_msgs/msg/Path
-  Publishers:
-    /cmd_vel: geometry_msgs/msg/Twist
-    /model/slambot/cmd_vel: geometry_msgs/msg/Twist
-    /parameter_events: rcl_interfaces/msg/ParameterEvent
-    /rosout: rcl_interfaces/msg/Log
-  Service Servers:
-    /path_follower/describe_parameters: rcl_interfaces/srv/DescribeParameters
-    /path_follower/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
-    /path_follower/get_parameters: rcl_interfaces/srv/GetParameters
-    /path_follower/get_type_description: type_description_interfaces/srv/GetTypeDescription
-    /path_follower/list_parameters: rcl_interfaces/srv/ListParameters
-    /path_follower/set_parameters: rcl_interfaces/srv/SetParameters
-    /path_follower/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
-  Service Clients:
-
-  Action Servers:
-
-  Action Clients:
-
-Boolean value is: False
-Boolean value is: False
 rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
+# You should see changing pose after a few seconds if cmd_vel is published.
 header:
   stamp:
-    sec: 163
-    nanosec: 795000000
+    sec: 22
+    nanosec: 509000000
   frame_id: odom
 child_frame_id: base_link
 pose:
   pose:
     position:
-      x: -1.7999999999800533
-      y: -1.8
+      x: -1.8840000204513498
+      y: -1.7817832660520947
       z: 0.0
     orientation:
-      x: -1.1303336491560102e-17
-      y: -2.4620776663167753e-09
-      z: 5.2861828878819385e-18
-      w: 1.0
+      x: 5.36049587630176e-08
+      y: -7.030911758781831e-10
+      z: 0.9999999999999928
+      w: -1.0791718969022425e-07
   covariance:
   - 0.0
   - 0.0
@@ -874,5 +779,294 @@ Traceback (most recent call last):
 BrokenPipeError: [Errno 32] Broken pipe
 Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
 BrokenPipeError: [Errno 32] Broken pipe
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
+# You should see changing pose after a few seconds if cmd_vel is published.
+header:
+  stamp:
+    sec: 43
+    nanosec: 729000000
+  frame_id: odom
+child_frame_id: base_link
+pose:
+  pose:
+    position:
+      x: -1.8840000204513498
+      y: -1.7817832660520947
+      z: 0.0
+    orientation:
+      x: 5.36049587630176e-08
+      y: -7.030911758781831e-10
+      z: 0.9999999999999928
+      w: -1.0791718969022425e-07
+  covariance:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+^CTraceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
+    report.add_package_info()
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
+    self["Dependencies"] = self._get_transitive_dependencies(package)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
+    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 372, in _customized_package_suffix
+    if not packaging.is_distro_package(package):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 332, in is_distro_package
+    pkg = self._apt_pkg(package)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
+    return self._cache()[package]
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 229, in _cache
+    if not self._apt_cache:
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apt/cache.py", line 332, in __len__
+    return len(self.keys())
+               ^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apt/cache.py", line 341, in keys
+    return list(self._sorted_set)  # We need a copy here, caller may modify
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+Original exception was:
+Traceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
+# You should see changing pose after a few seconds if cmd_vel is published.^C
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 node list
+ros2 node info /path_follower
+ros2 topic echo /model/slambot/cmd_vel | head -n 40
+/joint_state_publisher
+/maze_planner
+/maze_publisher
+/odom_to_pose
+/path_follower
+/robot_state_publisher
+/ros_gz_bridge
+/path_follower
+  Subscribers:
+    /model/slambot/odom: nav_msgs/msg/Odometry
+    /odom: nav_msgs/msg/Odometry
+    /planned_path: nav_msgs/msg/Path
+  Publishers:
+    /cmd_vel: geometry_msgs/msg/Twist
+    /model/slambot/cmd_vel: geometry_msgs/msg/Twist
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /path_follower/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /path_follower/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /path_follower/get_parameters: rcl_interfaces/srv/GetParameters
+    /path_follower/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /path_follower/list_parameters: rcl_interfaces/srv/ListParameters
+    /path_follower/set_parameters: rcl_interfaces/srv/SetParameters
+    /path_follower/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+linear:
+  x: 0.2532196977746881
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.11516789427725271
+---
+linear:
+  x: 0.2532196977746881
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.11516789427725271
+---
+linear:
+  x: 0.2532196977746881
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.11516789427725271
+---
+linear:
+  x: 0.2532196977746881
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.11516789427725271
+---
+linear:
+  x: 0.2532196977746881
+  y: 0.0
+  z: 0.0
+Traceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic info /planned_path
+Type: nav_msgs/msg/Path
+Publisher count: 1
+Subscription count: 1
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic bw /planned_path
+WARNING: topic [/planned_path] does not appear to be published yet
+Subscribed to [/planned_path]
+9.90 KB/s from 2 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+12.60 KB/s from 4 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.56 KB/s from 5 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.94 KB/s from 6 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.55 KB/s from 7 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.55 KB/s from 9 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.18 KB/s from 10 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.90 KB/s from 11 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.67 KB/s from 12 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.29 KB/s from 14 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.06 KB/s from 15 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.88 KB/s from 16 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+10.72 KB/s from 17 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.16 KB/s from 19 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
+11.01 KB/s from 20 messages
+        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
 rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ 
 ```
