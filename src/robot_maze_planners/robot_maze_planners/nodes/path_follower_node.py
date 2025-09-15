@@ -35,6 +35,9 @@ class PathFollowerNode(Node):
         # Subscriptions
         self.path_sub = self.create_subscription(Path, 'planned_path', self.path_cb, 10)
         self.odom_sub = self.create_subscription(Odometry, self.odom_topic, self.odom_cb, 10)
+        # Also listen to /odom as a fallback (some worlds only publish this)
+        if self.odom_topic != '/odom':
+            self.odom_sub_alt = self.create_subscription(Odometry, '/odom', self.odom_cb, 10)
 
         # Publishers (model-specific and generic)
         self.cmd_pub_model = self.create_publisher(Twist, '/model/slambot/cmd_vel', 10)
@@ -55,6 +58,15 @@ class PathFollowerNode(Node):
 
     def odom_cb(self, msg: Odometry):
         self.pose = (msg.pose.pose.position.x, msg.pose.pose.position.y, self._yaw_from_quat(msg.pose.pose.orientation))
+        if not hasattr(self, '_logged_first_odom'):
+            self.get_logger().info(f"First odom pose=({self.pose[0]:.3f},{self.pose[1]:.3f},{self.pose[2]:.3f})")
+            self._logged_first_odom = True
+        elif not hasattr(self, '_odom_counter'):
+            self._odom_counter = 0
+        else:
+            self._odom_counter += 1
+            if self._odom_counter % 10 == 0:
+                self.get_logger().debug(f"Odom pose=({self.pose[0]:.3f},{self.pose[1]:.3f},{self.pose[2]:.3f}) path_len={len(self.path)} idx={self.current_idx}")
 
     def _yaw_from_quat(self, q):
         # quaternion to yaw
@@ -64,7 +76,11 @@ class PathFollowerNode(Node):
         return math.atan2(siny, cosy)
 
     def timer_cb(self):
-        if not self.path or self.pose is None:
+        if not self.path:
+            if self.pose is not None and not self._stopped:
+                self.get_logger().debug('No path available yet; holding position.')
+            return
+        if self.pose is None:
             return
         # clamp current index
         if self.current_idx >= len(self.path):
@@ -88,6 +104,7 @@ class PathFollowerNode(Node):
         # if close to this waypoint, advance
         if dist < self.goal_tolerance:
             self.current_idx += 1
+            self.get_logger().debug(f'Advancing to waypoint {self.current_idx} (dist<{self.goal_tolerance}).')
             return
 
         # compute control
@@ -102,6 +119,13 @@ class PathFollowerNode(Node):
 
         self.cmd_pub_model.publish(twist)
         self.cmd_pub_generic.publish(twist)
+        if not hasattr(self, '_publish_counter'):
+            self._publish_counter = 0
+        self._publish_counter += 1
+        if self._publish_counter <= 20 or self._publish_counter % 10 == 0:
+            self.get_logger().info(
+                f"cmd_vel pub #{self._publish_counter}: idx={self.current_idx}/{len(self.path)} pose=({px:.2f},{py:.2f},{yaw:.2f}) target=({tx:.2f},{ty:.2f}) dist={dist:.2f} ang_err={ang_error:.2f} cmd=({twist.linear.x:.2f},{twist.angular.z:.2f})"
+            )
 
     def _angle_diff(self, a, b):
         d = a - b

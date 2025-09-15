@@ -244,11 +244,11 @@ def generate_launch_description():
                         output='screen',
                         parameters=[
                             {
-                                # Use explicit numeric goals (user requested 9.6,9.6) but fall back to centered corner if smaller maze
+                                # Fixed goal per user request (9.6, 9.6)
                                 'goal_x': 9.6,
                                 'goal_y': 9.6,
-                                'default_start_x': 0.0,
-                                'default_start_y': 0.0,
+                                'default_start_x': PythonExpression(['- (', LaunchConfiguration('maze_cols'), ' - 1) * ', LaunchConfiguration('cell_size'), ' / 2.0']),
+                                'default_start_y': PythonExpression(['- (', LaunchConfiguration('maze_rows'), ' - 1) * ', LaunchConfiguration('cell_size'), ' / 2.0']),
                                 'allow_start_default': True,
                                 'plan_on_timer': True,
                                 'plan_rate_hz': 1.0,

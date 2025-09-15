@@ -7,6 +7,7 @@ from std_msgs.msg import Header
 from robot_maze_planners.planners.astar_planner import AStarPlanner
 from robot_maze_planners.utils.maze_helpers import parse_maze
 import logging
+import math
 
 
 class PlannerAStarNode(Node):
@@ -26,9 +27,13 @@ class PlannerAStarNode(Node):
             'goal_y': 2.0,
             'plan_on_timer': False,
             'plan_rate_hz': 1.0,
+            'replan_on_pose': False,
             'allow_start_default': True,
             'default_start_x': 0.0,
             'default_start_y': 0.0,
+            # Large enough (>= 48) so centered grid covers +/-9.6 at 0.4m resolution
+            'grid_rows': 50,
+            'grid_cols': 50,
         }
         for name, value in param_defaults.items():
             self.declare_parameter(name, value)
@@ -41,8 +46,11 @@ class PlannerAStarNode(Node):
             gp('goal_x').get_parameter_value().double_value,
             gp('goal_y').get_parameter_value().double_value,
         )
+        self.grid_rows = int(gp('grid_rows').get_parameter_value().integer_value)
+        self.grid_cols = int(gp('grid_cols').get_parameter_value().integer_value)
         self.plan_on_timer = gp('plan_on_timer').get_parameter_value().bool_value
         self.plan_rate_hz = gp('plan_rate_hz').get_parameter_value().double_value
+        self.replan_on_pose = gp('replan_on_pose').get_parameter_value().bool_value
         self.allow_start_default = gp('allow_start_default').get_parameter_value().bool_value
         self.default_start = (
             gp('default_start_x').get_parameter_value().double_value,
@@ -61,6 +69,7 @@ class PlannerAStarNode(Node):
         self._last_logged_state = (None, None, None)  # (start, goal, grid_set)
         self._received_first_pose = False
         self._planning_timer = None
+        self._cleared_start_once = False
         if self.plan_on_timer:
             period = 1.0 / max(self.plan_rate_hz, 0.1)
             self._planning_timer = self.create_timer(period, self.try_plan)
@@ -69,7 +78,7 @@ class PlannerAStarNode(Node):
         self._start_watchdog = self.create_timer(2.0, self._check_start)
 
         self.get_logger().info(
-            f"A* planner node started. goal={self.goal} cell_size={self.cell_size} plan_on_timer={self.plan_on_timer}"
+            f"A* planner node started. goal={self.goal} cell_size={self.cell_size} plan_on_timer={self.plan_on_timer} replan_on_pose={self.replan_on_pose}"
         )
         self.get_logger().info(
             f"Params: allow_start_default={self.allow_start_default} default_start={self.default_start} plan_rate_hz={self.plan_rate_hz}"
@@ -96,18 +105,32 @@ class PlannerAStarNode(Node):
         elif self._last_logged_state[0] != self.start:
             self.get_logger().info(f'Received robot pose: {self.start}')
             self._last_logged_state = (self.start, self._last_logged_state[1], self._last_logged_state[2])
-        self.try_plan()
+        if self.replan_on_pose:
+            self.try_plan()
 
     def odom_cb(self, msg: Odometry):
         self.start = (msg.pose.pose.position.x, msg.pose.pose.position.y)
         if self._last_logged_state[0] != self.start:
             self.get_logger().info(f'Received odom pose: {self.start}')
             self._last_logged_state = (self.start, self._last_logged_state[1], self._last_logged_state[2])
-        self.try_plan()
+        if self.replan_on_pose:
+            self.try_plan()
 
     def maze_callback(self, msg):
         # Convert incoming wall segments path to occupancy grid with current cell_size.
-        self.grid = parse_maze(msg, cell_size=self.cell_size)
+        self.grid = parse_maze(msg, rows=self.grid_rows, cols=self.grid_cols, cell_size=self.cell_size)
+        # If we already have a start, force-clear that cell to guarantee free start region
+        if self.start and self.grid is not None:
+            sx, sy = self.start
+            gx = (sx - self.grid.origin_x) / self.grid.cell_size
+            gy = (sy - self.grid.origin_y) / self.grid.cell_size
+            cx, cy = int(gx // 1), int(gy // 1)
+            if 0 <= cy < self.grid.shape[0] and 0 <= cx < self.grid.shape[1]:
+                before = self.grid.data[cy, cx]
+                self.grid.data[cy, cx] = 0
+                if not self._cleared_start_once:
+                    self._cleared_start_once = True
+                    self.get_logger().info(f'Cleared start cell at ({cx},{cy}) (was {before}). world_start={self.start} origin=({self.grid.origin_x:.2f},{self.grid.origin_y:.2f})')
         if self._last_logged_state[2] != (self.grid is not None):
             self.get_logger().info('Received maze occupancy.')
             self._last_logged_state = (self._last_logged_state[0], self._last_logged_state[1], (self.grid is not None))
@@ -128,11 +151,36 @@ class PlannerAStarNode(Node):
             grid = self.grid
         else:
             # still waiting for maze publication; use temporary empty grid just to allow motion
-            grid = parse_maze(None, rows=25, cols=25, cell_size=self.cell_size)
+            grid = parse_maze(None, rows=self.grid_rows, cols=self.grid_cols, cell_size=self.cell_size)
 
         try:
             planner = AStarPlanner(grid, self.start, self.goal, cell_size=self.cell_size)
             path_points = planner.plan()
+            # remove consecutive duplicates
+            dedup = []
+            last = None
+            for pt in path_points:
+                if last is None or pt != last:
+                    dedup.append(pt)
+                    last = pt
+            # simple collinearity pruning: remove middle point if three consecutive are almost collinear
+            def collinear(a, b, c, eps=1e-6):
+                (x1, y1), (x2, y2), (x3, y3) = a, b, c
+                return abs((x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)) < eps
+            pruned = []
+            for pt in dedup:
+                pruned.append(pt)
+                while len(pruned) >= 3 and collinear(pruned[-3], pruned[-2], pruned[-1]):
+                    # drop middle point
+                    mid = pruned.pop(-2)
+                    self.get_logger().debug(f'Prune collinear waypoint {mid}')
+            path_points = pruned
+            # Densify path so follower has smooth, small steps (about half cell size)
+            if path_points:
+                path_points = self._densify_path(path_points, max_step=max(self.cell_size * 0.5, 0.1))
+            # Log endpoints and length for diagnostics
+            if path_points:
+                self.get_logger().debug(f"A* produced path length={len(path_points)} first={path_points[0]} last={path_points[-1]}")
         except Exception as exc:
             self.get_logger().error(f'Planning failed: {exc}')
             return
@@ -160,6 +208,37 @@ class PlannerAStarNode(Node):
 
     def set_goal(self, goal):
         self.goal = goal
+
+    def _densify_path(self, pts, max_step: float):
+        if not pts:
+            return pts
+        out = [pts[0]]
+        for i in range(1, len(pts)):
+            x1, y1 = out[-1]
+            x2, y2 = pts[i]
+            dx = x2 - x1
+            dy = y2 - y1
+            dist = math.hypot(dx, dy)
+            if dist <= max_step:
+                out.append((x2, y2))
+                continue
+            steps = max(1, int(math.floor(dist / max_step)))
+            for s in range(1, steps + 1):
+                t = min(1.0, (s * max_step) / dist)
+                nx = x1 + dx * t
+                ny = y1 + dy * t
+                if s < steps:
+                    out.append((nx, ny))
+                else:
+                    out.append((x2, y2))
+        # Remove accidental duplicates
+        dedup = []
+        last = None
+        for p in out:
+            if last is None or (abs(p[0] - last[0]) > 1e-6 or abs(p[1] - last[1]) > 1e-6):
+                dedup.append(p)
+                last = p
+        return dedup
 
 
 def main(args=None):

@@ -1,0 +1,878 @@
+```
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ source install/setup.bash
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ROS_LOG_LEVEL=info ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
+[INFO] [launch]: All log files can be found below /home/rey/.ros/log/2025-09-15-16-06-50-931375-ubuntu-robotics-VM-5961
+[INFO] [launch]: Default logging verbosity is set to INFO
+Generator candidates: workspace_src=/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py, src=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py, installed=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py
+Selected generator: /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
+World to run: /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze_world_fixed.sdf (exists=True, size=3723 bytes, wall_models=4)
+Running maze generator (using): /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
+Command: python3 /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py --rows 10 --cols 10 --cell_size 0.4 --output /tmp/maze_world_generated.sdf --compact
+Wrote maze world to /tmp/maze_world_generated.sdf with 114 wall segments (compact=True)
+[INFO] [gazebo_gui-1]: process started with pid [5970]
+[INFO] [robot_state_publisher-2]: process started with pid [5971]
+[INFO] [joint_state_publisher-3]: process started with pid [5972]
+[robot_state_publisher-2] [INFO] [1757939811.488819479] [robot_state_publisher]: Robot initialized
+[joint_state_publisher-3] [INFO] [1757939811.884271851] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[gazebo_gui-1] Gtk-Message: 16:06:52.103: Failed to load module "canberra-gtk-module"
+[gazebo_gui-1] Gtk-Message: 16:06:52.104: Failed to load module "canberra-gtk-module"
+[INFO] [gazebo_gui_client-4]: process started with pid [6040]
+[gazebo_gui_client-4] QSocketNotifier: Can only be used with threads started with QThread
+[gazebo_gui_client-4] Gtk-Message: 16:06:52.685: Failed to load module "canberra-gtk-module"
+[gazebo_gui_client-4] Gtk-Message: 16:06:52.691: Failed to load module "canberra-gtk-module"
+[gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
+[gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
+[gazebo_gui-1] [Dbg] [gz.cc:166] Subscribing to [/gazebo/starting_world].
+[gazebo_gui-1] [Dbg] [gz.cc:168] Waiting for a world to be set from the GUI...
+[gazebo_gui-1] [Msg] Received world [/tmp/maze_world_generated.sdf] from the GUI.
+[gazebo_gui-1] [Dbg] [gz.cc:172] Unsubscribing from [/gazebo/starting_world].
+[gazebo_gui-1] [Msg] Gazebo Sim Server v8.9.0
+[gazebo_gui-1] [Msg] Loading SDF world file[/tmp/maze_world_generated.sdf].
+[gazebo_gui-1] [Msg] Serving entity system service on [/entity/system/add]
+[gazebo_gui-1] [Msg] Loaded level [default]
+[gazebo_gui-1] [Msg] No systems loaded from SDF, loading defaults
+[gazebo_gui-1] [Dbg] [ServerConfig.cc:1034] Loaded (3) plugins from file [/home/rey/.gz/sim/8/server.config]
+[gazebo_gui-1] [Dbg] [Physics.cc:883] Loaded [gz::physics::dartsim::Plugin] from library [/opt/ros/jazzy/opt/gz_physics_vendor/lib/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Physics] for entity [1]
+[gazebo_gui-1] [Msg] Create service on [/world/maze_world/create]
+[gazebo_gui-1] [Msg] Remove service on [/world/maze_world/remove]
+[gazebo_gui-1] [Msg] Pose service on [/world/maze_world/set_pose]
+[gazebo_gui-1] [Msg] Pose service on [/world/maze_world/set_pose_vector]
+[gazebo_gui-1] [Msg] Light configuration service on [/world/maze_world/light_config]
+[gazebo_gui-1] [Msg] Physics service on [/world/maze_world/set_physics]
+[gazebo_gui-1] [Msg] SphericalCoordinates service on [/world/maze_world/set_spherical_coordinates]
+[gazebo_gui-1] [Msg] Enable collision service on [/world/maze_world/enable_collision]
+[gazebo_gui-1] [Msg] Disable collision service on [/world/maze_world/disable_collision]
+[gazebo_gui-1] [Msg] Material service on [/world/maze_world/visual_config]
+[gazebo_gui-1] [Msg] Material service on [/world/maze_world/wheel_slip]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::UserCommands] for entity [1]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::SceneBroadcaster] for entity [1]
+[gazebo_gui-1] [Msg] Serving world controls on [/world/maze_world/control], [/world/maze_world/control/state] and [/world/maze_world/playback/control]
+[gazebo_gui-1] [Msg] Serving GUI information on [/world/maze_world/gui/info]
+[gazebo_gui-1] [Msg] World [maze_world] initialized with [default_physics] physics profile.
+[gazebo_gui-1] [Msg] Serving world SDF generation service on [/world/maze_world/generate_world_sdf]
+[gazebo_gui-1] [Msg] Serving world names on [/gazebo/worlds]
+[gazebo_gui-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [Msg] Resource path get servi[Msg] Gazebo Sim GUI    v8.9.0
+[gazebo_gui-1] [Msg] Detected Wayland. Setting Qt to use the xcb plugin: 'QT_QPA_PLATFORM=xcb'.
+[gazebo_gui-1] [Dbg] [Gui.cc:275] Waiting for subscribers to [/gazebo/starting_world]...
+[gazebo_gui-1] [Dbg] [Application.cc:96] Initializing application.
+[gazebo_gui-1] [Dbg] [Application.cc:170] Qt using OpenGL graphics interface
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:657] Create main window
+[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:68] Requesting resource paths through [/gazebo/resource_paths/get]
+[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:57] Received resource paths.
+[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:355] GUI requesting list of world names. The server may be busy downloading resources. Please be patient.
+[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:413] Requesting GUI from [/world/maze_world/gui/info]...
+[gazebo_gui-1] [GUI] [Dbg] [GuiRunner.cc:149] Requesting initial state from [/world/maze_world/state]...
+[gazebo_gui-1] [GUI] [Msg] Loading config [/home/rey/.gz/sim/8/gui.config]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MinimalScene]
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo_gui-1] [GUI] [Msg] Added plugin [3D View] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [MinimalScene] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityContextMenuPlugin]
+[gazebo_gui-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Entity Context Menu] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [EntityContextMenuPlugin] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityContextMenuPlugin.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [GzSceneManager]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Scene Manager] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [GzSceneManager] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libGzSceneManager.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [InteractiveViewControl]
+[gazebo_gui-1] [GUI] [Msg] Camera view controller topic advertised on [/gui/camera/view_control]
+[gazebo_gui-1] [GUI] [Msg] Camera reference visual topic advertised on [/gui/camera/view_control/reference_visual]
+[gazebo_gui-1] [GUI] [Msg] Camera view control sensitivity advertised on [/gui/camera/view_control/sensitivity]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Interactive view control] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [InteractiveViewControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libInteractiveViewControl.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CameraTracking]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Camera tracking] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [CameraTracking] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libCameraTracking.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MarkerManager]
+[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Marker Manager] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [MarkerManager] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMarkerManager.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [SelectEntities]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Select entities] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [SelectEntities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSelectEntities.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Spawn]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Spawn] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Spawn] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSpawn.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [VisualizationCapabilities]
+[gazebo_gui-1] [GUI] [Msg] View as transparent service on [/gui/view/transparent]
+[gazebo_gui-1] [GUI] [Msg] View as wireframes service on [/gui/view/wireframes]
+[gazebo_gui-1] [GUI] [Msg] View center of mass service on [/gui/view/com]
+[gazebo_gui-1] [GUI] [Msg] View inertia service on [/gui/view/inertia]
+[gazebo_gui-1] [GUI] [Msg] View collisions service on [/gui/view/collisions]
+[gazebo_gui-1] [GUI] [Msg] View joints service on [/gui/view/joints]
+[gazebo_gui-1] [GUI] [Msg] View frames service on [/gui/view/frames]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Visualization capabilities] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [VisualizationCapabilities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libVisualizationCapabilities.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldControl]
+[gazebo_gui-1] [GUI] [Msg] Using world control service [/world/maze_world/control]
+[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/ComponentInspector/ComponentInspector.qml:251:3: QML Dialog: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo_gui-1] [GUI] [Dbg] [WorldControl.cc:237] Using an event to share WorldControl msgs with the server
+[gazebo_gui-1] [GUI] [Msg] Added plugin [World control] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [WorldControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldControl.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldStats]
+[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [World stats] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [WorldStats] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldStats.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Shapes]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Shapes] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Shapes] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libShapes.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Lights]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Lights] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Lights] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libLights.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [TransformControl]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Transform control] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [TransformControl] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libTransformControl.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Screenshot]
+[gazebo_gui-1] [GUI] [Msg] Screenshot service on [/gui/screenshot]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Screenshot] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Screenshot] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libScreenshot.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CopyPaste]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Copy/Paste] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [CopyPaste] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libCopyPaste.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [ComponentInspector]
+[gazebo_gui-1] [GUI] [Msg] Added plugin [Component inspector] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [ComponentInspector] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libComponentInspector.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityTree]
+[gazebo_gui-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
+[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/WorldStats/WorldStats.qml:53:3: QML RowLayout: Binding loop detected for property "x"
+[INFO] [create-5]: process started with pid [6126]
+[INFO] [maze_publisher_node-6]: process started with pid [6127]
+[create-5] [INFO] [1757939817.355122394] [ros_gz_sim]: Requesting list of world names.
+[gazebo_gui-1] VMware: No 3D enabled (0, Success).
+[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
+[create-5] [INFO] [1757939817.568928516] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[gazebo_gui-1] MESA: error: ZINK: failed to choose pdev
+[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
+[gazebo_gui-1] VMware: No 3D enabled (0, Success).
+[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
+[INFO] [cmd_vel_bridge-7]: process started with pid [6170]
+[create-5] [INFO] [1757939818.189284794] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-5]: process has finished cleanly [pid 6126]
+[gazebo_gui-1] [Gce on [/gazebo/resource_paths/get].
+[gazebo_gui-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+[gazebo_gui-1] [Msg] Resource paths published on [/gazebo/resource_paths].
+[gazebo_gui-1] [Msg] Server control service on [/server_control].
+[gazebo_gui-1] [Msg] Found no publishers on /stats, adding root stats topic
+[gazebo_gui-1] [Msg] Found no publishers on /clock, adding root clock topic
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 2
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
+[gazebo_gui-1] [Msg] Serving scene information on [/world/maze_world/scene/info]
+[gazebo_gui-1] [Msg] Serving graph information on [/world/maze_world/scene/graph]
+[gazebo_gui-1] [Msg] Serving full state on [/world/maze_world/state]
+[gazebo_gui-1] [Msg] Serving full state (async) on [/world/maze_world/state_async]
+[gazebo_gui-1] [Msg] Publishing scene information on [/world/maze_world/scene/info]
+[gazebo_gui-1] [Msg] Publishing entity deletions on [/world/maze_world/scene/deletion]
+[gazebo_gui-1] [Msg] Publishing state changes on [/world/maze_world/state]
+[gazebo_gui-1] [Msg] Publishing pose messages on [/world/maze_world/pose/info]
+[gazebo_gui-1] [Msg] Publishing dynamic pose messages on [/world/maze_world/dynamic_pose/info]
+[gazebo_gui-1] [Dbg] [EntityComponentManager.cc:1656] Updated state thread iterators: 2 threads processing around 176 entities each.
+[gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[maze_publisher_node-6] [INFO] [1757939818.652121697] [maze_publisher]: Maze publisher: rows=10 cols=10 cell_size=0.4 segments=121
+[gazebo_gui-1] [GUI] [Wrn] [Ogre2RenderTarget.cc:668] Anti-aliasing level of ' is not supported; valid FSAA levels are: [ 0 4 ]. Setting to 1
+[INFO] [odom_to_pose_node-8]: process started with pid [6172]
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Yellow
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Yellow
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
+[INFO] [planner_astar_node-9]: process started with pid [6182]
+[gazebo_gui-1] UI] [Msg] Added plugin [Entity tree] to main window
+[gazebo_gui-1] [GUI] [Msg] Loaded plugin [EntityTree] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityTree.so]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:398] Loading window config
+[gazebo_gui-1] [GUI] [Msg] Using server control service [/server_control]
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:671] Applying config
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo_gui-1] [GUI] [Msg] Loading plugin [gz-rendering-ogre2]
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:749] Create scene [scene]
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:1037] Creating texture node render interface for OpenGL
+[gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<data-string>:L431]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[cmd_vel_bridge-7] [INFO] [1757939820.597446555] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/cmd_vel (gz.msgs.Twist) -> /model/slambot/cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.623051401] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/cmd_vel (geometry_msgs/msg/Twist) -> /model/slambot/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.627398708] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/odom (gz.msgs.Odometry) -> /model/slambot/odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.641842045] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/odom (nav_msgs/msg/Odometry) -> /model/slambot/odom (gz.msgs.Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.647949059] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.652306002] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.655876450] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.659340086] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.665688299] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> /tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.708555092] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/tf (tf2_msgs/msg/TFMessage) -> /tf (gz.msgs.Pose_V)] (Lazy 0)
+[cmd_vel_bridge-7] [INFO] [1757939820.723034008] [ros_gz_bridge]: Passing message from ROS tf2_msgs/msg/TFMessage to Gazebo gz.msgs.Pose_V (showing msg only once per type)
+[odom_to_pose_node-8] [INFO] [1757939821.183012711] [odom_to_pose]: Odom->Pose republisher started (listening on /model/slambot/odom and /odom)
+[odom_to_pose_node-8] [INFO] [1757939821.197649652] [odom_to_pose]: First odom received at (-1.80,-1.80) from unknown (either /model/slambot/odom or /odom)
+[planner_astar_node-9] [INFO] [1757939821.737364414] [maze_planner]: A* planner node started. goal=(9.6, 9.6) cell_size=0.4 plan_on_timer=True replan_on_pose=False
+[planner_astar_node-9] [INFO] [1757939821.743630575] [maze_planner]: Params: allow_start_default=True default_start=(-1.8, -1.8) plan_rate_hz=1.0
+[INFO] [path_follower_node-10]: process started with pid [6278]
+[planner_astar_node-9] [INFO] [1757939822.618428391] [maze_planner]: Received maze occupancy.
+[path_follower_node-10] [INFO] [1757939823.319940641] [path_follower]: Path follower started
+[planner_astar_node-9] [WARN] [1757939823.634063551] [maze_planner]: No start pose received yet; using default start (-1.8, -1.8)
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] [INFO] [1757939823.655779089] [maze_planner]: Published A* path with 118 poses (state change).
+[planner_astar_node-9] [INFO] [1757939824.153700047] [maze_planner]: Received first robot_pose: (-1.7999999999800533, -1.8)
+[planner_astar_node-9] [INFO] [1757939824.154430393] [maze_planner]: Received robot pose: (-1.7999999999800533, -1.8)
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[path_follower_node-10] [INFO] [1757939825.651118255] [path_follower]: Received planned path with 118 points
+[planner_astar_node-9] [INFO] [1757939826.608845981] [maze_planner]: Cleared start cell at (20,20) (was 1). world_start=(-1.7999999999800533, -1.8) origin=(-10.00,-10.00)
+[path_follower_node-10] [INFO] [1757939826.644282009] [path_follower]: Received planned path with 120 points
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[path_follower_node-10] [INFO] [1757939830.636014709] [path_follower]: Received planned path with 118 points
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planG:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
+^C[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[cmd_vel_bridge-7] [INFO] [1757940116.930967259] [rclcpp]: signal_handler(signum=2)
+[maze_publisher_node-6] Traceback (most recent call last):
+[maze_publisher_node-6]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node", line 33, in <module>
+[maze_publisher_node-6]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'maze_publisher_node')())
+[maze_publisher_node-6]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[maze_publisher_node-6]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/maze_publisher_node.py", line 115, in main
+[maze_publisher_node-6]     rclpy.spin(node)
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[maze_publisher_node-6]     executor.spin_once()
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+[maze_publisher_node-6]     self._spin_once_impl(timeout_sec)
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+[maze_publisher_node-6]     handler, entity, node = self.wait_for_ready_callbacks(
+[maze_publisher_node-6]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+[maze_publisher_node-6]     return next(self._cb_iter)
+[maze_publisher_node-6]            ^^^^^^^^^^^^^^^^^^^
+[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
+[maze_publisher_node-6]     wait_set.wait(timeout_nsec)
+[maze_publisher_node-6] KeyboardInterrupt
+[robot_state_publisher-2] [INFO] [1757940116.932454547] [rclcpp]: signal_handler(signum=2)
+[planner_astar_node-9] Traceback (most recent call last):
+[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node", line 33, in <module>
+[planner_astar_node-9]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'planner_astar_node')())
+[planner_astar_node-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/planner_astar_node.py", line 249, in main
+[planner_astar_node-9]     rclpy.spin(node)
+[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[planner_astar_node-9]     executor.spin_once()
+[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+[planner_astar_node-9]     self._spin_once_impl(timeout_sec)
+[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+[planner_astar_node-9]     handler, entity, node = self.wait_for_ready_callbacks(
+[planner_astar_node-9]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+[planner_astar_node-9]     return next(self._cb_iter)
+[planner_astar_node-9]            ^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
+[planner_astar_node-9]     wait_set.wait(timeout_nsec)
+[planner_astar_node-9] KeyboardInterrupt
+[path_follower_node-10] Traceback (most recent call last):
+[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node", line 33, in <module>
+[path_follower_node-10]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'path_follower_node')())
+[path_follower_node-10]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/path_follower_node.py", line 139, in main
+[path_follower_node-10]     rclpy.spin(node)
+[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[path_follower_node-10]     executor.spin_once()
+[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+[path_follower_node-10]     self._spin_once_impl(timeout_sec)
+[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+[path_follower_node-10]     handler, entity, node = self.wait_for_ready_callbacks(
+[path_follower_node-10]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+[path_follower_node-10]     return next(self._cb_iter)
+[path_follower_node-10]            ^^^^^^^^^^^^^^^^^^^
+[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
+[path_follower_node-10]     wait_set.wait(timeout_nsec)
+[path_follower_node-10] KeyboardInterrupt
+[odom_to_pose_node-8] Traceback (most recent call last):
+[odom_to_pose_node-8]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node", line 33, in <module>
+[odom_to_pose_node-8]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'odom_to_pose_node')())
+[odom_to_pose_node-8]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[odom_to_pose_node-8]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/odom_to_pose_node.py", line 72, in main
+[odom_to_pose_node-8]     rclpy.shutdown()
+[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
+[odom_to_pose_node-8]     _shutdown(context=context)
+[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
+[odom_to_pose_node-8]     context.shutdown()
+[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
+[odom_to_pose_node-8]     self.__context.shutdown()
+[odom_to_pose_node-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333
+[ERROR] [maze_publisher_node-6]: process has died [pid 6127, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node --ros-args -r __node:=maze_publisher --params-file /tmp/launch_params_vxqcxkal'].
+[ERROR] [path_follower_node-10]: process has died [pid 6278, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node --ros-args -r __node:=path_follower'].
+[INFO] [cmd_vel_bridge-7]: process has finished cleanly [pid 6170]
+[ERROR] [planner_astar_node-9]: process has died [pid 6182, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node --ros-args -r __node:=maze_planner --params-file /tmp/launch_params_4mgewe4z'].
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 5971]
+[ERROR] [odom_to_pose_node-8]: process has died [pid 6172, exit code 1, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node --ros-args -r __node:=odom_to_pose'].
+[INFO] [joint_state_publisher-3]: process has finished cleanly [pid 5972]
+[INFO] [gazebo_gui_client-4]: process has finished cleanly [pid 6040]
+[gazebo_gui-1] [GUI] [Dbg] [TransformControl.cc:453] TransformControl plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [Spawn.cc:308] Spawn plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [SelectEntities.cc:452] SelectEntities plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:169] Advertise /marker/list service.
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:179] Advertise /marker/list.
+[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:189] Advertise /marker_array.
+[gazebo_gui-1] [GUI] [Dbg] [CameraTracking.cc:205] CameraTrackingPrivate plugin is moving camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Msg] Move to service on [/gui/move_to]
+[gazebo_gui-1] [GUI] [Msg] Follow service on [/gui/follow] (deprecated)
+[gazebo_gui-1] [GUI] [Msg] Tracking topic on [/gui/track]
+[gazebo_gui-1] [GUI] [Msg] Tracking status topic on [/gui/currently_tracked]
+[gazebo_gui-1] [GUI] [Msg] Move to pose service on [/gui/move_to/pose]
+[gazebo_gui-1] [GUI] [Msg] Camera pose topic advertised on [/gui/camera/pose]
+[gazebo_gui-1] [GUI] [Msg] Follow offset service on [/gui/follow/offset] (deprecated)
+[gazebo_gui-1] [GUI] [Dbg] [InteractiveViewControl.cc:176] InteractiveViewControl plugin is moving camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [EntityContextMenuPlugin.cc:79] Entity context menu plugin is using camera [scene::Camera(65527)]
+[gazebo_gui-1] [GUI] [Dbg] [SignalHandler.cc:142] Received signal[2].
+[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:535] Shutting down gz-sim-gui
+[gazebo_gui-1] [GUI] [Dbg] [Application.cc:237] Terminating application.
+[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:841] Destroy scene [scene]
+[gazebo_gui-1] [Msg] DiffDrive subscribing to twist messages on [cmd_vel]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::DiffDrive] for entity [353]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [353]
+[gazebo_gui-1] [Dbg] [OdometryPublisher.cc:201] OdometryPublisher system plugin missing <dimensions>, defaults to "2"
+[gazebo_gui-1] [Msg] OdometryPublisher publishing odometry on [odom]
+[gazebo_gui-1] [Msg] OdometryPublisher publishing odometry with covariance on [/model/slambot/odometry_with_covariance]
+[gazebo_gui-1] [Msg] OdometryPublisher publishing Pose_V (TF) on [tf]
+[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [353]
+[gazebo_gui-1] [Dbg] [UserCommands.cc:1318] Created entity [353] named [slambot]
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 5
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (1)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (2)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (3)
+[gazebo_gui-1] [Dbg] [SignalHandler.cc:142] Received signal[2].
+[gazebo_gui-1] [Dbg] [ServerPrivate.cc:122] Server received signal[2]
+[gazebo_gui-1] [Dbg] [gz.cc:434] Shutting down gz-sim-server
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (2)
+[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (3)
+[INFO] [gazebo_gui-1]: process has finished cleanly [pid 5970]
+```
+------------------------------------------------------------------------------------------
+other  terminal:
+```
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ source install/setup.bash
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner replan_on_pose false
+Node not found
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner plan_on_timer false
+Set parameter successful
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /planned_path | head -n 120
+header:
+  stamp:
+    sec: 1757939934
+    nanosec: 603456933
+  frame_id: map
+poses:
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -1.799999999999999
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -1.599999999999999
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -1.399999999999999
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -1.1999999999999988
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -0.999999999999999
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -0.7999999999999989
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -0.5999999999999988
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+- header:
+    stamp:
+      sec: 1757939934
+      nanosec: 603456933
+    frame_id: map
+  pose:
+    position:
+      x: -2.1999999999999993
+      y: -0.3999999999999988
+^CTraceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
+    report.add_package_info()
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
+    self["Dependencies"] = self._get_transitive_dependencies(package)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
+    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 373, in _customized_package_suffix
+    origin = packaging.get_package_origin(package)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 318, in get_package_origin
+    pkg = self._apt_pkg(package).installed
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
+    return self._cache()[package]
+           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apt/cache.py", line 273, in __getitem__
+    def __getitem__(self, key: object) -> Package:
+
+KeyboardInterrupt
+
+Original exception was:
+Traceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 param set /maze_planner plan_on_timer false
+Set parameter successful
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic info /planned_path
+ros2 topic hz /planned_path
+ros2 topic bw /planned_path
+Type: nav_msgs/msg/Path
+Publisher count: 1
+Subscription count: 1
+average rate: 1.342
+        min: 0.030s max: 1.002s std dev: 0.41324s window: 4
+average rate: 1.205
+        min: 0.030s max: 1.006s std dev: 0.35808s window: 6
+average rate: 1.336
+        min: 0.030s max: 1.006s std dev: 0.40855s window: 8
+average rate: 1.254
+        min: 0.030s max: 1.006s std dev: 0.37849s window: 10
+average rate: 1.208
+        min: 0.030s max: 1.006s std dev: 0.35216s window: 12
+average rate: 1.275
+        min: 0.030s max: 1.006s std dev: 0.38702s window: 14
+average rate: 1.232
+        min: 0.030s max: 1.010s std dev: 0.36931s window: 16
+average rate: 1.269
+        min: 0.030s max: 1.010s std dev: 0.38418s window: 19
+average rate: 1.252
+        min: 0.030s max: 1.010s std dev: 0.37746s window: 20
+average rate: 1.237
+        min: 0.030s max: 1.010s std dev: 0.37092s window: 21
+average rate: 1.279
+        min: 0.030s max: 1.010s std dev: 0.38985s window: 23
+^CSubscribed to [/planned_path]
+10.11 KB/s from 2 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+9.52 KB/s from 3 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+11.55 KB/s from 5 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+10.91 KB/s from 6 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+10.49 KB/s from 7 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+10.20 KB/s from 8 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+11.09 KB/s from 10 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+10.79 KB/s from 11 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+10.56 KB/s from 12 messages
+        Message size mean: 8.52 KB min: 8.52 KB max: 8.52 KB
+^Crey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /model/slambot/cmd_vel | head -n 40
+^C
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 node list
+# Pick the planner and follower from the list (likely /maze_planner and /path_follower):
+ros2 node info /maze_planner
+ros2 node info /path_follower
+ros2 param get /maze_planner replan_on_pose
+ros2 param get /maze_planner plan_on_timer
+/joint_state_publisher
+/maze_planner
+/maze_publisher
+/odom_to_pose
+/path_follower
+/robot_state_publisher
+/ros_gz_bridge
+/maze_planner
+  Subscribers:
+    /maze_occupancy: nav_msgs/msg/Path
+    /model/slambot/odom: nav_msgs/msg/Odometry
+    /robot_pose: geometry_msgs/msg/PoseStamped
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /planned_path: nav_msgs/msg/Path
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /maze_planner/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /maze_planner/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /maze_planner/get_parameters: rcl_interfaces/srv/GetParameters
+    /maze_planner/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /maze_planner/list_parameters: rcl_interfaces/srv/ListParameters
+    /maze_planner/set_parameters: rcl_interfaces/srv/SetParameters
+    /maze_planner/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+/path_follower
+  Subscribers:
+    /model/slambot/odom: nav_msgs/msg/Odometry
+    /planned_path: nav_msgs/msg/Path
+  Publishers:
+    /cmd_vel: geometry_msgs/msg/Twist
+    /model/slambot/cmd_vel: geometry_msgs/msg/Twist
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /path_follower/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /path_follower/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /path_follower/get_parameters: rcl_interfaces/srv/GetParameters
+    /path_follower/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /path_follower/list_parameters: rcl_interfaces/srv/ListParameters
+    /path_follower/set_parameters: rcl_interfaces/srv/SetParameters
+    /path_follower/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+Boolean value is: False
+Boolean value is: False
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
+header:
+  stamp:
+    sec: 163
+    nanosec: 795000000
+  frame_id: odom
+child_frame_id: base_link
+pose:
+  pose:
+    position:
+      x: -1.7999999999800533
+      y: -1.8
+      z: 0.0
+    orientation:
+      x: -1.1303336491560102e-17
+      y: -2.4620776663167753e-09
+      z: 5.2861828878819385e-18
+      w: 1.0
+  covariance:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+^CTraceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
+    report.add_package_info()
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
+    self["Dependencies"] = self._get_transitive_dependencies(package)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
+    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 372, in _customized_package_suffix
+    if not packaging.is_distro_package(package):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 332, in is_distro_package
+    pkg = self._apt_pkg(package)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
+    return self._cache()[package]
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 229, in _cache
+    if not self._apt_cache:
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apt/cache.py", line 332, in __len__
+    return len(self.keys())
+               ^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apt/cache.py", line 341, in keys
+    return list(self._sorted_set)  # We need a copy here, caller may modify
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+Original exception was:
+Traceback (most recent call last):
+  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
+    self.subscribe_and_spin(
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
+    self._handler.send(None)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
+    print(
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ 
+```
