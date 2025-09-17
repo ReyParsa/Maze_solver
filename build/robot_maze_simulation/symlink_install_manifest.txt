@@ -5,6 +5,7 @@
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/sim_launch.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/launch/sim_launch_direct.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze.world
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze.zip
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze_seed12345.sdf
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze_static.sdf
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/worlds/maze_world.sdf
@@ -15,6 +16,7 @@
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/config/map_server_params.yaml
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/config/maze_demo.rviz
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/config/maze_nav_demo.rviz
+/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/lib/robot_maze_simulation/publish_robot_description.py
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/ament_index/resource_index/package_run_dependencies/robot_maze_simulation
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/ament_index/resource_index/parent_prefix_path/robot_maze_simulation
 /home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/environment/ament_prefix_path.sh

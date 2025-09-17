@@ -12,17 +12,14 @@ import math
 
 class PlannerAStarNode(Node):
     def __init__(self):
-        """Initialize the A* planner node.
-
-        This re-written method ensures consistent 4-space indentation (avoids mixed tabs/spaces)
-        and cleanly declares/reads parameters before setting up publishers/subscribers/state.
-        """
+        """Initialize the A* planner node with clear params and interfaces."""
         super().__init__('planner_astar_node')
 
         # ---- Parameters ----
         param_defaults = {
             'resolution': 0.1,  # retained for backward compat (alias of cell_size)
             'cell_size': 0.4,
+            'inflation_radius': 0.12,  # keep a safe margin from walls
             'goal_x': 2.0,
             'goal_y': 2.0,
             'plan_on_timer': False,
@@ -31,17 +28,17 @@ class PlannerAStarNode(Node):
             'allow_start_default': True,
             'default_start_x': 0.0,
             'default_start_y': 0.0,
-            # Large enough (>= 48) so centered grid covers +/-9.6 at 0.4m resolution
             'grid_rows': 50,
             'grid_cols': 50,
         }
         for name, value in param_defaults.items():
             self.declare_parameter(name, value)
 
-        # read back (correct indentation)
+        # Read parameters back
         gp = self.get_parameter
         self.resolution = gp('resolution').get_parameter_value().double_value
         self.cell_size = gp('cell_size').get_parameter_value().double_value or self.resolution
+        self.inflation_radius = gp('inflation_radius').get_parameter_value().double_value
         self.goal = (
             gp('goal_x').get_parameter_value().double_value,
             gp('goal_y').get_parameter_value().double_value,
@@ -81,15 +78,18 @@ class PlannerAStarNode(Node):
             f"A* planner node started. goal={self.goal} cell_size={self.cell_size} plan_on_timer={self.plan_on_timer} replan_on_pose={self.replan_on_pose}"
         )
         self.get_logger().info(
-            f"Params: allow_start_default={self.allow_start_default} default_start={self.default_start} plan_rate_hz={self.plan_rate_hz}"
+            f"Params: allow_start_default={self.allow_start_default} default_start={self.default_start} plan_rate_hz={self.plan_rate_hz} inflation_radius={self.inflation_radius}"
         )
 
     def _check_start(self):
+        """Watchdog: warn or set default start if none received yet; cancels itself once start is set."""
         if self.start is None:
             if self.allow_start_default:
                 self.start = self.default_start
-                self.get_logger().warn(f'No start pose received yet; using default start {self.start}')
-                self.try_plan()
+                self.get_logger().info(f'Using default start: {self.start}')
+                if self._start_watchdog is not None:
+                    self._start_watchdog.cancel()
+                    self._start_watchdog = None
             else:
                 self.get_logger().warn('No start pose received yet (still waiting for /robot_pose or /model/slambot/odom).')
         else:
@@ -155,7 +155,7 @@ class PlannerAStarNode(Node):
             grid = parse_maze(None, rows=self.grid_rows, cols=self.grid_cols, cell_size=self.cell_size)
 
         try:
-            planner = AStarPlanner(grid, self.start, self.goal, cell_size=self.cell_size)
+            planner = AStarPlanner(grid, self.start, self.goal, cell_size=self.cell_size, inflation_radius=self.inflation_radius)
             path_points = planner.plan()
             # remove consecutive duplicates
             dedup = []

@@ -48,6 +48,7 @@ def generate_launch_description():
     maze_force_regen_arg = DeclareLaunchArgument('maze_force_regen', default_value='false', description='No-op (compat)')
     minimal_gui_arg = DeclareLaunchArgument('minimal_gui', default_value='true', description='Minimal GUI plugins')
     maze_single_mesh_arg = DeclareLaunchArgument('maze_single_mesh', default_value='false', description='No-op (compat)')
+    inflation_radius_arg = DeclareLaunchArgument('inflation_radius', default_value='0.2', description='A* inflation radius (m)')
 
     # LCs
     maze_rows = LaunchConfiguration('maze_rows')
@@ -56,6 +57,7 @@ def generate_launch_description():
     planner = LaunchConfiguration('planner')
     force_sw = LaunchConfiguration('force_software_rendering')
     with_rviz = LaunchConfiguration('with_rviz')
+    inflation_radius = LaunchConfiguration('inflation_radius')
 
     # Spawn and goal expressions (center the maze around origin)
     spawn_x_expr = PythonExpression(['- (', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
@@ -117,6 +119,7 @@ def generate_launch_description():
         planner_arg, with_rviz_arg, headless_arg, sw_render_arg,
         maze_rows_arg, maze_cols_arg, maze_compact_arg, maze_single_mesh_arg,
         maze_cell_size_arg, maze_seed_arg, maze_force_regen_arg, minimal_gui_arg,
+        inflation_radius_arg,
 
         # Minimal GUI config and VM-friendly GL env
         SetEnvironmentVariable('GZ_GUI_CONFIG_PATH', os.path.join(simulation_pkg, 'config', 'gui_minimal.config')),
@@ -154,23 +157,20 @@ def generate_launch_description():
             name='gazebo_server'
         ),
 
-        # Spawn robot after world loads
-        TimerAction(
-            period=6.0,
-            actions=[
-                Node(
-                    package='ros_gz_sim', executable='create', output='screen',
-                    arguments=['-topic', 'robot_description', '-name', 'slambot', '-x', spawn_x_expr, '-y', spawn_y_expr, '-z', '0.15']
-                )
-            ]
+        # Spawn robot from URDF string
+        Node(
+            package='ros_gz_sim', executable='create', output='screen',
+            arguments=['-string', robot_description, '-name', 'slambot', '-x', spawn_x_expr, '-y', spawn_y_expr, '-z', '0.15']
         ),
 
+        # State publishers
         Node(
             package='robot_state_publisher', executable='robot_state_publisher', name='robot_state_publisher', output='screen',
             parameters=[{'robot_description': robot_description}]
         ),
         Node(
-            package='joint_state_publisher', executable='joint_state_publisher', name='joint_state_publisher', output='screen'
+            package='joint_state_publisher', executable='joint_state_publisher', name='joint_state_publisher', output='screen',
+            parameters=[{'robot_description': robot_description}]
         ),
 
         # Static TF: map -> odom (identity) so RViz and nodes can transform between frames
@@ -179,7 +179,9 @@ def generate_launch_description():
             arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
         ),
 
-        # Start planner (and optional map_server) after spawn settles
+    
+
+    # Start planner (and optional map_server) after spawn settles
         TimerAction(
             period=8.0,
             actions=[
@@ -193,82 +195,44 @@ def generate_launch_description():
                                 'default_start_y': PythonExpression(['- (', LaunchConfiguration('maze_rows'), ' - 1) * ', LaunchConfiguration('cell_size'), ' / 2.0']),
                                 'allow_start_default': True,
                                 'plan_on_timer': True,
-                                'plan_rate_hz': 1.0,
+                                'plan_rate_hz': 0.5, # Reduce replan rate
+                                'inflation_radius': inflation_radius,
                                 'step_size': 0.2,
                                 'max_iter': 500,
                                 'radius': 0.5,
                                 'resolution': 0.1
                             }]
-                        )
+                        ),
+                        Node(
+                            package='robot_maze_planners', executable='path_follower_node', name='path_follower', output='screen',
+                            parameters=[{
+                                'linear_gain': 0.5,
+                                'angular_gain': 2.0,
+                                'lookahead_distance': 0.7,
+                                'max_linear_speed': 0.2,
+                                'max_angular_speed': 1.2,
+                                'min_linear_speed': 0.05,
+                                'ang_slowdown_threshold': 1.2,
+                                'no_progress_timeout': 4.0, # Increased timeout
+                                'progress_min_delta': 0.03,
+                                'recovery_forward_speed': 0.1,
+                            }]
+                        ),
                     ]
                 )
             ]
         ),
 
-        # Follower starts later
+        # RViz (optional)
         TimerAction(
-            period=11.0,
+            period=10.0,
             actions=[
                 Node(
-                    package='robot_maze_planners', executable='path_follower_node', name='path_follower', output='screen',
-                    parameters=[{
-                        # Safer, more conservative defaults for tight maze corridors
-                        'linear_gain': 0.6,
-                        'max_linear_speed': 0.25,
-                        'lookahead_distance': 0.5,
-                        'ang_slowdown_threshold': 1.0,
-                        'angular_gain': 2.8,
-                        'max_angular_speed': 1.6,
-                        'min_linear_speed': 0.08,
-                        'recovery_forward_speed': 0.15,
-                        'no_progress_timeout': 2.5,
-                        'progress_min_delta': 0.05,
-                    }]
-                )
-            ]
-        ),
-
-        # Odom->Pose republisher
-        TimerAction(
-            period=7.5,
-            actions=[
-                Node(package='robot_maze_planners', executable='odom_to_pose_node', name='odom_to_pose', output='screen')
-            ]
-        ),
-
-        # Maze publisher (kept; planner can subscribe to this or /map)
-        TimerAction(
-            period=6.0,
-            actions=[
-                Node(
-                    package='robot_maze_planners', executable='maze_publisher_node', name='maze_publisher', output='screen',
-                    parameters=[{'rows': LaunchConfiguration('maze_rows'), 'cols': LaunchConfiguration('maze_cols'), 'cell_size': LaunchConfiguration('cell_size')}]
-                )
-            ]
-        ),
-
-        # Bridges
-        TimerAction(
-            period=7.0,
-            actions=[
-                ExecuteProcess(
-                    cmd=['ros2', 'run', 'ros_gz_bridge', 'parameter_bridge',
-                         '/model/slambot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-                         '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-                         '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-                         '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-                         '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V'],
-                    output='screen', name='cmd_vel_bridge')
-            ]
-        ),
-
-        # RViz
-        TimerAction(
-            period=9.0,
-            actions=[
-                Node(
-                    condition=IfCondition(with_rviz), package='rviz2', executable='rviz2', name='rviz2',
-                    arguments=['-d', PathJoinSubstitution([simulation_pkg, 'config', 'maze_nav_demo.rviz'])], output='screen'
+                    package='rviz2', executable='rviz2', name='rviz2', output='screen',
+                    arguments=['-d', os.path.join(simulation_pkg, 'config', 'maze_nav_demo.rviz'), '--ros-args', '--log-level', 'ERROR'],
+                    condition=IfCondition(with_rviz),
+                    respawn=True, # restart if it crashes
+                    respawn_delay=2.0,
                 )
             ]
         ),

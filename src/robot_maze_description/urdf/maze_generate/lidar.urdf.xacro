@@ -44,28 +44,31 @@
         </joint>
 
         <gazebo reference="${child}_link">
-            <material>Gazebo/Black</material>
-            <sensor name="laser" type="gpu_lidar">
-                <pose> 0 0 0 0 0 0 </pose>
-                <always_on>true</always_on>
-                <visualize>true</visualize>
-                <update_rate>10</update_rate>
-                <topic>lidarscan</topic>
-                <gz_frame_id>${child}_link</gz_frame_id>
-                <lidar>
-                    <scan>
-                        <horizontal>
-                            <samples>360</samples>
-                            <min_angle>-3.14</min_angle>
-                            <max_angle>3.14</max_angle>
-                        </horizontal>
-                    </scan>
-                    <range>
-                        <min>0.15</min>
-                        <max>12</max>
-                    </range>
-                </lidar>
-            </sensor>
+        <sensor name="laser" type="gpu_lidar">
+            <pose>0 0 0 0 0 0</pose>
+            <update_rate>10</update_rate>
+            <visualize>true</visualize>
+            <topic>/scan</topic> <lidar>
+            <scan>
+                <horizontal>
+                <samples>360</samples>
+                <min_angle>-3.14</min_angle>
+                <max_angle>3.14</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.15</min>
+                <max>12.0</max>
+            </range>
+            </lidar>
+            <plugin filename="libgz-sim-laserscan-system.so"
+                    name="gz::sim::systems::LaserScan">
+            <ros>
+                <namespace></namespace>
+                <topic>/scan</topic> <frame_id>${child}_link</frame_id>
+            </ros>
+            </plugin>
+        </sensor>
         </gazebo>
     </xacro:macro>
 </robot>

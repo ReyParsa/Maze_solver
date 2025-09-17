@@ -1,6 +1,7 @@
 import logging
 import heapq
 from typing import List, Tuple, Optional
+import numpy as np
 
 
 class AStarPlanner:
@@ -17,12 +18,13 @@ class AStarPlanner:
                 clamped to 0, collapsing large parts of the maze. This fix keeps full extent.
     """
 
-    def __init__(self, grid, start_world: Tuple[float, float], goal_world: Tuple[float, float], *, cell_size: float = 0.4, allow_diagonal: bool = False):
+    def __init__(self, grid, start_world: Tuple[float, float], goal_world: Tuple[float, float], *, cell_size: float = 0.4, allow_diagonal: bool = False, inflation_radius: float = 0.0):
         self.grid = grid
         self.start_world = start_world
         self.goal_world = goal_world
         self.cell_size = cell_size
         self.allow_diagonal = allow_diagonal
+        self.inflation_radius = max(0.0, float(inflation_radius))
         # Pre-compute origin (lower-left) based on centered maze assumption
         if grid is not None:
             # MazeGrid wrapper expected
@@ -36,6 +38,14 @@ class AStarPlanner:
         else:
             self.origin_x = 0.0
             self.origin_y = 0.0
+        # Build occupancy array used for planning (optionally inflated)
+        self._occ = None
+        if grid is not None:
+            base = grid.data if hasattr(grid, 'data') else grid
+            self._occ = (np.array(base) > 0).astype(np.uint8)
+            if self.inflation_radius > 0.0:
+                self._occ = self._inflate_occ(self._occ, self.inflation_radius, getattr(grid, 'cell_size', self.cell_size))
+
         logging.info(
             f"AStarPlanner init start={start_world} goal={goal_world} cell_size={cell_size} grid_shape={getattr(grid,'shape',None)} origin=({getattr(self,'origin_x',0):.2f},{getattr(self,'origin_y',0):.2f})"
         )
@@ -60,7 +70,8 @@ class AStarPlanner:
         for dx, dy in (dirs8 if self.allow_diagonal else dirs4):
             nx, ny = x + dx, y + dy
             if 0 <= nx < self.grid.shape[1] and 0 <= ny < self.grid.shape[0]:
-                if self.grid[ny, nx] == 0:  # free
+                occ = self._occ if self._occ is not None else self.grid
+                if occ[ny, nx] == 0:  # free
                     yield (nx, ny)
 
     def _heuristic(self, a: Tuple[int, int], b: Tuple[int, int]) -> float:
@@ -92,14 +103,18 @@ class AStarPlanner:
             f"A* converted start_world={self.start_world} -> cell={start_cell}; goal_world={self.goal_world} -> cell={goal_cell}"
         )
 
-        if self.grid[start_cell[1], start_cell[0]] != 0:
-            logging.warning(f"Start cell {start_cell} is occupied; searching nearby free cell.")
-            start_cell = self._find_nearest_free(start_cell)
+        occ = self._occ if self._occ is not None else self.grid
+        if occ[start_cell[1], start_cell[0]] != 0:
+            logging.warning(f"Start cell {start_cell} is occupied but will be treated as free for this plan.")
+            # Temporarily mark start as free ONLY in the local copy of occupancy grid for this planning run.
+            # This prevents the planner from starting in an adjacent cell, which confuses the path follower.
+            occ = occ.copy()
+            occ[start_cell[1], start_cell[0]] = 0
         else:
             logging.info(f"Start cell {start_cell} is free.")
-        if self.grid[goal_cell[1], goal_cell[0]] != 0:
+        if occ[goal_cell[1], goal_cell[0]] != 0:
             logging.warning(f"Goal cell {goal_cell} is occupied; searching nearby free cell.")
-            goal_cell = self._find_nearest_free(goal_cell)
+            goal_cell = self._find_nearest_free(goal_cell, occ)
         else:
             logging.info(f"Goal cell {goal_cell} is free.")
 
@@ -109,7 +124,7 @@ class AStarPlanner:
         for ry in range(max(0, sy-1), min(self.grid.shape[0], sy+2)):
             row_vals = []
             for rx in range(max(0, sx-1), min(self.grid.shape[1], sx+2)):
-                row_vals.append(str(int(self.grid[ry, rx])))
+                row_vals.append(str(int(occ[ry, rx])))
             neigh_lines.append(' '.join(row_vals))
         logging.debug(f"Start 3x3 occupancy (y rows top->bottom): {' | '.join(neigh_lines)}")
         # 5x5 diagnostic around start for deeper insight
@@ -119,7 +134,7 @@ class AStarPlanner:
         for ry in sxr:
             row_vals = []
             for rx in sxcs:
-                row_vals.append(str(int(self.grid[ry, rx])))
+                row_vals.append(str(int(occ[ry, rx])))
             diag_rows.append(''.join(row_vals))
         logging.debug(f"Start 5x5 block (row order top->bottom): {' / '.join(diag_rows)}")
 
@@ -151,8 +166,8 @@ class AStarPlanner:
         logging.info(f"A* success nodes={len(cells_path)} expanded={expanded}")
         return world_path
 
-    def _find_nearest_free(self, cell: Tuple[int, int]) -> Tuple[int, int]:
-        if self.grid[cell[1], cell[0]] == 0:
+    def _find_nearest_free(self, cell: Tuple[int, int], occ) -> Tuple[int, int]:
+        if occ[cell[1], cell[0]] == 0:
             return cell
         # BFS ring search
         from collections import deque
@@ -162,9 +177,28 @@ class AStarPlanner:
             x, y = q.popleft()
             for dx, dy in [(1,0),(-1,0),(0,1),(0,-1)]:
                 nx, ny = x+dx, y+dy
-                if 0 <= nx < self.grid.shape[1] and 0 <= ny < self.grid.shape[0] and (nx, ny) not in visited:
-                    if self.grid[ny, nx] == 0:
+                if 0 <= nx < occ.shape[1] and 0 <= ny < occ.shape[0] and (nx, ny) not in visited:
+                    if occ[ny, nx] == 0:
                         return (nx, ny)
                     visited.add((nx, ny))
                     q.append((nx, ny))
         return cell  # fallback
+
+    def _inflate_occ(self, occ: np.ndarray, radius_m: float, cell_size: float) -> np.ndarray:
+        r_cells = int(np.ceil(radius_m / max(1e-6, cell_size)))
+        if r_cells <= 0:
+            return occ.astype(np.uint8)
+        h, w = occ.shape
+        out = occ.copy()
+        yy, xx = np.ogrid[-r_cells:r_cells+1, -r_cells:r_cells+1]
+        disk = (xx*xx + yy*yy) <= (r_cells*r_cells)
+        # Convolution-like dilation
+        occ_idxs = np.argwhere(occ > 0)
+        for (y, x) in occ_idxs:
+            y0 = max(0, y - r_cells); y1 = min(h, y + r_cells + 1)
+            x0 = max(0, x - r_cells); x1 = min(w, x + r_cells + 1)
+            dy0 = 0 if y - r_cells >= 0 else (r_cells - y)
+            dx0 = 0 if x - r_cells >= 0 else (r_cells - x)
+            sub = disk[dy0:dy0 + (y1 - y0), dx0:dx0 + (x1 - x0)]
+            out[y0:y1, x0:x1] = np.maximum(out[y0:y1, x0:x1], sub.astype(np.uint8))
+        return out.astype(np.uint8)
