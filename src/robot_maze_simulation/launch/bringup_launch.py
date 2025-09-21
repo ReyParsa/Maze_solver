@@ -12,7 +12,8 @@ from launch.actions import OpaqueFunction
 import subprocess
 
 def generate_launch_description():
-    simulation_pkg = get_package_share_directory('robot_maze_simulation')
+    simulation_pkg = get_package_share_directory('r' \
+    'obot_maze_simulation')
     planners_pkg = get_package_share_directory('robot_maze_planners')
     description_pkg = get_package_share_directory('robot_maze_description')
 
@@ -65,6 +66,9 @@ def generate_launch_description():
 
     # Planner executable name
     planner_exec = PythonExpression(["'planner_' + '", planner, "'.replace('_','') + '_node'"])
+
+    # Path to the map file
+    map_yaml_file = os.path.join(simulation_pkg, 'maps', 'maze_map.yaml')
 
     # Optional static map (map_server) — resolve YAML and check package presence
     map_candidates = [
@@ -194,6 +198,7 @@ def generate_launch_description():
                                 'allow_start_default': True,
                                 'plan_on_timer': True,
                                 'plan_rate_hz': 1.0,
+                                'inflation_radius': 0.05,
                                 'step_size': 0.2,
                                 'max_iter': 500,
                                 'radius': 0.5,
@@ -214,11 +219,11 @@ def generate_launch_description():
                     parameters=[{
                         # Safer, more conservative defaults for tight maze corridors
                         'linear_gain': 0.6,
-                        'max_linear_speed': 0.25,
-                        'lookahead_distance': 0.5,
+                        'max_linear_speed': 0.15,
+                        'lookahead_distance': 0.3,
                         'ang_slowdown_threshold': 1.0,
-                        'angular_gain': 2.8,
-                        'max_angular_speed': 1.6,
+                        'angular_gain': 3.5,
+                        'max_angular_speed': 1.8,
                         'min_linear_speed': 0.08,
                         'recovery_forward_speed': 0.15,
                         'no_progress_timeout': 2.5,

@@ -1,3 +1,40 @@
+# ROS / colcon workspace ignores
+# Ignore build and install artifacts but keep source in src/ tracked
+build/
+install/
+log/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated graphviz frames/reports (keep source README etc.)
+frames_*.gv
+frames_*.pdf
+
+# Temporary files
+*.swp
+*~
+
+# Ignore generated SDF/world artifacts if regenerated
+
+# Ignore catkin/colcon metadata
+.colcon/
+
+# Ignore ROS specific local launch files cache
+.ros/ 
+
+# Allow explicit tracking of important files in root
+!README.md
+!test_world.sdf
 # ROS 2 Workspace Files
 build/
 install/
