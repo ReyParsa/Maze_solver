@@ -202,7 +202,10 @@ def generate_launch_description():
                                 'step_size': 0.2,
                                 'max_iter': 500,
                                 'radius': 0.5,
-                                'resolution': 0.1
+                                'resolution': 0.1,
+                                'cell_size': LaunchConfiguration('cell_size'),
+                                'grid_rows': LaunchConfiguration('maze_rows'),
+                                'grid_cols': LaunchConfiguration('maze_cols')
                             }]
                         )
                     ]
@@ -262,8 +265,9 @@ def generate_launch_description():
                          '/model/slambot/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
                          '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
                          '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-                         '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V'],
-                    output='screen', name='cmd_vel_bridge')
+                         '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V',
+                         '/lidarscan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan'],
+                    output='screen', name='bridge')
             ]
         ),
 
