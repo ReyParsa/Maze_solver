@@ -64,8 +64,8 @@ def generate_launch_description():
     spawn_x_expr = PythonExpression(['- (', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
     spawn_y_expr = PythonExpression(['- (', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
     # Goal: safe location within map bounds 
-    goal_x_expr = 1.0  # Well within map bounds (-4 to +4)
-    goal_y_expr = 1.0
+    goal_x_expr = 1.92  # Free cell coordinates from map analysis
+    goal_y_expr = -0.16
 
     # Planner executable name
     planner_exec = PythonExpression(["'planner_' + '", planner, "'.replace('_','') + '_node'"])
@@ -206,7 +206,7 @@ def generate_launch_description():
                                 'max_iter': 500,
                                 'radius': 0.5,
                                 'resolution': 0.1,
-                                'cell_size': LaunchConfiguration('cell_size'),
+                                'cell_size': 0.16,  # Match map resolution
                                 'grid_rows': LaunchConfiguration('maze_rows'),
                                 'grid_cols': LaunchConfiguration('maze_cols')
                             }]
