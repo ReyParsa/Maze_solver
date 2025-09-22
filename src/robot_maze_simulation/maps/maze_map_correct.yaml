@@ -1,5 +1,5 @@
+
 image: maze_map_correct.pgm
-mode: trinary
 resolution: 0.16
 origin: [-4.000000, -4.000000, 0.000000]
 negate: 0

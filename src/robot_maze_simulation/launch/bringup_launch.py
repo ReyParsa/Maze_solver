@@ -58,22 +58,25 @@ def generate_launch_description():
     force_sw = LaunchConfiguration('force_software_rendering')
     with_rviz = LaunchConfiguration('with_rviz')
 
-    # Spawn and goal expressions (center the maze around origin)
+    # Spawn and goal expressions (use actual map coordinates from SDF)
+    # Map covers -4 to +4 (8m x 8m), maze is 10x10 cells with 0.4m cell_size
+    # But generated map has origin at (-4, -4) covering full 8x8 area
     spawn_x_expr = PythonExpression(['- (', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
     spawn_y_expr = PythonExpression(['- (', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
-    goal_x_expr = PythonExpression(['(', maze_cols, ' - 1) * ', maze_cell_size, ' / 2.0'])
-    goal_y_expr = PythonExpression(['(', maze_rows, ' - 1) * ', maze_cell_size, ' / 2.0'])
+    # Goal: safe location within map bounds 
+    goal_x_expr = 1.0  # Well within map bounds (-4 to +4)
+    goal_y_expr = 1.0
 
     # Planner executable name
     planner_exec = PythonExpression(["'planner_' + '", planner, "'.replace('_','') + '_node'"])
 
     # Path to the map file
-    map_yaml_file = os.path.join(simulation_pkg, 'maps', 'maze_map.yaml')
+    map_yaml_file = os.path.join(simulation_pkg, 'maps', 'maze_map_correct.yaml')
 
     # Optional static map (map_server) — resolve YAML and check package presence
     map_candidates = [
-        os.path.join(os.getcwd(), 'src', 'robot_maze_simulation', 'maps', 'maze_map.yaml'),
-        os.path.join(simulation_pkg, 'maps', 'maze_map.yaml'),
+        os.path.join(os.getcwd(), 'src', 'robot_maze_simulation', 'maps', 'maze_map_correct.yaml'),
+        os.path.join(simulation_pkg, 'maps', 'maze_map_correct.yaml'),
     ]
     map_yaml = next((p for p in map_candidates if os.path.exists(p)), map_candidates[0])
     have_map_yaml = os.path.exists(map_yaml)

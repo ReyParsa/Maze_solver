@@ -310,8 +310,8 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install(DIRECTORY "launch" "worlds" "config" "DESTINATION" "share/robot_maze_simulation")
-ament_cmake_symlink_install_directory("/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation" DIRECTORY "launch" "worlds" "config" "DESTINATION" "share/robot_maze_simulation")
+# install(DIRECTORY "launch" "worlds" "config" "maps" "DESTINATION" "share/robot_maze_simulation")
+ament_cmake_symlink_install_directory("/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation" DIRECTORY "launch" "worlds" "config" "maps" "DESTINATION" "share/robot_maze_simulation")
 
 # install(FILES "/home/rey/Desktop/Maze Solver/robot_maze_ws/build/robot_maze_simulation/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_maze_simulation" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation" FILES "/home/rey/Desktop/Maze Solver/robot_maze_ws/build/robot_maze_simulation/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_maze_simulation" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

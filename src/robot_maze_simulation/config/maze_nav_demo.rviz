@@ -44,7 +44,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: StaticMap
-      Topic: /map
+      Topic: /map_rviz
       Unreliable: false
       Use Timestamp: false
       Value: true
