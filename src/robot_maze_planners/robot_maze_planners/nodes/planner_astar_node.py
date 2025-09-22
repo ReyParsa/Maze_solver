@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from nav_msgs.msg import Path
+from nav_msgs.msg import Path, OccupancyGrid
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Header
@@ -59,6 +59,7 @@ class PlannerAStarNode(Node):
 
         # ---- Interfaces ----
         self.path_pub = self.create_publisher(Path, 'planned_path', 10)
+        self.occupancy_pub = self.create_publisher(OccupancyGrid, 'maze_occupancy_grid', 10)
         self.pose_sub = self.create_subscription(PoseStamped, 'robot_pose', self.pose_callback, 10)
         self.odom_sub = self.create_subscription(Odometry, '/model/slambot/odom', self.odom_cb, 10)
         self.maze_sub = self.create_subscription(Path, 'maze_occupancy', self.maze_callback, 10)
@@ -132,6 +133,11 @@ class PlannerAStarNode(Node):
                 if not self._cleared_start_once:
                     self._cleared_start_once = True
                     self.get_logger().info(f'Cleared start cell at ({cx},{cy}) (was {before}). world_start={self.start} origin=({self.grid.origin_x:.2f},{self.grid.origin_y:.2f})')
+        
+        # Publish occupancy grid for RViz visualization
+        if self.grid is not None:
+            self._publish_occupancy_grid()
+            
         if self._last_logged_state[2] != (self.grid is not None):
             self.get_logger().info('Received maze occupancy.')
             self._last_logged_state = (self._last_logged_state[0], self._last_logged_state[1], (self.grid is not None))
@@ -240,6 +246,40 @@ class PlannerAStarNode(Node):
                 dedup.append(p)
                 last = p
         return dedup
+
+    def _publish_occupancy_grid(self):
+        """Publish the internal maze grid as an OccupancyGrid for RViz visualization."""
+        if self.grid is None:
+            return
+            
+        occupancy_msg = OccupancyGrid()
+        occupancy_msg.header.frame_id = 'map'
+        occupancy_msg.header.stamp = self.get_clock().now().to_msg()
+        
+        # Set map metadata
+        occupancy_msg.info.resolution = float(self.grid.cell_size)
+        occupancy_msg.info.width = self.grid.shape[1]  # cols
+        occupancy_msg.info.height = self.grid.shape[0]  # rows
+        occupancy_msg.info.origin.position.x = float(self.grid.origin_x)
+        occupancy_msg.info.origin.position.y = float(self.grid.origin_y)
+        occupancy_msg.info.origin.position.z = 0.0
+        occupancy_msg.info.origin.orientation.w = 1.0
+        
+        # Convert grid data: 0=free, 1=occupied -> 0=free, 100=occupied, -1=unknown
+        # ROS occupancy grid expects values 0-100 where 0=free, 100=occupied
+        flat_data = []
+        for row in self.grid.data:
+            for cell in row:
+                if cell == 0:
+                    flat_data.append(0)    # free
+                elif cell == 1:
+                    flat_data.append(100)  # occupied
+                else:
+                    flat_data.append(-1)   # unknown
+        
+        occupancy_msg.data = flat_data
+        self.occupancy_pub.publish(occupancy_msg)
+        self.get_logger().debug(f'Published occupancy grid {self.grid.shape[1]}x{self.grid.shape[0]} resolution={self.grid.cell_size}')
 
 
 def main(args=None):

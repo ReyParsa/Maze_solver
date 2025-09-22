@@ -1,1072 +1,517 @@
-```
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ROS_LOG_LEVEL=info ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
-Package 'robot_maze_simulation' not found: "package 'robot_maze_simulation' not found, searching: ['/opt/ros/jazzy']"
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ source install/setup.bash
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ROS_LOG_LEVEL=info ros2 launch robot_maze_simulation bringup_launch.py planner:=astar headless:=false maze_force_regen:=true
-[INFO] [launch]: All log files can be found below /home/rey/.ros/log/2025-09-15-16-33-32-899137-ubuntu-robotics-VM-21643
-[INFO] [launch]: Default logging verbosity is set to INFO
-Generator candidates: workspace_src=/home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py, src=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py, installed=/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_simulation/share/robot_maze_simulation/tools/generate_maze_sdf.py
-Selected generator: /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
-World to run: /tmp/maze_world_generated.sdf (exists=True, size=53926 bytes, wall_models=0)
-Running maze generator (using): /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py
-Command: python3 /home/rey/Desktop/Maze Solver/robot_maze_ws/src/robot_maze_simulation/tools/generate_maze_sdf.py --rows 10 --cols 10 --cell_size 0.4 --output /tmp/maze_world_generated.sdf --compact
-Wrote maze world to /tmp/maze_world_generated.sdf with 115 wall segments (compact=True)
-[INFO] [gazebo_gui-1]: process started with pid [21647]
-[INFO] [robot_state_publisher-2]: process started with pid [21648]
-[INFO] [joint_state_publisher-3]: process started with pid [21649]
-[robot_state_publisher-2] [INFO] [1757941413.257022957] [robot_state_publisher]: Robot initialized
-[gazebo_gui-1] Gtk-Message: 16:33:33.879: Failed to load module "canberra-gtk-module"
-[gazebo_gui-1] Gtk-Message: 16:33:33.880: Failed to load module "canberra-gtk-module"
-[INFO] [gazebo_gui_client-4]: process started with pid [21704]
-[joint_state_publisher-3] [INFO] [1757941414.371515210] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
-[gazebo_gui-1] [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
-[gazebo_gui-1] [Dbg] [gz.cc:166] Subscribing to [/gazebo/starting_world].
-[gazebo_gui-1] [Dbg] [gz.cc:168] Waiting for a world to be set from the GUI...
-[gazebo_gui-1] [Msg] Received world [/tmp/maze_world_generated.sdf] from the GUI.
-[gazebo_gui-1] [Dbg] [gz.cc:172] Unsubscribing from [/gazebo/starting_world].
-[gazebo_gui-1] [Msg] Gazebo Sim Server v8.9.0
-[gazebo_gui-1] [Msg] Loading SDF world file[/tmp/maze_world_generated.sdf].
-[gazebo_gui-1] [Msg] Serving entity system service on [/entity/system/add]
-[gazebo_gui-1] [Msg] Loaded level [default]
-[gazebo_gui-1] [Msg] No systems loaded from SDF, loading defaults
-[gazebo_gui-1] [Dbg] [ServerConfig.cc:1034] Loaded (3) plugins from file [/home/rey/.gz/sim/8/server.config]
-[gazebo_gui-1] [Dbg] [Physics.cc:883] Loaded [gz::physics::dartsim::Plugin] from library [/opt/ros/jazzy/opt/gz_physics_vendor/lib/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Physics] for entity [1]
-[gazebo_gui-1] [Msg] Create service on [/world/maze_world/create]
-[gazebo_gui-1] [Msg] Remove service on [/world/maze_world/remove]
-[gazebo_gui-1] [Msg] Pose service on [/world/maze_world/set_pose]
-[gazebo_gui-1] [Msg] Pose service on [/world/maze_world/set_pose_vector]
-[gazebo_gui-1] [Msg] Light configuration service on [/world/maze_world/light_config]
-[gazebo_gui-1] [Msg] Physics service on [/world/maze_world/set_physics]
-[gazebo_gui-1] [Msg] SphericalCoordinates service on [/world/maze_world/set_spherical_coordinates]
-[gazebo_gui-1] [Msg] Enable collision service on [/world/maze_world/enable_collision]
-[gazebo_gui-1] [Msg] Disable collision service on [/world/maze_world/disable_collision]
-[gazebo_gui-1] [Msg] Material service on [/world/maze_world/visual_config]
-[gazebo_gui-1] [Msg] Material service on [/world/maze_world/wheel_slip]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::UserCommands] for entity [1]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::SceneBroadcaster] for entity [1]
-[gazebo_gui-1] [Msg] Serving world controls on [/world/maze_world/control], [/world/maze_world/control/state] and [/world/maze_world/playback/control]
-[gazebo_gui-1] [Msg] Serving GUI information on [/world/maze_world/gui/info]
-[gazebo_gui-1] [Msg] World [maze_world] initialized with [default_physics] physics profile.
-[gazebo_gui-1] [Msg] Serving world SDF generation service on [/world/maze_world/generate_world_sdf]
-[gazebo_gui-1] [Msg] Serving world names on [/gazebo/worlds]
-[gazebo_gui-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
-[gazebo_gui_client-4] QSocketNotifier: Can only be used with threads started with QThread
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui_client-4] Gtk-Message: 16:33:34.724: Failed to load module "canberra-gtk-module"
-[gazebo_gui_client-4] Gtk-Message: 16:33:34.730: Failed to load module "canberra-gtk-module"
-[gazebo_gui-1] [Msg] Resource path get servi[Msg] Gazebo Sim GUI    v8.9.0
-[gazebo_gui-1] [Msg] Detected Wayland. Setting Qt to use the xcb plugin: 'QT_QPA_PLATFORM=xcb'.
-[gazebo_gui-1] [Dbg] [Gui.cc:275] Waiting for subscribers to [/gazebo/starting_world]...
-[gazebo_gui-1] [Dbg] [Application.cc:96] Initializing application.
-[gazebo_gui-1] [Dbg] [Application.cc:170] Qt using OpenGL graphics interface
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:657] Create main window
-[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:68] Requesting resource paths through [/gazebo/resource_paths/get]
-[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:355] GUI requesting list of world names. The server may be busy downloading resources. Please be patient.
-[gazebo_gui-1] [GUI] [Dbg] [PathManager.cc:57] Received resource paths.
-[gazebo_gui-1] [GUI] [Dbg] [Gui.cc:413] Requesting GUI from [/world/maze_world/gui/info]...
-[gazebo_gui-1] [GUI] [Dbg] [GuiRunner.cc:149] Requesting initial state from [/world/maze_world/state]...
-[gazebo_gui-1] [GUI] [Msg] Loading config [/home/rey/.gz/sim/8/gui.config]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MinimalScene]
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
-[gazebo_gui-1] [GUI] [Msg] Added plugin [3D View] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [MinimalScene] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityContextMenuPlugin]
-[gazebo_gui-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Entity Context Menu] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [EntityContextMenuPlugin] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityContextMenuPlugin.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [GzSceneManager]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Scene Manager] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [GzSceneManager] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libGzSceneManager.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [InteractiveViewControl]
-[gazebo_gui-1] [GUI] [Msg] Camera view controller topic advertised on [/gui/camera/view_control]
-[gazebo_gui-1] [GUI] [Msg] Camera reference visual topic advertised on [/gui/camera/view_control/reference_visual]
-[gazebo_gui-1] [GUI] [Msg] Camera view control sensitivity advertised on [/gui/camera/view_control/sensitivity]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Interactive view control] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [InteractiveViewControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libInteractiveViewControl.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CameraTracking]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Camera tracking] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [CameraTracking] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libCameraTracking.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MarkerManager]
-[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Marker Manager] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [MarkerManager] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMarkerManager.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [SelectEntities]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Select entities] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [SelectEntities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSelectEntities.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Spawn]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Spawn] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Spawn] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSpawn.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [VisualizationCapabilities]
-[gazebo_gui-1] [GUI] [Msg] View as transparent service on [/gui/view/transparent]
-[gazebo_gui-1] [GUI] [Msg] View as wireframes service on [/gui/view/wireframes]
-[gazebo_gui-1] [GUI] [Msg] View center of mass service on [/gui/view/com]
-[gazebo_gui-1] [GUI] [Msg] View inertia service on [/gui/view/inertia]
-[gazebo_gui-1] [GUI] [Msg] View collisions service on [/gui/view/collisions]
-[gazebo_gui-1] [GUI] [Msg] View joints service on [/gui/view/joints]
-[gazebo_gui-1] [GUI] [Msg] View frames service on [/gui/view/frames]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Visualization capabilities] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [VisualizationCapabilities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libVisualizationCapabilities.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldControl]
-[gazebo_gui-1] [GUI] [Msg] Using world control service [/world/maze_world/control]
-[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/ComponentInspector/ComponentInspector.qml:251:3: QML Dialog: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
-[gazebo_gui-1] [GUI] [Dbg] [WorldControl.cc:237] Using an event to share WorldControl msgs with the server
-[gazebo_gui-1] [GUI] [Msg] Added plugin [World control] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [WorldControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldControl.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldStats]
-[gazebo_gui-1] [GUI] [Msg] Listening to stats on [/world/maze_world/stats]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [World stats] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [WorldStats] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldStats.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Shapes]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Shapes] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Shapes] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libShapes.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Lights]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Lights] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Lights] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libLights.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [TransformControl]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Transform control] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [TransformControl] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libTransformControl.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Screenshot]
-[gazebo_gui-1] [GUI] [Msg] Screenshot service on [/gui/screenshot]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Screenshot] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [Screenshot] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libScreenshot.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CopyPaste]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Copy/Paste] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [CopyPaste] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libCopyPaste.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [ComponentInspector]
-[gazebo_gui-1] [GUI] [Msg] Added plugin [Component inspector] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [ComponentInspector] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libComponentInspector.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityTree]
-[gazebo_gui-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
-[gazebo_gui-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/WorldStats/WorldStats.qml:53:3: QML RowLayout: Binding loop detected for property "x"
-[gazebo_gui-1] VMware: No 3D enabled (0, Success).
-[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
-[gazebo_gui-1] MESA: error: ZINK: failed to choose pdev
-[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
-[gazebo_gui-1] VMware: No 3D enabled (0, Success).
-[gazebo_gui-1] libEGL warning: egl: failed to create dri2 screen
-[gazebo_gui-1] [GUI] [Wrn] [Ogre2RenderTarget.cc:668] Anti-aliasing level of ' is not supported; valid FSAA levels are: [ 0 4 ]. Setting to 1
-[INFO] [create-5]: process started with pid [21811]
-[INFO] [maze_publisher_node-6]: process started with pid [21812]
-[create-5] [INFO] [1757941419.231637813] [ros_gz_sim]: Requesting list of world names.
-[create-5] [INFO] [1757941419.671112025] [ros_gz_sim]: Waiting messages on topic [robot_description].
-[create-5] [INFO] [1757941419.698755222] [ros_gz_sim]: Entity creation successful.
-[gazebo_gui-1] [Gce on [/gazebo/resource_paths/get].
-[gazebo_gui-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
-[gazebo_gui-1] [Msg] Resource paths published on [/gazebo/resource_paths].
-[gazebo_gui-1] [Msg] Server control service on [/server_control].
-[gazebo_gui-1] [Msg] Found no publishers on /stats, adding root stats topic
-[gazebo_gui-1] [Msg] Found no publishers on /clock, adding root clock topic
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 2
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
-[gazebo_gui-1] [Msg] Serving scene information on [/world/maze_world/scene/info]
-[gazebo_gui-1] [Msg] Serving graph information on [/world/maze_world/scene/graph]
-[gazebo_gui-1] [Msg] Serving full state on [/world/maze_world/state]
-[gazebo_gui-1] [Msg] Serving full state (async) on [/world/maze_world/state_async]
-[gazebo_gui-1] [Msg] Publishing scene information on [/world/maze_world/scene/info]
-[gazebo_gui-1] [Msg] Publishing entity deletions on [/world/maze_world/scene/deletion]
-[gazebo_gui-1] [Msg] Publishing state changes on [/world/maze_world/state]
-[gazebo_gui-1] [Msg] Publishing pose messages on [/world/maze_world/pose/info]
-[gazebo_gui-1] [Msg] Publishing dynamic pose messages on [/world/maze_world/dynamic_pose/info]
-[gazebo_gui-1] [Dbg] [EntityComponentManager.cc:1656] Updated state thread iterators: 2 threads processing around 178 entities each.
-[gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Yellow
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Yellow
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/White
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
-[gazebo_gui-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Black
-[INFO] [create-5]: process has finished cleanly [pid 21811]
-[maze_publisher_node-6] [INFO] [1757941419.942060548] [maze_publisher]: Maze publisher: rows=10 cols=10 cell_size=0.4 segments=121
-[gazebo_gui-1] UI] [Msg] Added plugin [Entity tree] to main window
-[gazebo_gui-1] [GUI] [Msg] Loaded plugin [EntityTree] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityTree.so]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:398] Loading window config
-[gazebo_gui-1] [GUI] [Msg] Using server control service [/server_control]
-[gazebo_gui-1] [GUI] [Dbg] [Application.cc:671] Applying config
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
-[gazebo_gui-1] [GUI] [Msg] Loading plugin [gz-rendering-ogre2]
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:749] Create scene [scene]
-[gazebo_gui-1] [GUI] [Dbg] [MinimalScene.cc:1037] Creating texture node render interface for OpenGL
-[gazebo_gui-1] [GUI] [Dbg] [TransformControl.cc:453] TransformControl plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [Spawn.cc:308] Spawn plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [SelectEntities.cc:452] SelectEntities plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:169] Advertise /marker/list service.
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:179] Advertise /marker/list.
-[gazebo_gui-1] [GUI] [Dbg] [MarkerManager.cc:189] Advertise /marker_array.
-[gazebo_gui-1] [GUI] [Dbg] [CameraTracking.cc:205] CameraTrackingPrivate plugin is moving camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Msg] Move to service on [/gui/move_to]
-[gazebo_gui-1] [GUI] [Msg] Follow service on [/gui/follow] (deprecated)
-[gazebo_gui-1] [GUI] [Msg] Tracking topic on [/gui/track]
-[gazebo_gui-1] [GUI] [Msg] Tracking status topic on [/gui/currently_tracked]
-[gazebo_gui-1] [GUI] [Msg] Move to pose service on [/gui/move_to/pose]
-[gazebo_gui-1] [GUI] [Msg] Camera pose topic advertised on [/gui/camera/pose]
-[gazebo_gui-1] [GUI] [Msg] Follow offset service on [/gui/follow/offset] (deprecated)
-[gazebo_gui-1] [GUI] [Dbg] [InteractiveViewControl.cc:176] InteractiveViewControl plugin is moving camera [scene::Camera(65527)]
-[gazebo_gui-1] [GUI] [Dbg] [EntityContextMenuPlugin.cc:79] Entity context menu plugin is using camera [scene::Camera(65527)]
-[gazebo_gui-1] Warning [Utils.cc:132] [/sdf/model[@name="slambot"]/link[@name="base_link"]/sensor[@name="laser"]/gz_frame_id:<data-string>:L431]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
-[INFO] [cmd_vel_bridge-7]: process started with pid [21851]
-[cmd_vel_bridge-7] [INFO] [1757941420.607012255] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/cmd_vel (gz.msgs.Twist) -> /model/slambot/cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.610945290] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/cmd_vel (geometry_msgs/msg/Twist) -> /model/slambot/cmd_vel (gz.msgs.Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.611914025] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/slambot/odom (gz.msgs.Odometry) -> /model/slambot/odom (nav_msgs/msg/Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.613983284] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/slambot/odom (nav_msgs/msg/Odometry) -> /model/slambot/odom (gz.msgs.Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.614756188] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.616370082] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.616966401] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.617459062] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.620354577] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> /tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
-[cmd_vel_bridge-7] [INFO] [1757941420.624816454] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/tf (tf2_msgs/msg/TFMessage) -> /tf (gz.msgs.Pose_V)] (Lazy 0)
-[INFO] [odom_to_pose_node-8]: process started with pid [21875]
-[cmd_vel_bridge-7] [INFO] [1757941420.801906822] [ros_gz_bridge]: Passing message from ROS tf2_msgs/msg/TFMessage to Gazebo gz.msgs.Pose_V (showing msg only once per type)
-[INFO] [planner_astar_node-9]: process started with pid [21878]
-[odom_to_pose_node-8] [INFO] [1757941421.939747902] [odom_to_pose]: Odom->Pose republisher started (listening on /model/slambot/odom and /odom)
-[planner_astar_node-9] [INFO] [1757941422.106740285] [maze_planner]: A* planner node started. goal=(9.6, 9.6) cell_size=0.4 plan_on_timer=True replan_on_pose=False
-[planner_astar_node-9] [INFO] [1757941422.107396554] [maze_planner]: Params: allow_start_default=True default_start=(-1.8, -1.8) plan_rate_hz=1.0
-[planner_astar_node-9] [INFO] [1757941423.902798575] [maze_planner]: Received maze occupancy.
-[odom_to_pose_node-8] [WARN] [1757941423.941052377] [odom_to_pose]: Still no /model/slambot/odom received. Check bridge and topic names.
-[planner_astar_node-9] [WARN] [1757941424.076405966] [maze_planner]: No start pose received yet; using default start (-1.8, -1.8)
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[planner_astar_node-9] [INFO] [1757941424.105559186] [maze_planner]: Published A* path with 118 poses (state change).
-[INFO] [path_follower_node-10]: process started with pid [21953]
-[odom_to_pose_node-8] [INFO] [1757941424.618585040] [odom_to_pose]: First odom received at (-1.80,-1.80) from unknown (either /model/slambot/odom or /odom)
-[planner_astar_node-9] [INFO] [1757941424.623492785] [maze_planner]: Received first robot_pose: (-1.7999999999800533, -1.8)
-[planner_astar_node-9] [INFO] [1757941424.626045127] [maze_planner]: Received robot pose: (-1.7999999999800533, -1.8)
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[path_follower_node-10] [INFO] [1757941425.707266741] [path_follower]: Path follower started
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[path_follower_node-10] [INFO] [1757941426.106705946] [path_follower]: Received planned path with 118 points
-[planner_astar_node-9] WARNING:root:Start cell (20, 20) is occupied; searching nearby free cell.
-[path_follower_node-10] [INFO] [1757941427.490744861] [path_follower]: First odom pose=(-1.800,-1.800,0.000)
-[cmd_vel_bridge-7] [INFO] [1757941427.543735548] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
-[path_follower_node-10] [INFO] [1757941427.544025939] [path_follower]: cmd_vel pub #1: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941427.605428286] [maze_planner]: Received robot pose: (-1.7999999998260123, -1.8000022526814206)
-[path_follower_node-10] [INFO] [1757941427.643058184] [path_follower]: cmd_vel pub #2: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941427.659570156] [maze_planner]: Received robot pose: (-1.7999999920482133, -1.8000138921779967)
-[planner_astar_node-9] [INFO] [1757941427.730607101] [maze_planner]: Received robot pose: (-1.7999999469400867, -1.8000354393168425)
-[path_follower_node-10] [INFO] [1757941427.746368382] [path_follower]: cmd_vel pub #3: idx=0/118 pose=(-1.80,-1.80,0.00) target=(-2.20,-1.80) dist=0.40 ang_err=3.14 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941427.775813065] [maze_planner]: Received robot pose: (-1.7999998092376683, -1.8000668938829736)
-[planner_astar_node-9] [INFO] [1757941427.821418655] [maze_planner]: Received robot pose: (-1.7999994980711962, -1.800108255254578)
-[path_follower_node-10] [INFO] [1757941427.841041055] [path_follower]: cmd_vel pub #4: idx=0/118 pose=(-1.80,-1.80,0.01) target=(-2.20,-1.80) dist=0.40 ang_err=3.13 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941427.863755894] [maze_planner]: Received robot pose: (-1.7999989069690583, -1.8001595220551487)
-[planner_astar_node-9] [INFO] [1757941427.893797428] [maze_planner]: Received robot pose: (-1.7999979038662886, -1.8002206916953283)
-[planner_astar_node-9] [INFO] [1757941427.929957704] [maze_planner]: Cleared start cell at (20,20) (was 1). world_start=(-1.7999979038662886, -1.8002206916953283) origin=(-10.00,-10.00)
-[path_follower_node-10] [INFO] [1757941427.942293940] [path_follower]: cmd_vel pub #5: idx=0/118 pose=(-1.80,-1.80,0.02) target=(-2.20,-1.80) dist=0.40 ang_err=3.12 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941427.993010737] [maze_planner]: Received robot pose: (-1.7999963311204994, -1.8002917598045638)
-[planner_astar_node-9] [INFO] [1757941427.993997909] [maze_planner]: Received robot pose: (-1.7999940055384798, -1.8003727195526953)
-[path_follower_node-10] [INFO] [1757941427.997919951] [path_follower]: Received planned path with 120 points
-[planner_astar_node-9] [INFO] [1757941428.041885157] [maze_planner]: Received robot pose: (-1.7999907184177844, -1.8004635608616437)
-[path_follower_node-10] [INFO] [1757941428.144066406] [path_follower]: cmd_vel pub #6: idx=1/120 pose=(-1.80,-1.80,0.04) target=(-2.00,-1.80) dist=0.20 ang_err=3.10 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.167487404] [maze_planner]: Received robot pose: (-1.7999862356078822, -1.800564269507551)
-[path_follower_node-10] [INFO] [1757941428.248144148] [path_follower]: cmd_vel pub #7: idx=1/120 pose=(-1.80,-1.80,0.05) target=(-2.00,-1.80) dist=0.20 ang_err=3.09 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.253059008] [maze_planner]: Received robot pose: (-1.799980297596383, -1.8006748261138086)
-[planner_astar_node-9] [INFO] [1757941428.310441487] [maze_planner]: Received robot pose: (-1.799972619626317, -1.800795205035661)
-[path_follower_node-10] [INFO] [1757941428.347031814] [path_follower]: cmd_vel pub #8: idx=1/120 pose=(-1.80,-1.80,0.07) target=(-2.00,-1.80) dist=0.20 ang_err=3.07 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.398996419] [maze_planner]: Received robot pose: (-1.79996289185127, -1.8009253731372934)
-[planner_astar_node-9] [INFO] [1757941428.444971305] [maze_planner]: Received robot pose: (-1.7999507795356255, -1.8010652884625296)
-[path_follower_node-10] [INFO] [1757941428.452675737] [path_follower]: cmd_vel pub #9: idx=1/120 pose=(-1.80,-1.80,0.08) target=(-2.00,-1.80) dist=0.20 ang_err=3.06 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.546776649] [maze_planner]: Received robot pose: (-1.7999359233079855, -1.801214898800838)
-[path_follower_node-10] [INFO] [1757941428.546815932] [path_follower]: cmd_vel pub #10: idx=1/120 pose=(-1.80,-1.80,0.09) target=(-2.00,-1.80) dist=0.20 ang_err=3.04 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.593633555] [maze_planner]: Received robot pose: (-1.7999179394763167, -1.8013741401505168)
-[path_follower_node-10] [INFO] [1757941428.645107958] [path_follower]: cmd_vel pub #11: idx=1/120 pose=(-1.80,-1.80,0.13) target=(-2.00,-1.80) dist=0.20 ang_err=3.00 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.647356613] [maze_planner]: Received robot pose: (-1.7998964204139898, -1.8015429350815848)
-[planner_astar_node-9] [INFO] [1757941428.685404949] [maze_planner]: Received robot pose: (-1.799870935027376, -1.801721190955234)
-[planner_astar_node-9] [INFO] [1757941428.720335426] [maze_planner]: Received robot pose: (-1.7998410293138023, -1.8019087981124016)
-[planner_astar_node-9] [INFO] [1757941428.739600233] [maze_planner]: Received robot pose: (-1.799806227018801, -1.8021056280602972)
-[path_follower_node-10] [INFO] [1757941428.741560455] [path_follower]: cmd_vel pub #12: idx=1/120 pose=(-1.80,-1.80,0.18) target=(-2.00,-1.80) dist=0.20 ang_err=2.95 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.769051010] [maze_planner]: Received robot pose: (-1.7997660304094387, -1.8023115313996336)
-[planner_astar_node-9] [INFO] [1757941428.789789305] [maze_planner]: Received robot pose: (-1.7997199211713673, -1.802526335744023)
-[planner_astar_node-9] [INFO] [1757941428.811893961] [maze_planner]: Received robot pose: (-1.799667361442594, -1.8027498435687885)
-[planner_astar_node-9] [INFO] [1757941428.838286616] [maze_planner]: Received robot pose: (-1.7996077949967768, -1.8029818299966145)
-[path_follower_node-10] [INFO] [1757941428.841964647] [path_follower]: cmd_vel pub #13: idx=1/120 pose=(-1.80,-1.80,0.26) target=(-2.00,-1.80) dist=0.20 ang_err=2.86 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941428.857626199] [maze_planner]: Received robot pose: (-1.7995412774497508, -1.8032198763112661)
-[planner_astar_node-9] [INFO] [1757941428.886118157] [maze_planner]: Received robot pose: (-1.7994695034587787, -1.803456934463422)
-[planner_astar_node-9] [INFO] [1757941428.937223187] [maze_planner]: Received robot pose: (-1.799392640656161, -1.8036923918463503)
-[path_follower_node-10] [INFO] [1757941428.945650092] [path_follower]: cmd_vel pub #14: idx=1/120 pose=(-1.80,-1.80,0.33) target=(-2.00,-1.80) dist=0.20 ang_err=2.80 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.011246425] [maze_planner]: Received robot pose: (-1.799310724696146, -1.8039261392468808)
-[path_follower_node-10] [INFO] [1757941429.042944297] [path_follower]: cmd_vel pub #15: idx=1/120 pose=(-1.80,-1.80,0.35) target=(-2.00,-1.80) dist=0.20 ang_err=2.77 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.063784270] [maze_planner]: Received robot pose: (-1.799223793577011, -1.8041580682450156)
-[planner_astar_node-9] [INFO] [1757941429.142133778] [maze_planner]: Received robot pose: (-1.7991318876234401, -1.8043880712640914)
-[path_follower_node-10] [INFO] [1757941429.145355208] [path_follower]: cmd_vel pub #16: idx=1/120 pose=(-1.80,-1.80,0.37) target=(-2.00,-1.80) dist=0.20 ang_err=2.75 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.189389808] [maze_planner]: Received robot pose: (-1.7990350494678484, -1.8046160416208488)
-[planner_astar_node-9] [INFO] [1757941429.252912477] [maze_planner]: Received robot pose: (-1.7989333240305925, -1.8048418735747411)
-[path_follower_node-10] [INFO] [1757941429.250868941] [path_follower]: cmd_vel pub #17: idx=1/120 pose=(-1.80,-1.80,0.43) target=(-2.00,-1.80) dist=0.20 ang_err=2.68 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.317837055] [maze_planner]: Received robot pose: (-1.7988267584991264, -1.8050654623770386)
-[path_follower_node-10] [INFO] [1757941429.342849905] [path_follower]: cmd_vel pub #18: idx=1/120 pose=(-1.80,-1.81,0.46) target=(-2.00,-1.80) dist=0.20 ang_err=2.66 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.390198094] [maze_planner]: Received robot pose: (-1.7987154023061362, -1.8052867043194332)
-[planner_astar_node-9] [INFO] [1757941429.441267521] [maze_planner]: Received robot pose: (-1.798599307106592, -1.8055054967820088)
-[path_follower_node-10] [INFO] [1757941429.443201150] [path_follower]: cmd_vel pub #19: idx=1/120 pose=(-1.80,-1.81,0.50) target=(-2.00,-1.80) dist=0.20 ang_err=2.62 cmd=(0.00,1.00)
-[path_follower_node-10] [INFO] [1757941429.540837067] [path_follower]: cmd_vel pub #20: idx=1/120 pose=(-1.80,-1.81,0.52) target=(-2.00,-1.80) dist=0.20 ang_err=2.59 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941429.541667034] [maze_planner]: Received robot pose: (-1.7984785267538088, -1.8057217382809718)
-[planner_astar_node-9] [INFO] [1757941429.579864772] [maze_planner]: Received robot pose: (-1.7983531172744598, -1.8059353285156319)
-[planner_astar_node-9] [INFO] [1757941429.613966376] [maze_planner]: Received robot pose: (-1.7982231368425827, -1.8061461684148679)
-[planner_astar_node-9] [INFO] [1757941429.634302161] [maze_planner]: Received robot pose: (-1.798088645752613, -1.806354160183199)
-[planner_astar_node-9] [INFO] [1757941429.656145622] [maze_planner]: Received robot pose: (-1.7979497063928642, -1.8065592073247316)
-[planner_astar_node-9] [INFO] [1757941429.683491440] [maze_planner]: Received robot pose: (-1.7978063832207454, -1.8067612146313985)
-[planner_astar_node-9] [INFO] [1757941429.706245201] [maze_planner]: Received robot pose: (-1.7976587427222257, -1.8069600883839074)
-[planner_astar_node-9] [INFO] [1757941429.721948022] [maze_planner]: Received robot pose: (-1.7975068533853353, -1.807155736327717)
-[planner_astar_node-9] [INFO] [1757941429.746113786] [maze_planner]: Received robot pose: (-1.7973507856690414, -1.807348067704753)
-[planner_astar_node-9] [INFO] [1757941429.772158848] [maze_planner]: Received robot pose: (-1.7971906119705867, -1.8075369932954928)
-[planner_astar_node-9] [INFO] [1757941429.789287487] [maze_planner]: Received robot pose: (-1.7970264065919377, -1.807722425460322)
-[planner_astar_node-9] [INFO] [1757941429.814677290] [maze_planner]: Received robot pose: (-1.7968582457053597, -1.8079042781802837)
-[planner_astar_node-9] [INFO] [1757941429.834727919] [maze_planner]: Received robot pose: (-1.7966862073179857, -1.8080824670968798)
-[planner_astar_node-9] [INFO] [1757941429.860744582] [maze_planner]: Received robot pose: (-1.7965103712356474, -1.8082569095511636)
-[planner_astar_node-9] [INFO] [1757941429.881805194] [maze_planner]: Received robot pose: (-1.7963308190258893, -1.808427524622139)
-[planner_astar_node-9] [INFO] [1757941429.900892670] [maze_planner]: Received robot pose: (-1.7961476339801508, -1.8085942331642773)
-[planner_astar_node-9] [INFO] [1757941429.929809115] [maze_planner]: Received robot pose: (-1.7959609010751814, -1.8087569578443303)
-[planner_astar_node-9] [INFO] [1757941429.945923895] [maze_planner]: Received robot pose: (-1.7957707069335425, -1.80891562317708)
-[planner_astar_node-9] [INFO] [1757941429.974663882] [maze_planner]: Received robot pose: (-1.7955771397834162, -1.8090701555603086)
-[planner_astar_node-9] [INFO] [1757941430.016823274] [maze_planner]: Received robot pose: (-1.7953802894177309, -1.8092204833090328)
-[planner_astar_node-9] [INFO] [1757941430.099868578] [maze_planner]: Received robot pose: (-1.7951802471525247, -1.8093665366887404)
-[planner_astar_node-9] [INFO] [1757941430.112257015] [maze_planner]: Received robot pose: (-1.7949771058062478, -1.8095082479462605)
-[planner_astar_node-9] [INFO] [1757941430.148414012] [maze_planner]: Received robot pose: (-1.7947709597014194, -1.8096455513384582)
-[planner_astar_node-9] [INFO] [1757941430.185307029] [maze_planner]: Received robot pose: (-1.7945619044677656, -1.8097783831731424)
-[planner_astar_node-9] [INFO] [1757941430.256841448] [maze_planner]: Received robot pose: (-1.7943500370735876, -1.8099066818331309)
-[planner_astar_node-9] [INFO] [1757941430.314146449] [maze_planner]: Received robot pose: (-1.7941354557914748, -1.8100303878041)
-[planner_astar_node-9] [INFO] [1757941430.382844309] [maze_planner]: Received robot pose: (-1.7939182601526338, -1.8101494437021854)
-[planner_astar_node-9] [INFO] [1757941430.438833124] [maze_planner]: Received robot pose: (-1.7936985509008265, -1.8102637943006028)
-[planner_astar_node-9] [INFO] [1757941430.471825666] [maze_planner]: Received robot pose: (-1.7934764299455745, -1.8103733865552587)
-[planner_astar_node-9] [INFO] [1757941430.494603091] [maze_planner]: Received robot pose: (-1.7932520003149344, -1.8104781696293546)
-[planner_astar_node-9] [INFO] [1757941430.519685224] [maze_planner]: Received robot pose: (-1.7930253661077518, -1.8105780949169705)
-[planner_astar_node-9] [INFO] [1757941430.539308081] [maze_planner]: Received robot pose: (-1.7927966324453182, -1.8106731160656009)
-[path_follower_node-10] [INFO] [1757941430.541404380] [path_follower]: cmd_vel pub #30: idx=1/120 pose=(-1.79,-1.81,1.19) target=(-2.00,-1.80) dist=0.21 ang_err=1.90 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941430.565360291] [maze_planner]: Received robot pose: (-1.7925659054226988, -1.810763188997662)
-[planner_astar_node-9] [INFO] [1757941430.593918413] [maze_planner]: Received robot pose: (-1.7923332920594652, -1.81084827193093)
-[planner_astar_node-9] [INFO] [1757941430.619402376] [maze_planner]: Received robot pose: (-1.7920989002501333, -1.8109283253979256)
-[planner_astar_node-9] [INFO] [1757941430.638792328] [maze_planner]: Received robot pose: (-1.7918628387140647, -1.8110033122642124)
-[planner_astar_node-9] [INFO] [1757941430.674527684] [maze_planner]: Received robot pose: (-1.7916252169451141, -1.8110731977456311)
-[planner_astar_node-9] [INFO] [1757941430.728370009] [maze_planner]: Received robot pose: (-1.7913861451607969, -1.8111379494244204)
-[planner_astar_node-9] [INFO] [1757941430.776494595] [maze_planner]: Received robot pose: (-1.7911457342512316, -1.8111975372642661)
-[planner_astar_node-9] [INFO] [1757941430.832849199] [maze_planner]: Received robot pose: (-1.7909040957276672, -1.811251933624218)
-[planner_astar_node-9] [INFO] [1757941430.879703156] [maze_planner]: Received robot pose: (-1.7906613416708195, -1.8113011132715269)
-[planner_astar_node-9] [INFO] [1757941430.932324990] [maze_planner]: Received robot pose: (-1.7904175846788515, -1.8113450533933306)
-[planner_astar_node-9] [INFO] [1757941431.000958473] [maze_planner]: Received robot pose: (-1.7901729378320639, -1.8113837336069256)
-[planner_astar_node-9] [INFO] [1757941431.036251840] [maze_planner]: Received robot pose: (-1.7899275147172051, -1.8114171359683444)
-[planner_astar_node-9] [INFO] [1757941431.100033075] [maze_planner]: Received robot pose: (-1.7896814291962575, -1.81144524498448)
-[planner_astar_node-9] [INFO] [1757941431.141424570] [maze_planner]: Received robot pose: (-1.7894347954166385, -1.8114680476180522)
-[planner_astar_node-9] [INFO] [1757941431.223518983] [maze_planner]: Received robot pose: (-1.7891877277763348, -1.811485533293013)
-[planner_astar_node-9] [INFO] [1757941431.260424351] [maze_planner]: Received robot pose: (-1.7889403408708717, -1.811497693899194)
-[planner_astar_node-9] [INFO] [1757941431.293527212] [maze_planner]: Received robot pose: (-1.7886927494407572, -1.8115045237957845)
-[planner_astar_node-9] [INFO] [1757941431.334812474] [maze_planner]: Received robot pose: (-1.7884450683214315, -1.8115060198457966)
-[planner_astar_node-9] [INFO] [1757941431.363632942] [maze_planner]: Received robot pose: (-1.7881974124417033, -1.8115021814506855)
-[planner_astar_node-9] [INFO] [1757941431.423408696] [maze_planner]: Received robot pose: (-1.787949896689128, -1.8114930102637796)
-[planner_astar_node-9] [INFO] [1757941431.482709400] [maze_planner]: Received robot pose: (-1.7877026358627321, -1.8114785105395692)
-[planner_astar_node-9] [INFO] [1757941431.536720797] [maze_planner]: Received robot pose: (-1.7874557446457697, -1.8114586890033972)
-[path_follower_node-10] [INFO] [1757941431.543297697] [path_follower]: cmd_vel pub #40: idx=1/120 pose=(-1.79,-1.81,1.66) target=(-2.00,-1.80) dist=0.21 ang_err=1.43 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941431.600920695] [maze_planner]: Received robot pose: (-1.7872093375534874, -1.8114335548485683)
-[planner_astar_node-9] [INFO] [1757941431.633772331] [maze_planner]: Received robot pose: (-1.7869635288803545, -1.8114031197323746)
-[planner_astar_node-9] [INFO] [1757941431.671565199] [maze_planner]: Received robot pose: (-1.786718432646852, -1.8113673977709241)
-[planner_astar_node-9] [INFO] [1757941431.713741638] [maze_planner]: Received robot pose: (-1.7864741626020428, -1.8113264055341705)
-[planner_astar_node-9] [INFO] [1757941431.761865897] [maze_planner]: Received robot pose: (-1.7862308321307814, -1.811280162038291)
-[planner_astar_node-9] [INFO] [1757941431.803450333] [maze_planner]: Received robot pose: (-1.7859885540989293, -1.8112286887339988)
-[planner_astar_node-9] [INFO] [1757941431.841717134] [maze_planner]: Received robot pose: (-1.7857474408834966, -1.8111720094979609)
-[planner_astar_node-9] [INFO] [1757941431.889756742] [maze_planner]: Received robot pose: (-1.7855076043211464, -1.8111101506217433)
-[planner_astar_node-9] [INFO] [1757941431.957333316] [maze_planner]: Received robot pose: (-1.7852691556563431, -1.8110431407996241)
-[planner_astar_node-9] [INFO] [1757941431.999051074] [maze_planner]: Received robot pose: (-1.7850322054897507, -1.810971011115269)
-[planner_astar_node-9] [INFO] [1757941432.045270128] [maze_planner]: Received robot pose: (-1.7847968637269618, -1.8108937950273332)
-[planner_astar_node-9] [INFO] [1757941432.071738393] [maze_planner]: Received robot pose: (-1.7845632395275206, -1.8108115283539252)
-[planner_astar_node-9] [INFO] [1757941432.107742979] [maze_planner]: Received robot pose: (-1.7843314412543172, -1.810724249256012)
-[planner_astar_node-9] [INFO] [1757941432.129521194] [maze_planner]: Received robot pose: (-1.7841015764233246, -1.8106319982197032)
-[planner_astar_node-9] [INFO] [1757941432.154554840] [maze_planner]: Received robot pose: (-1.7838737516537562, -1.8105348180374883)
-[planner_astar_node-9] [INFO] [1757941432.184351570] [maze_planner]: Received robot pose: (-1.7836480726186144, -1.810432753788375)
-[planner_astar_node-9] [INFO] [1757941432.207784021] [maze_planner]: Received robot pose: (-1.7834246439957024, -1.8103258528169948)
-[planner_astar_node-9] [INFO] [1757941432.241227350] [maze_planner]: Received robot pose: (-1.783203569419068, -1.8102141647116303)
-[planner_astar_node-9] [INFO] [1757941432.278122642] [maze_planner]: Received robot pose: (-1.7829849514309641, -1.8100977412812298)
-[planner_astar_node-9] [INFO] [1757941432.303005877] [maze_planner]: Received robot pose: (-1.7827688914342847, -1.8099766365313616)
-[planner_astar_node-9] [INFO] [1757941432.339404542] [maze_planner]: Received robot pose: (-1.782555489645558, -1.8098509066391835)
-[planner_astar_node-9] [INFO] [1757941432.361993728] [maze_planner]: Received robot pose: (-1.7823448450484582, -1.809720609927366)
-[planner_astar_node-9] [INFO] [1757941432.391900152] [maze_planner]: Received robot pose: (-1.7821370553479248, -1.809585806837062)
-[planner_astar_node-9] [INFO] [1757941432.417727517] [maze_planner]: Received robot pose: (-1.7819322169517111, -1.8094465599016962)
-[planner_astar_node-9] [INFO] [1757941432.460918634] [maze_planner]: Received robot pose: (-1.7817304249694426, -1.8093029337212887)
-[planner_astar_node-9] [INFO] [1757941432.531491816] [maze_planner]: Received robot pose: (-1.78153177301721, -1.8091549949221684)
-[path_follower_node-10] [INFO] [1757941432.541727398] [path_follower]: cmd_vel pub #50: idx=1/120 pose=(-1.78,-1.81,2.22) target=(-2.00,-1.80) dist=0.22 ang_err=0.88 cmd=(0.00,1.00)
-[planner_astar_node-9] [INFO] [1757941432.571995711] [maze_planner]: Received robot pose: (-1.7813363532466666, -1.8090028121307147)
-[planner_astar_node-9] [INFO] [1757941432.617489976] [maze_planner]: Received robot pose: (-1.7811442563100441, -1.8088464559420272)
-[planner_astar_node-9] [INFO] [1757941432.664186426] [maze_planner]: Received robot pose: (-1.7809555713181033, -1.808685998887192)
-[planner_astar_node-9] [INFO] [1757941432.711030553] [maze_planner]: Received robot pose: (-1.7807703857988153, -1.8085215153996241)
-[planner_astar_node-9] [INFO] [1757941432.771548603] [maze_planner]: Received robot pose: (-1.7805887856567608, -1.8083530817805578)
-[planner_astar_node-9] [INFO] [1757941432.822387816] [maze_planner]: Received robot pose: (-1.780410855133291, -1.8081807761636366)
-[planner_astar_node-9] [INFO] [1757941432.854122831] [maze_planner]: Received robot pose: (-1.7802366767674525, -1.8080046784786887)
-[planner_astar_node-9] [INFO] [1757941432.905472509] [maze_planner]: Received robot pose: (-1.7800663313577108, -1.80782487041464)
-[planner_astar_node-9] [INFO] [1757941432.927934258] [maze_planner]: Received robot pose: (-1.779899897924467, -1.8076414353816366)
-[planner_astar_node-9] [INFO] [1757941432.952455258] [maze_planner]: Received robot pose: (-1.779737453673412, -1.807454458472345)
-[planner_astar_node-9] [INFO] [1757941432.989739332] [maze_planner]: Received robot pose: (-1.7795790739597115, -1.8072640264224995)
-[planner_astar_node-9] [INFO] [1757941433.008294168] [maze_planner]: Received robot pose: (-1.7794248322530566, -1.8070702275706627)
-[planner_astar_node-9] [INFO] [1757941433.030633390] [maze_planner]: Received robot pose: (-1.779274800103583, -1.806873151817259)
-[planner_astar_node-9] [INFO] [1757941433.050254103] [maze_planner]: Received robot pose: (-1.7791290471086811, -1.8066728905828857)
-[planner_astar_node-9] [INFO] [1757941433.099408059] [maze_planner]: Received robot pose: (-1.7789876408825371, -1.8064695367929346)
-[planner_astar_node-9] [INFO] [1757941433.112957265] [maze_planner]: Received robot pose: (-1.7788506470265677, -1.8062631848658153)
-[planner_astar_node-9] [INFO] [1757941433.134465892] [maze_planner]: Received robot pose: (-1.7787181290891476, -1.8060539305233543)
-[planner_astar_node-9] [INFO] [1757941433.155566657] [maze_planner]: Received robot pose: (-1.7785901485418463, -1.8058418708262471)
-[planner_astar_node-9] [INFO] [1757941433.183942428] [maze_planner]: Received robot pose: (-1.7784667647514218, -1.8056271041362226)
-[planner_astar_node-9] [INFO] [1757941433.209484277] [maze_planner]: Received robot pose: (-1.778348034952283, -1.805409730070523)
-[planner_astar_node-9] [INFO] [1757941433.228691657] [maze_planner]: Received robot pose: (-1.7782340142199449, -1.8051898494556298)
-[planner_astar_node-9] [INFO] [1757941433.250774132] [maze_planner]: Received robot pose: (-1.7781249158929726, -1.8049678991416407)
-[planner_astar_node-9] [INFO] [1757941433.273284261] [maze_planner]: Received robot pose: (-1.778023631321214, -1.8047503089156192)
-[planner_astar_node-9] [INFO] [1757941433.306326860] [maze_planner]: Received robot pose: (-1.777930816078131, -1.8045397573885933)
-[planner_astar_node-9] [INFO] [1757941433.330602391] [maze_planner]: Received robot pose: (-1.777845570146978, -1.8043356042299643)
-[planner_astar_node-9] [INFO] [1757941433.349535626] [maze_planner]: Received robot pose: (-1.77778715159763, -1.8041157361082838)
-[planner_astar_node-9] [INFO] [1757941433.371811487] [maze_planner]: Received robot pose: (-1.7792043801851183, -1.8031223909634122)
-[planner_astar_node-9] [INFO] [1757941433.399379849] [maze_planner]: Received robot pose: (-1.782337456905415, -1.8017590328246373)
-[planner_astar_node-9] [INFO] [1757941433.420902062] [maze_planner]: Received robot pose: (-1.7856338342369114, -1.8004361149114982)
-[planner_astar_node-9] [INFO] [1757941433.443173637] [maze_planner]: Received robot pose: (-1.788961863044422, -1.7991724959878383)
-[planner_astar_node-9] [INFO] [1757941433.469069039] [maze_planner]: Received robot pose: (-1.7921687792893004, -1.7980133365621933)
-[planner_astar_node-9] [INFO] [1757941433.491958589] [maze_planner]: Received robot pose: (-1.7953669244157242, -1.7969173446690438)
-[planner_astar_node-9] [INFO] [1757941433.532517236] [maze_planner]: Received robot pose: (-1.7985828460937454, -1.7958761952958424)
-[path_follower_node-10] [INFO] [1757941433.541440123] [path_follower]: cmd_vel pub #60: idx=1/120 pose=(-1.80,-1.80,2.88) target=(-2.00,-1.80) dist=0.20 ang_err=0.28 cmd=(0.16,0.56)
-[planner_astar_node-9] [INFO] [1757941433.622916864] [maze_planner]: Received robot pose: (-1.8016966838801247, -1.7949186340770127)
-[planner_astar_node-9] [INFO] [1757941433.650702653] [maze_planner]: Received robot pose: (-1.8047935947849338, -1.7940139231701622)
-[planner_astar_node-9] [INFO] [1757941433.674461843] [maze_planner]: Received robot pose: (-1.8078615896788781, -1.793159485812731)
-[planner_astar_node-9] [INFO] [1757941433.691600869] [maze_planner]: Received robot pose: (-1.8109318652662152, -1.7923439516637947)
-[planner_astar_node-9] [INFO] [1757941433.713959692] [maze_planner]: Received robot pose: (-1.814011495950226, -1.7915644884454007)
-[planner_astar_node-9] [INFO] [1757941433.736362673] [maze_planner]: Received robot pose: (-1.817100057970322, -1.7908212034136621)
-[planner_astar_node-9] [INFO] [1757941433.760361099] [maze_planner]: Received robot pose: (-1.8200667457929955, -1.790145393939979)
-[planner_astar_node-9] [INFO] [1757941433.786865080] [maze_planner]: Received robot pose: (-1.822932978249592, -1.789524790809264)
-[planner_astar_node-9] [INFO] [1757941433.811147308] [maze_planner]: Received robot pose: (-1.8258064126233013, -1.7889395181657366)
-[planner_astar_node-9] [INFO] [1757941433.834046145] [maze_planner]: Received robot pose: (-1.8286856908817846, -1.7883837101054847)
-[planner_astar_node-9] [INFO] [1757941433.854712929] [maze_planner]: Received robot pose: (-1.8315032304363656, -1.7878713044777503)
-[planner_astar_node-9] [INFO] [1757941433.886731537] [maze_planner]: Received robot pose: (-1.8342129921905022, -1.7874058788043938)
-[planner_astar_node-9] [INFO] [1757941433.903038232] [maze_planner]: Received robot pose: (-1.836927297641281, -1.7869683918822212)
-[planner_astar_node-9] [INFO] [1757941433.919710086] [maze_planner]: Received robot pose: (-1.8396455003276748, -1.7865558109134396)
-[planner_astar_node-9] [INFO] [1757941433.941383027] [maze_planner]: Received robot pose: (-1.842367371722018, -1.7861681705808512)
-[planner_astar_node-9] [INFO] [1757941433.967365787] [maze_planner]: Received robot pose: (-1.8449742136144751, -1.785823540439833)
-[planner_astar_node-9] [INFO] [1757941433.988987417] [maze_planner]: Received robot pose: (-1.847488659711289, -1.785512941860693)
-[planner_astar_node-9] [INFO] [1757941434.046409344] [maze_planner]: Received robot pose: (-1.850005707141725, -1.7852248664843633)
-[planner_astar_node-9] [INFO] [1757941434.118486713] [maze_planner]: Received robot pose: (-1.852458927027355, -1.78496489971335)
-[planner_astar_node-9] [INFO] [1757941434.207855766] [maze_planner]: Received robot pose: (-1.854899945364864, -1.7847256814079606)
-[planner_astar_node-9] [INFO] [1757941434.244860633] [maze_planner]: Received robot pose: (-1.857342708297314, -1.7845049888750724)
-[planner_astar_node-9] [INFO] [1757941434.285087616] [maze_planner]: Received robot pose: (-1.86078178911178, -1.7842342923919203)
-[planner_astar_node-9] [INFO] [1757941434.345448292] [maze_planner]: Received robot pose: (-1.8661410882541805, -1.7839391289081425)
-[planner_astar_node-9] [INFO] [1757941434.414717907] [maze_planner]: Received robot pose: (-1.8715719378468785, -1.783687295151204)
-[planner_astar_node-9] [INFO] [1757941434.475973787] [maze_planner]: Received robot pose: (-1.876928055691759, -1.7834766771231716)
-[planner_astar_node-9] [INFO] [1757941434.531591254] [maze_planner]: Received robot pose: (-1.8821865125008048, -1.7832977066064517)
-[planner_astar_node-9] [INFO] [1757941434.593382626] [maze_planner]: Received robot pose: (-1.8839656480329314, -1.782764939397895)
-[path_follower_node-10] [INFO] [1757941434.645373747] [path_follower]: cmd_vel pub #70: idx=2/120 pose=(-1.88,-1.78,3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.06 cmd=(0.25,0.11)
-[planner_astar_node-9] [INFO] [1757941434.659782785] [maze_planner]: Received robot pose: (-1.8838769278076661, -1.7825708884598082)
-[planner_astar_node-9] [INFO] [1757941434.712749412] [maze_planner]: Received robot pose: (-1.8840573960933957, -1.7826559059430116)
-[planner_astar_node-9] [INFO] [1757941434.759371107] [maze_planner]: Received robot pose: (-1.8840469452802402, -1.7826577012717935)
-[planner_astar_node-9] [INFO] [1757941434.794989538] [maze_planner]: Received robot pose: (-1.8840387854760896, -1.7826591013556554)
-[planner_astar_node-9] [INFO] [1757941434.846924200] [maze_planner]: Received robot pose: (-1.8840317238205753, -1.7826603133003802)
-[planner_astar_node-9] [INFO] [1757941434.883065625] [maze_planner]: Received robot pose: (-1.8840259481235255, -1.7826613048207425)
-[planner_astar_node-9] [INFO] [1757941434.920166840] [maze_planner]: Received robot pose: (-1.8840212241942658, -1.7826621160216807)
-[planner_astar_node-9] [INFO] [1757941434.978435703] [maze_planner]: Received robot pose: (-1.8840173604953994, -1.7826627797287158)
-[planner_astar_node-9] [INFO] [1757941435.016169453] [maze_planner]: Received robot pose: (-1.884014058430375, -1.7826633471934938)
-[planner_astar_node-9] [INFO] [1757941435.056896363] [maze_planner]: Received robot pose: (-1.8840114996075643, -1.7826637871431146)
-[planner_astar_node-9] [INFO] [1757941435.123982325] [maze_planner]: Received robot pose: (-1.8840095976076319, -1.782664114338741)
-[planner_astar_node-9] [INFO] [1757941435.157470934] [maze_planner]: Received robot pose: (-1.8840077726383944, -1.782664428488781)
-[planner_astar_node-9] [INFO] [1757941435.211037847] [maze_planner]: Received robot pose: (-1.8840064225999806, -1.7826646610738013)
-[planner_astar_node-9] [INFO] [1757941435.260712518] [maze_planner]: Received robot pose: (-1.8840055246904663, -1.7826648158939893)
-[planner_astar_node-9] [INFO] [1757941435.361972343] [maze_planner]: Received robot pose: (-1.8840042132046195, -1.7826650422994559)
-[planner_astar_node-9] [INFO] [1757941435.426773677] [maze_planner]: Received robot pose: (-1.8840037729034094, -1.782665118414092)
-[planner_astar_node-9] [INFO] [1757941435.481902622] [maze_planner]: Received robot pose: (-1.8840029067500634, -1.7826652683797015)
-[planner_astar_node-9] [INFO] [1757941435.518250009] [maze_planner]: Received robot pose: (-1.8840024759132419, -1.7826653431392134)
-[planner_astar_node-9] [INFO] [1757941435.561858112] [maze_planner]: Received robot pose: (-1.8840020466202978, -1.7826654177945616)
-[planner_astar_node-9] [INFO] [1757941435.589812040] [maze_planner]: Received robot pose: (-1.8840016093395664, -1.782665494039666)
-[path_follower_node-10] [INFO] [1757941435.645525381] [path_follower]: cmd_vel pub #80: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[planner_astar_node-9] [INFO] [1757941435.673134126] [maze_planner]: Received robot pose: (-1.8840011802173149, -1.7826655688894104)
-[planner_astar_node-9] [INFO] [1757941435.811999393] [maze_planner]: Received robot pose: (-1.8840007531377652, -1.7826656433863808)
-[planner_astar_node-9] [INFO] [1757941435.979652253] [maze_planner]: Received robot pose: (-1.8840003306141349, -1.7826657170875873)
-[path_follower_node-10] [INFO] [1757941436.643234910] [path_follower]: cmd_vel pub #90: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941437.642775318] [path_follower]: cmd_vel pub #100: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941438.643268065] [path_follower]: cmd_vel pub #110: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941439.643162896] [path_follower]: cmd_vel pub #120: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941440.642717619] [path_follower]: cmd_vel pub #130: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941441.643304770] [path_follower]: cmd_vel pub #140: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941442.641868084] [path_follower]: cmd_vel pub #150: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941443.643546759] [path_follower]: cmd_vel pub #160: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941444.642950205] [path_follower]: cmd_vel pub #170: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941445.642004896] [path_follower]: cmd_vel pub #180: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-[path_follower_node-10] [INFO] [1757941446.641617085] [path_follower]: cmd_vel pub #190: idx=2/120 pose=(-1.88,-1.78,-3.14) target=(-2.20,-1.80) dist=0.32 ang_err=0.05 cmd=(0.25,0.11)
-^C[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
-[robot_state_publisher-2] [INFO] [1757941447.065380020] [rclcpp]: signal_handler(signum=2)
-[cmd_vel_bridge-7] [INFO] [1757941447.065894087] [rclcpp]: signal_handler(signum=2)
-[maze_publisher_node-6] Traceback (most recent call last):
-[maze_publisher_node-6]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node", line 33, in <module>
-[maze_publisher_node-6]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'maze_publisher_node')())
-[maze_publisher_node-6]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[maze_publisher_node-6]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/maze_publisher_node.py", line 115, in main
-[maze_publisher_node-6]     rclpy.spin(node)
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-[maze_publisher_node-6]     executor.spin_once()
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-[maze_publisher_node-6]     self._spin_once_impl(timeout_sec)
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
-[maze_publisher_node-6]     handler, entity, node = self.wait_for_ready_callbacks(
-[maze_publisher_node-6]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
-[maze_publisher_node-6]     return next(self._cb_iter)
-[planner_astar_node-9] Traceback (most recent call last):
-[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node", line 33, in <module>
-[planner_astar_node-9]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'planner_astar_node')())
-[planner_astar_node-9]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[planner_astar_node-9]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/planner_astar_node.py", line 250, in main
-[planner_astar_node-9]     rclpy.spin(node)
-[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-[planner_astar_node-9]     executor.spin_once()
-[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-[planner_astar_node-9]     self._spin_once_impl(timeout_sec)
-[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
-[planner_astar_node-9]     handler, entity, node = self.wait_for_ready_callbacks(
-[planner_astar_node-9]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
-[planner_astar_node-9]     return next(self._cb_iter)
-[planner_astar_node-9]            ^^^^^^^^^^^^^^^^^^^
-[planner_astar_node-9]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
-[planner_astar_node-9]     wait_set.wait(timeout_nsec)
-[planner_astar_node-9] KeyboardInterrupt
-[path_follower_node-10] Traceback (most recent call last):
-[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node", line 33, in <module>
-[path_follower_node-10]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'path_follower_node')())
-[path_follower_node-10]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[path_follower_node-10]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/path_follower_node.py", line 142, in main
-[path_follower_node-10]     rclpy.spin(node)
-[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-[path_follower_node-10]     executor.spin_once()
-[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-[path_follower_node-10]     self._spin_once_impl(timeout_sec)
-[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
-[path_follower_node-10]     handler, entity, node = self.wait_for_ready_callbacks(
-[path_follower_node-10]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
-[path_follower_node-10]     return next(self._cb_iter)
-[path_follower_node-10]            ^^^^^^^^^^^^^^^^^^^
-[path_follower_node-10]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
-[path_follower_node-10]     wait_set.wait(timeout_nsec)
-[path_follower_node-10] KeyboardInterrupt
-[maze_publisher_node-6]            ^^^^^^^^^^^^^^^^^^^
-[maze_publisher_node-6]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 697, in _wait_for_ready_callbacks
-[maze_publisher_node-6]     wait_set.wait(timeout_nsec)
-[maze_publisher_node-6] KeyboardInterrupt
-[odom_to_pose_node-8] Traceback (most recent call last):
-[odom_to_pose_node-8]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node", line 33, in <module>
-[odom_to_pose_node-8]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'odom_to_pose_node')())
-[odom_to_pose_node-8]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[odom_to_pose_node-8]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/odom_to_pose_node.py", line 72, in main
-[odom_to_pose_node-8]     rclpy.shutdown()
-[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
-[odom_to_pose_node-8]     _shutdown(context=context)
-[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
-[odom_to_pose_node-8]     context.shutdown()
-[odom_to_pose_node-8]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
-[odom_to_pose_node-8]     self.__context.shutdown()
-[odom_to_pose_node-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333
-[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 21648]
-[INFO] [gazebo_gui_client-4]: process has finished cleanly [pid 21704]
-[ERROR] [path_follower_node-10]: process has died [pid 21953, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/path_follower_node --ros-args -r __node:=path_follower'].
-[ERROR] [maze_publisher_node-6]: process has died [pid 21812, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/maze_publisher_node --ros-args -r __node:=maze_publisher --params-file /tmp/launch_params_bj0y5dll'].
-[INFO] [cmd_vel_bridge-7]: process has finished cleanly [pid 21851]
-[ERROR] [odom_to_pose_node-8]: process has died [pid 21875, exit code 1, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/odom_to_pose_node --ros-args -r __node:=odom_to_pose'].
-[ERROR] [planner_astar_node-9]: process has died [pid 21878, exit code -2, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node --ros-args -r __node:=maze_planner --params-file /tmp/launch_params_y3ehz21a'].
-[INFO] [joint_state_publisher-3]: process has finished cleanly [pid 21649]
-[ERROR] [gazebo_gui-1]: process[gazebo_gui-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
-[INFO] [gazebo_gui-1]: sending signal 'SIGTERM' to process[gazebo_gui-1]
-[gazebo_gui-1] [Msg] DiffDrive subscribing to twist messages on [cmd_vel]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::DiffDrive] for entity [356]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [356]
-[gazebo_gui-1] [Dbg] [OdometryPublisher.cc:201] OdometryPublisher system plugin missing <dimensions>, defaults to "2"
-[gazebo_gui-1] [Msg] OdometryPublisher publishing odometry on [odom]
-[gazebo_gui-1] [Msg] OdometryPublisher publishing odometry with covariance on [/model/slambot/odometry_with_covariance]
-[gazebo_gui-1] [Msg] OdometryPublisher publishing Pose_V (TF) on [tf]
-[gazebo_gui-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [356]
-[gazebo_gui-1] [Dbg] [UserCommands.cc:1318] Created entity [356] named [slambot]
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 5
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (1)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (2)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (3)
-[gazebo_gui-1] [Dbg] [SignalHandler.cc:142] Received signal[2].
-[gazebo_gui-1] [Dbg] [ServerPrivate.cc:122] Server received signal[2]
-[gazebo_gui-1] [Dbg] [gz.cc:434] Shutting down gz-sim-server
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (2)
-[gazebo_gui-1] [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (3)
-[gazebo_gui-1] /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:201:in `kill': No such process (Errno::ESRCH)
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:201:in `killProcess'
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:569:in `handle_signal'
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:579:in `block in execute'
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:584:in `wait2'
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_sim_vendor/lib/ruby/gz/cmdsim8.rb:584:in `execute'
-[gazebo_gui-1]  from /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz:316:in `<main>'
-[gazebo_gui-1] Escalating to SIGKILL on [Gazebo Sim GUI]
-[ERROR] [gazebo_gui-1]: process has died [pid 21647, exit code 1, cmd 'gz sim -v 4 -r /tmp/maze_world_generated.sdf'].
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ 
-```
-------------------------------------------------------------------------------------------
-other  terminal:
-```
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
-# You should see changing pose after a few seconds if cmd_vel is published.
-header:
-  stamp:
-    sec: 22
-    nanosec: 509000000
-  frame_id: odom
-child_frame_id: base_link
-pose:
-  pose:
-    position:
-      x: -1.8840000204513498
-      y: -1.7817832660520947
-      z: 0.0
-    orientation:
-      x: 5.36049587630176e-08
-      y: -7.030911758781831e-10
-      z: 0.9999999999999928
-      w: -1.0791718969022425e-07
-  covariance:
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-^CTraceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Error in sys.excepthook:
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
-    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
-    report.add_package_info()
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
-    self["Dependencies"] = self._get_transitive_dependencies(package)
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
-    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 372, in _customized_package_suffix
-    if not packaging.is_distro_package(package):
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 332, in is_distro_package
-    pkg = self._apt_pkg(package)
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
-    return self._cache()[package]
-           ^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 229, in _cache
-    if not self._apt_cache:
-           ^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apt/cache.py", line 332, in __len__
-    return len(self.keys())
-               ^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apt/cache.py", line 341, in keys
-    return list(self._sorted_set)  # We need a copy here, caller may modify
-           ^^^^^^^^^^^^^^^^^^^^^^
-KeyboardInterrupt
-
-Original exception was:
-Traceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-BrokenPipeError: [Errno 32] Broken pipe
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
-# You should see changing pose after a few seconds if cmd_vel is published.
-header:
-  stamp:
-    sec: 43
-    nanosec: 729000000
-  frame_id: odom
-child_frame_id: base_link
-pose:
-  pose:
-    position:
-      x: -1.8840000204513498
-      y: -1.7817832660520947
-      z: 0.0
-    orientation:
-      x: 5.36049587630176e-08
-      y: -7.030911758781831e-10
-      z: 0.9999999999999928
-      w: -1.0791718969022425e-07
-  covariance:
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-^CTraceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Error in sys.excepthook:
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
-    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 123, in apport_excepthook
-    report.add_package_info()
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 460, in add_package_info
-    self["Dependencies"] = self._get_transitive_dependencies(package)
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 421, in _get_transitive_dependencies
-    dependencies += f"{dep} {v}{self._customized_package_suffix(dep)}"
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/report.py", line 372, in _customized_package_suffix
-    if not packaging.is_distro_package(package):
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 332, in is_distro_package
-    pkg = self._apt_pkg(package)
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 275, in _apt_pkg
-    return self._cache()[package]
-           ^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apport/packaging_impl/apt_dpkg.py", line 229, in _cache
-    if not self._apt_cache:
-           ^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apt/cache.py", line 332, in __len__
-    return len(self.keys())
-               ^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/apt/cache.py", line 341, in keys
-    return list(self._sorted_set)  # We need a copy here, caller may modify
-           ^^^^^^^^^^^^^^^^^^^^^^
-KeyboardInterrupt
-
-Original exception was:
-Traceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-BrokenPipeError: [Errno 32] Broken pipe
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic echo /odom | head -n 40
-# You should see changing pose after a few seconds if cmd_vel is published.^C
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 node list
-ros2 node info /path_follower
-ros2 topic echo /model/slambot/cmd_vel | head -n 40
-/joint_state_publisher
-/maze_planner
-/maze_publisher
-/odom_to_pose
-/path_follower
-/robot_state_publisher
-/ros_gz_bridge
-/path_follower
-  Subscribers:
-    /model/slambot/odom: nav_msgs/msg/Odometry
-    /odom: nav_msgs/msg/Odometry
-    /planned_path: nav_msgs/msg/Path
-  Publishers:
-    /cmd_vel: geometry_msgs/msg/Twist
-    /model/slambot/cmd_vel: geometry_msgs/msg/Twist
-    /parameter_events: rcl_interfaces/msg/ParameterEvent
-    /rosout: rcl_interfaces/msg/Log
-  Service Servers:
-    /path_follower/describe_parameters: rcl_interfaces/srv/DescribeParameters
-    /path_follower/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
-    /path_follower/get_parameters: rcl_interfaces/srv/GetParameters
-    /path_follower/get_type_description: type_description_interfaces/srv/GetTypeDescription
-    /path_follower/list_parameters: rcl_interfaces/srv/ListParameters
-    /path_follower/set_parameters: rcl_interfaces/srv/SetParameters
-    /path_follower/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
-  Service Clients:
-
-  Action Servers:
-
-  Action Clients:
-
-linear:
-  x: 0.2532196977746881
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.11516789427725271
----
-linear:
-  x: 0.2532196977746881
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.11516789427725271
----
-linear:
-  x: 0.2532196977746881
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.11516789427725271
----
-linear:
-  x: 0.2532196977746881
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.11516789427725271
----
-linear:
-  x: 0.2532196977746881
-  y: 0.0
-  z: 0.0
-Traceback (most recent call last):
-  File "/opt/ros/jazzy/bin/ros2", line 33, in <module>
-    sys.exit(load_entry_point('ros2cli==0.32.5', 'console_scripts', 'ros2')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2cli/cli.py", line 91, in main
-    rc = extension.main(parser=parser, args=args)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/command/topic.py", line 41, in main
-    return extension.main(args=args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 219, in main
-    self.subscribe_and_spin(
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 262, in subscribe_and_spin
-    rclpy.spin(node)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
-    executor.spin_once()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
-    self._spin_once_impl(timeout_sec)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 834, in _spin_once_impl
-    raise handler.exception()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 269, in __call__
-    self._handler.send(None)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 518, in handler
-    await call_coroutine()
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 406, in _execute
-    await await_or_execute(sub.callback, *msg_tuple)
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 111, in await_or_execute
-    return callback(*args)
-           ^^^^^^^^^^^^^^^
-  File "/opt/ros/jazzy/lib/python3.12/site-packages/ros2topic/verb/echo.py", line 305, in _subscriber_callback
-    print(
-BrokenPipeError: [Errno 32] Broken pipe
-Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-BrokenPipeError: [Errno 32] Broken pipe
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic info /planned_path
-Type: nav_msgs/msg/Path
-Publisher count: 1
-Subscription count: 1
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ ros2 topic bw /planned_path
-WARNING: topic [/planned_path] does not appear to be published yet
-Subscribed to [/planned_path]
-9.90 KB/s from 2 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-12.60 KB/s from 4 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.56 KB/s from 5 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.94 KB/s from 6 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.55 KB/s from 7 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.55 KB/s from 9 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.18 KB/s from 10 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.90 KB/s from 11 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.67 KB/s from 12 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.29 KB/s from 14 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.06 KB/s from 15 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.88 KB/s from 16 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-10.72 KB/s from 17 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.16 KB/s from 19 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-11.01 KB/s from 20 messages
-        Message size mean: 8.67 KB min: 8.67 KB max: 8.67 KB
-rey@ubuntu-robotics-VM:~/Desktop/Maze Solver/robot_maze_ws$ 
-```
+ pose=(-1.73,-1.76,0.62) target=(-1.19,-1.54) dist=0.59 ang_err=-0.24 cmd=(0.15,-1.80)
+[planner_astar_node-12] WARNING:root:Start cell (0, 0) is occupied; searching nearby free cell.
+[planner_astar_node-12] WARNING:root:A* failed: goal unreachable; returning start->goal direct line.
+[path_follower_node-14] [INFO] [1758551394.187184396] [path_follower]: Received planned path with 40 points
+[path_follower_node-14] [INFO] [1758551395.098835085] [path_follower]: cmd_vel pub #110: idx=2/40 target_idx=5 pose=(-1.73,-1.74,0.51) target=(-1.27,-1.56) dist=0.49 ang_err=-0.14 cmd=(0.15,-0.50)
+[planner_astar_node-12] WARNING:root:Start cell (0, 0) is occupied; searching nearby free cell.
+[planner_astar_node-12] WARNING:root:A* failed: goal unreachable; returning start->goal direct line.
+[path_follower_node-14] [INFO] [1758551395.195713853] [path_follower]: Received planned path with 40 points
+[path_follower_node-14] [INFO] [1758551395.493009733] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[planner_astar_node-12] Traceback (most recent call last):
+[planner_astar_node-12]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node", line 33, in <module>
+[planner_astar_node-12]     sys.exit(load_entry_point('robot-maze-planners==1.0.0', 'console_scripts', 'planner_astar_node')())
+[planner_astar_node-12]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-12]   File "/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/python3.12/site-packages/robot_maze_planners/nodes/planner_astar_node.py", line 291, in main
+[planner_astar_node-12]     rclpy.spin(node)
+[planner_astar_node-12]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[planner_astar_node-12]     executor.spin_once()
+[planner_astar_node-12]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+[planner_astar_node-12]     self._spin_once_impl(timeout_sec)
+[planner_astar_node-12]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+[planner_astar_node-12]     handler, entity, node = self.wait_for_ready_callbacks(
+[planner_astar_node-12]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-12]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+[planner_astar_node-12]     return next(self._cb_iter)
+[planner_astar_node-12]            ^^^^^^^^^^^^^^^^^^^
+[planner_astar_node-12]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 701, in _wait_for_ready_callbacks
+[planner_astar_node-12]     raise ExternalShutdownException()
+[planner_astar_node-12] rclpy.executors.ExternalShutdownException
+[path_follower_node-14] [INFO] [1758551396.090252084] [path_follower]: cmd_vel pub #120: RECOVERY idx=3/40 target_idx=6 pose=(-1.77,-1.74,0.30) target=(-1.18,-1.50) dist=0.64 ang_err=0.09 cmd=(-0.15,1.80)
+[ERROR] [planner_astar_node-12]: process has died [pid 194276, exit code 1, cmd '/home/rey/Desktop/Maze Solver/robot_maze_ws/install/robot_maze_planners/lib/robot_maze_planners/planner_astar_node --ros-args -r __node:=maze_planner --params-file /tmp/launch_params_ee0qzlj8'].
+[path_follower_node-14] [INFO] [1758551397.091321959] [path_follower]: cmd_vel pub #130: idx=3/40 target_idx=6 pose=(-1.78,-1.74,0.29) target=(-1.18,-1.50) dist=0.65 ang_err=0.09 cmd=(0.15,0.32)
+[path_follower_node-14] [INFO] [1758551398.088488081] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551398.091120532] [path_follower]: cmd_vel pub #140: RECOVERY idx=4/40 target_idx=6 pose=(-1.73,-1.73,0.37) target=(-1.18,-1.50) dist=0.60 ang_err=0.02 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551399.093221917] [path_follower]: cmd_vel pub #150: RECOVERY idx=4/40 target_idx=7 pose=(-1.73,-1.70,0.44) target=(-1.09,-1.46) dist=0.69 ang_err=-0.08 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551400.089386879] [path_follower]: cmd_vel pub #160: idx=4/40 target_idx=7 pose=(-1.73,-1.67,0.52) target=(-1.09,-1.46) dist=0.68 ang_err=-0.19 cmd=(0.15,-0.67)
+[path_follower_node-14] [INFO] [1758551400.591410251] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551401.095541848] [path_follower]: cmd_vel pub #170: RECOVERY idx=5/40 target_idx=8 pose=(-1.76,-1.66,0.22) target=(-1.00,-1.42) dist=0.80 ang_err=0.08 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551402.089856163] [path_follower]: cmd_vel pub #180: idx=5/40 target_idx=8 pose=(-1.80,-1.66,0.20) target=(-1.00,-1.42) dist=0.84 ang_err=0.10 cmd=(0.15,0.34)
+[path_follower_node-14] [INFO] [1758551403.093015790] [path_follower]: cmd_vel pub #190: idx=5/40 target_idx=8 pose=(-1.74,-1.65,0.28) target=(-1.00,-1.42) dist=0.78 ang_err=0.02 cmd=(0.15,0.07)
+[path_follower_node-14] [INFO] [1758551403.188400378] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551404.094222933] [path_follower]: cmd_vel pub #200: RECOVERY idx=6/40 target_idx=10 pose=(-1.72,-1.64,0.05) target=(-0.81,-1.34) dist=0.95 ang_err=0.27 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551405.089865486] [path_follower]: cmd_vel pub #210: idx=6/40 target_idx=10 pose=(-1.72,-1.64,0.00) target=(-0.81,-1.34) dist=0.95 ang_err=0.32 cmd=(0.15,1.11)
+[path_follower_node-14] [INFO] [1758551405.688431868] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551406.094207774] [path_follower]: cmd_vel pub #220: RECOVERY idx=7/40 target_idx=11 pose=(-1.72,-1.64,0.05) target=(-0.72,-1.30) dist=1.06 ang_err=0.28 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551407.097123240] [path_follower]: cmd_vel pub #230: idx=7/40 target_idx=11 pose=(-1.77,-1.65,0.44) target=(-0.72,-1.30) dist=1.11 ang_err=-0.12 cmd=(0.15,-0.42)
+[path_follower_node-14] [INFO] [1758551408.090900394] [path_follower]: cmd_vel pub #240: idx=7/40 target_idx=11 pose=(-1.73,-1.62,0.63) target=(-0.72,-1.30) dist=1.06 ang_err=-0.32 cmd=(0.15,-1.12)
+[path_follower_node-14] [INFO] [1758551408.192165308] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551409.095859204] [path_follower]: cmd_vel pub #250: RECOVERY idx=8/40 target_idx=11 pose=(-1.71,-1.59,0.53) target=(-0.72,-1.30) dist=1.03 ang_err=-0.24 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551410.092007059] [path_follower]: cmd_vel pub #260: idx=8/40 target_idx=11 pose=(-1.70,-1.56,0.24) target=(-0.72,-1.30) dist=1.01 ang_err=0.02 cmd=(0.15,0.08)
+[path_follower_node-14] [INFO] [1758551410.791655247] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551411.099424344] [path_follower]: cmd_vel pub #270: RECOVERY idx=9/40 target_idx=12 pose=(-1.69,-1.55,0.06) target=(-0.63,-1.26) dist=1.10 ang_err=0.21 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551412.093813411] [path_follower]: cmd_vel pub #280: idx=9/40 target_idx=12 pose=(-1.72,-1.56,0.13) target=(-0.63,-1.26) dist=1.13 ang_err=0.13 cmd=(0.15,0.47)
+[path_follower_node-14] [INFO] [1758551413.090937161] [path_follower]: cmd_vel pub #290: idx=9/40 target_idx=12 pose=(-1.69,-1.55,0.04) target=(-0.63,-1.26) dist=1.10 ang_err=0.23 cmd=(0.15,0.80)
+[path_follower_node-14] [INFO] [1758551413.293563612] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551414.100448555] [path_follower]: cmd_vel pub #300: RECOVERY idx=10/40 target_idx=13 pose=(-1.69,-1.55,-0.03) target=(-0.54,-1.22) dist=1.20 ang_err=0.30 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551415.091844261] [path_follower]: cmd_vel pub #310: idx=10/40 target_idx=13 pose=(-1.69,-1.55,-0.02) target=(-0.54,-1.22) dist=1.20 ang_err=0.30 cmd=(0.15,1.04)
+[path_follower_node-14] [INFO] [1758551415.891427555] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551416.092495162] [path_follower]: cmd_vel pub #320: RECOVERY idx=11/40 target_idx=15 pose=(-1.69,-1.55,-0.01) target=(-0.35,-1.14) dist=1.39 ang_err=0.30 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551417.094504876] [path_follower]: cmd_vel pub #330: idx=11/40 target_idx=15 pose=(-1.73,-1.56,0.34) target=(-0.35,-1.14) dist=1.44 ang_err=-0.05 cmd=(0.15,-0.16)
+[path_follower_node-14] [INFO] [1758551417.107042855] [path_follower]: Received planned path with 20 points
+[path_follower_node-14] [INFO] [1758551418.096813189] [path_follower]: cmd_vel pub #340: idx=6/20 target_idx=8 pose=(-1.69,-1.54,0.56) target=(-0.24,-0.99) dist=1.56 ang_err=-0.19 cmd=(0.15,-0.68)
+[path_follower_node-14] [INFO] [1758551418.403513569] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551419.089501978] [path_follower]: cmd_vel pub #350: RECOVERY idx=7/20 target_idx=9 pose=(-1.67,-1.52,0.35) target=(-0.05,-0.92) dist=1.73 ang_err=0.01 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551420.100064015] [path_follower]: cmd_vel pub #360: idx=7/20 target_idx=9 pose=(-1.64,-1.51,-0.03) target=(-0.05,-0.92) dist=1.70 ang_err=0.39 cmd=(0.15,1.37)
+[path_follower_node-14] [INFO] [1758551420.993415277] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551421.092595723] [path_follower]: cmd_vel pub #370: RECOVERY idx=8/20 target_idx=10 pose=(-1.63,-1.50,-0.27) target=(0.14,-0.84) dist=1.88 ang_err=0.62 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551422.091196888] [path_follower]: cmd_vel pub #380: RECOVERY idx=8/20 target_idx=10 pose=(-1.67,-1.50,-0.01) target=(0.14,-0.84) dist=1.92 ang_err=0.35 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551423.088966977] [path_follower]: cmd_vel pub #390: idx=8/20 target_idx=10 pose=(-1.66,-1.49,0.26) target=(0.14,-0.84) dist=1.91 ang_err=0.09 cmd=(0.15,0.32)
+[path_follower_node-14] [INFO] [1758551423.588331028] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551424.092189404] [path_follower]: cmd_vel pub #400: RECOVERY idx=9/20 target_idx=11 pose=(-1.61,-1.48,0.36) target=(0.32,-0.77) dist=2.05 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551425.090652036] [path_follower]: cmd_vel pub #410: idx=9/20 target_idx=11 pose=(-1.55,-1.46,0.34) target=(0.32,-0.77) dist=1.99 ang_err=0.01 cmd=(0.15,0.04)
+[path_follower_node-14] [INFO] [1758551426.091399294] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551426.094451393] [path_follower]: cmd_vel pub #420: RECOVERY idx=10/20 target_idx=11 pose=(-1.51,-1.44,0.35) target=(0.32,-0.77) dist=1.95 ang_err=0.00 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551427.088170645] [path_follower]: cmd_vel pub #430: RECOVERY idx=10/20 target_idx=12 pose=(-1.55,-1.46,0.33) target=(0.51,-0.70) dist=2.20 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551428.089322214] [path_follower]: cmd_vel pub #440: idx=10/20 target_idx=12 pose=(-1.54,-1.45,0.35) target=(0.51,-0.70) dist=2.18 ang_err=0.00 cmd=(0.15,0.01)
+[path_follower_node-14] [INFO] [1758551428.689851438] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551429.097834962] [path_follower]: cmd_vel pub #450: RECOVERY idx=11/20 target_idx=13 pose=(-1.47,-1.43,0.37) target=(0.70,-0.63) dist=2.31 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551430.090796135] [path_follower]: cmd_vel pub #460: idx=11/20 target_idx=13 pose=(-1.43,-1.41,0.33) target=(0.70,-0.63) dist=2.26 ang_err=0.03 cmd=(0.15,0.09)
+[path_follower_node-14] [INFO] [1758551431.091326715] [path_follower]: cmd_vel pub #470: idx=11/20 target_idx=13 pose=(-1.38,-1.40,0.35) target=(0.70,-0.63) dist=2.21 ang_err=0.01 cmd=(0.15,0.03)
+[path_follower_node-14] [INFO] [1758551431.189427199] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551432.091132555] [path_follower]: cmd_vel pub #480: RECOVERY idx=12/20 target_idx=14 pose=(-1.40,-1.41,0.38) target=(0.88,-0.56) dist=2.44 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551433.096939024] [path_follower]: cmd_vel pub #490: idx=12/20 target_idx=14 pose=(-1.38,-1.40,0.36) target=(0.88,-0.56) dist=2.41 ang_err=-0.00 cmd=(0.15,-0.00)
+[rviz2-13] [INFO] [1758551433.464113925] [rviz2]: Trying to create a map of size 50 x 50 using 1 swatches
+[rviz2-13] [ERROR] [1758551433.524569658] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
+[rviz2-13] rviz/glsl120/indexed_8bit_image.frag
+[rviz2-13]  GLSL link result : 
+[rviz2-13] active samplers with a different type refer to the same texture image unit
+[path_follower_node-14] [INFO] [1758551433.689715037] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551434.091136743] [path_follower]: cmd_vel pub #500: RECOVERY idx=13/20 target_idx=15 pose=(-1.32,-1.38,0.36) target=(1.07,-0.49) dist=2.55 ang_err=-0.00 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551435.088324558] [path_follower]: cmd_vel pub #510: idx=13/20 target_idx=15 pose=(-1.28,-1.36,0.34) target=(1.07,-0.49) dist=2.51 ang_err=0.02 cmd=(0.15,0.07)
+[path_follower_node-14] [INFO] [1758551436.089243905] [path_follower]: cmd_vel pub #520: idx=13/20 target_idx=15 pose=(-1.24,-1.35,0.35) target=(1.07,-0.49) dist=2.46 ang_err=0.01 cmd=(0.15,0.02)
+[path_follower_node-14] [INFO] [1758551436.292003058] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551437.090869694] [path_follower]: cmd_vel pub #530: RECOVERY idx=14/20 target_idx=16 pose=(-1.25,-1.35,0.38) target=(1.26,-0.41) dist=2.68 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551438.088711610] [path_follower]: cmd_vel pub #540: idx=14/20 target_idx=16 pose=(-1.25,-1.35,0.36) target=(1.26,-0.41) dist=2.67 ang_err=-0.00 cmd=(0.15,-0.00)
+[path_follower_node-14] [INFO] [1758551438.892830863] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551439.091271834] [path_follower]: cmd_vel pub #550: RECOVERY idx=15/20 target_idx=17 pose=(-1.18,-1.32,0.35) target=(1.44,-0.34) dist=2.80 ang_err=0.00 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551440.094252797] [path_follower]: cmd_vel pub #560: idx=15/20 target_idx=17 pose=(-1.15,-1.32,0.47) target=(1.44,-0.34) dist=2.77 ang_err=-0.10 cmd=(0.15,-0.37)
+[path_follower_node-14] [INFO] [1758551441.092040477] [path_follower]: cmd_vel pub #570: idx=15/20 target_idx=17 pose=(-1.11,-1.32,0.46) target=(1.44,-0.34) dist=2.73 ang_err=-0.09 cmd=(0.15,-0.32)
+[path_follower_node-14] [INFO] [1758551441.390188693] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551442.093028344] [path_follower]: cmd_vel pub #580: RECOVERY idx=16/20 target_idx=18 pose=(-1.11,-1.33,0.40) target=(1.63,-0.27) dist=2.94 ang_err=-0.03 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551443.089767952] [path_follower]: cmd_vel pub #590: idx=16/20 target_idx=18 pose=(-1.13,-1.33,0.14) target=(1.63,-0.27) dist=2.95 ang_err=0.23 cmd=(0.15,0.79)
+[path_follower_node-14] [INFO] [1758551443.989695872] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551444.089870643] [path_follower]: cmd_vel pub #600: RECOVERY idx=17/20 target_idx=19 pose=(-1.07,-1.32,0.26) target=(1.92,-0.16) dist=3.20 ang_err=0.12 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551445.090194788] [path_follower]: cmd_vel pub #610: RECOVERY idx=17/20 target_idx=19 pose=(-1.02,-1.32,0.61) target=(1.92,-0.16) dist=3.16 ang_err=-0.24 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551446.092121513] [path_follower]: cmd_vel pub #620: idx=17/20 target_idx=19 pose=(-0.97,-1.32,0.67) target=(1.92,-0.16) dist=3.11 ang_err=-0.28 cmd=(0.15,-0.99)
+[path_follower_node-14] [INFO] [1758551446.588898267] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551447.089419773] [path_follower]: cmd_vel pub #630: RECOVERY idx=18/20 target_idx=19 pose=(-0.97,-1.33,0.43) target=(1.92,-0.16) dist=3.12 ang_err=-0.04 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551448.090927401] [path_follower]: cmd_vel pub #640: idx=18/20 target_idx=19 pose=(-1.00,-1.34,0.10) target=(1.92,-0.16) dist=3.15 ang_err=0.28 cmd=(0.15,0.98)
+[path_follower_node-14] [INFO] [1758551449.088322113] [path_follower]: cmd_vel pub #650: idx=18/20 target_idx=19 pose=(-0.93,-1.33,0.24) target=(1.92,-0.16) dist=3.08 ang_err=0.15 cmd=(0.15,0.54)
+[path_follower_node-14] [INFO] [1758551449.189150374] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551450.089861325] [path_follower]: cmd_vel pub #660: RECOVERY idx=19/20 target_idx=19 pose=(-0.87,-1.32,0.60) target=(1.92,-0.16) dist=3.02 ang_err=-0.20 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551451.092809582] [path_follower]: cmd_vel pub #670: idx=19/20 target_idx=19 pose=(-0.82,-1.32,0.63) target=(1.92,-0.16) dist=2.98 ang_err=-0.23 cmd=(0.15,-0.81)
+[path_follower_node-14] [INFO] [1758551451.689380849] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551452.089858216] [path_follower]: cmd_vel pub #680: RECOVERY idx=19/20 target_idx=19 pose=(-0.81,-1.33,0.45) target=(1.92,-0.16) dist=2.97 ang_err=-0.04 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551453.090995299] [path_follower]: cmd_vel pub #690: idx=19/20 target_idx=19 pose=(-0.86,-1.34,0.16) target=(1.92,-0.16) dist=3.02 ang_err=0.24 cmd=(0.15,0.85)
+[path_follower_node-14] [INFO] [1758551454.090760406] [path_follower]: cmd_vel pub #700: idx=19/20 target_idx=19 pose=(-0.79,-1.33,0.26) target=(1.92,-0.16) dist=2.95 ang_err=0.15 cmd=(0.15,0.53)
+[path_follower_node-14] [INFO] [1758551454.290392809] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551455.090683566] [path_follower]: cmd_vel pub #710: RECOVERY idx=19/20 target_idx=19 pose=(-0.73,-1.32,0.57) target=(1.92,-0.16) dist=2.89 ang_err=-0.16 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551456.093710921] [path_follower]: cmd_vel pub #720: idx=19/20 target_idx=19 pose=(-0.68,-1.32,0.60) target=(1.92,-0.16) dist=2.85 ang_err=-0.18 cmd=(0.15,-0.65)
+[path_follower_node-14] [INFO] [1758551456.890274062] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551457.091683506] [path_follower]: cmd_vel pub #730: RECOVERY idx=19/20 target_idx=19 pose=(-0.64,-1.32,0.49) target=(1.92,-0.16) dist=2.81 ang_err=-0.06 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551458.092034815] [path_follower]: cmd_vel pub #740: RECOVERY idx=19/20 target_idx=19 pose=(-0.71,-1.35,0.27) target=(1.92,-0.16) dist=2.88 ang_err=0.15 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551459.090047857] [path_follower]: cmd_vel pub #750: idx=19/20 target_idx=19 pose=(-0.67,-1.33,0.39) target=(1.92,-0.16) dist=2.84 ang_err=0.04 cmd=(0.15,0.13)
+[path_follower_node-14] [INFO] [1758551459.391124045] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551460.091004592] [path_follower]: cmd_vel pub #760: RECOVERY idx=19/20 target_idx=19 pose=(-0.61,-1.32,0.52) target=(1.92,-0.16) dist=2.79 ang_err=-0.09 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551461.096238335] [path_follower]: cmd_vel pub #770: idx=19/20 target_idx=19 pose=(-0.56,-1.32,0.45) target=(1.92,-0.16) dist=2.74 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551461.989432283] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551462.094503674] [path_follower]: cmd_vel pub #780: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551463.091189612] [path_follower]: cmd_vel pub #790: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.46) target=(1.92,-0.16) dist=2.78 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551464.090101151] [path_follower]: cmd_vel pub #800: idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.46) target=(1.92,-0.16) dist=2.75 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551464.491900973] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551465.092692736] [path_follower]: cmd_vel pub #810: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551466.094414507] [path_follower]: cmd_vel pub #820: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551467.088098849] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551467.092307222] [path_follower]: cmd_vel pub #830: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551468.091660683] [path_follower]: cmd_vel pub #840: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.35,0.47) target=(1.92,-0.16) dist=2.77 ang_err=-0.03 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551469.094903732] [path_follower]: cmd_vel pub #850: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.45) target=(1.92,-0.16) dist=2.74 ang_err=-0.01 cmd=(0.15,-0.02)
+[path_follower_node-14] [INFO] [1758551469.591952300] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551470.090611361] [path_follower]: cmd_vel pub #860: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551471.090541487] [path_follower]: cmd_vel pub #870: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.07)
+[path_follower_node-14] [INFO] [1758551472.089425380] [path_follower]: cmd_vel pub #880: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551472.188386896] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551473.091329247] [path_follower]: cmd_vel pub #890: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.39) target=(1.92,-0.16) dist=2.76 ang_err=0.06 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551474.091506904] [path_follower]: cmd_vel pub #900: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.42) target=(1.92,-0.16) dist=2.74 ang_err=0.02 cmd=(0.15,0.08)
+[path_follower_node-14] [INFO] [1758551474.689659643] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551475.088727417] [path_follower]: cmd_vel pub #910: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551476.090586929] [path_follower]: cmd_vel pub #920: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551477.090301846] [path_follower]: cmd_vel pub #930: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551477.192693242] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[rviz2-13] [INFO] [1758551477.226598630] [rviz2]: Trying to create a map of size 15 x 15 using 1 swatches
+[path_follower_node-14] [INFO] [1758551478.089588375] [path_follower]: cmd_vel pub #940: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.35,0.44) target=(1.92,-0.16) dist=2.77 ang_err=-0.00 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551479.089657922] [path_follower]: cmd_vel pub #950: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.45) target=(1.92,-0.16) dist=2.77 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551479.787927090] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551480.089626093] [path_follower]: cmd_vel pub #960: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551481.090217376] [path_follower]: cmd_vel pub #970: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551482.091592055] [path_follower]: cmd_vel pub #980: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551482.290349035] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551483.090618232] [path_follower]: cmd_vel pub #990: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.39) target=(1.92,-0.16) dist=2.75 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551484.092338342] [path_follower]: cmd_vel pub #1000: idx=19/20 target_idx=19 pose=(-0.57,-1.33,0.45) target=(1.92,-0.16) dist=2.75 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551484.889696898] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551485.091507279] [path_follower]: cmd_vel pub #1010: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551486.089251713] [path_follower]: cmd_vel pub #1020: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551487.089684423] [path_follower]: cmd_vel pub #1030: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.02)
+[path_follower_node-14] [INFO] [1758551487.390721832] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551488.090643300] [path_follower]: cmd_vel pub #1040: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.41) target=(1.92,-0.16) dist=2.75 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551489.091369599] [path_follower]: cmd_vel pub #1050: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.51) target=(1.92,-0.16) dist=2.77 ang_err=-0.06 cmd=(0.15,-0.22)
+[path_follower_node-14] [INFO] [1758551489.988764490] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551490.093730223] [path_follower]: cmd_vel pub #1060: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551491.094656809] [path_follower]: cmd_vel pub #1070: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551492.095855126] [path_follower]: cmd_vel pub #1080: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551492.591409113] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551493.090561982] [path_follower]: cmd_vel pub #1090: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.41) target=(1.92,-0.16) dist=2.74 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551494.093987920] [path_follower]: cmd_vel pub #1100: idx=19/20 target_idx=19 pose=(-0.63,-1.37,0.53) target=(1.92,-0.16) dist=2.82 ang_err=-0.09 cmd=(0.15,-0.30)
+[path_follower_node-14] [INFO] [1758551495.097511533] [path_follower]: cmd_vel pub #1110: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.46) target=(1.92,-0.16) dist=2.76 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551495.191719900] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551496.088113856] [path_follower]: cmd_vel pub #1120: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.47) target=(1.92,-0.16) dist=2.72 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551497.088402025] [path_follower]: cmd_vel pub #1130: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.50) target=(1.92,-0.16) dist=2.71 ang_err=-0.06 cmd=(0.15,-0.21)
+[path_follower_node-14] [INFO] [1758551497.692557588] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551498.092245030] [path_follower]: cmd_vel pub #1140: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.46) target=(1.92,-0.16) dist=2.73 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551499.102664738] [path_follower]: cmd_vel pub #1150: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.34) target=(1.92,-0.16) dist=2.79 ang_err=0.10 cmd=(0.15,0.34)
+[path_follower_node-14] [INFO] [1758551500.095501036] [path_follower]: cmd_vel pub #1160: idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.43) target=(1.92,-0.16) dist=2.72 ang_err=0.02 cmd=(0.15,0.06)
+[path_follower_node-14] [INFO] [1758551500.288935239] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551501.090390496] [path_follower]: cmd_vel pub #1170: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551502.089789240] [path_follower]: cmd_vel pub #1180: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551502.890126099] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551503.089181453] [path_follower]: cmd_vel pub #1190: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.45) target=(1.92,-0.16) dist=2.72 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551504.089439205] [path_follower]: cmd_vel pub #1200: RECOVERY idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.41) target=(1.92,-0.16) dist=2.78 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551505.090194406] [path_follower]: cmd_vel pub #1210: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.49) target=(1.92,-0.16) dist=2.75 ang_err=-0.05 cmd=(0.15,-0.17)
+[path_follower_node-14] [INFO] [1758551505.489135584] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551506.090379543] [path_follower]: cmd_vel pub #1220: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551507.098131645] [path_follower]: cmd_vel pub #1230: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551507.991417082] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551508.090788334] [path_follower]: cmd_vel pub #1240: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551509.095945367] [path_follower]: cmd_vel pub #1250: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.47) target=(1.92,-0.16) dist=2.77 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551510.092009147] [path_follower]: cmd_vel pub #1260: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.46) target=(1.92,-0.16) dist=2.73 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551510.593342996] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551511.090778348] [path_follower]: cmd_vel pub #1270: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551512.091346886] [path_follower]: cmd_vel pub #1280: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551513.093222498] [path_follower]: cmd_vel pub #1290: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551513.191435927] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551514.088414617] [path_follower]: cmd_vel pub #1300: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.40) target=(1.92,-0.16) dist=2.77 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551515.090782720] [path_follower]: cmd_vel pub #1310: idx=19/20 target_idx=19 pose=(-0.59,-1.34,0.50) target=(1.92,-0.16) dist=2.77 ang_err=-0.06 cmd=(0.15,-0.22)
+[path_follower_node-14] [INFO] [1758551515.788970650] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551516.091059771] [path_follower]: cmd_vel pub #1320: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551517.090123590] [path_follower]: cmd_vel pub #1330: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551518.090836149] [path_follower]: cmd_vel pub #1340: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551518.388016889] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551519.090769160] [path_follower]: cmd_vel pub #1350: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.38) target=(1.92,-0.16) dist=2.75 ang_err=0.06 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551520.090118024] [path_follower]: cmd_vel pub #1360: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.42) target=(1.92,-0.16) dist=2.76 ang_err=0.02 cmd=(0.15,0.08)
+[path_follower_node-14] [INFO] [1758551520.889182722] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551521.091048234] [path_follower]: cmd_vel pub #1370: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551522.094219667] [path_follower]: cmd_vel pub #1380: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.15)
+[path_follower_node-14] [INFO] [1758551523.091893241] [path_follower]: cmd_vel pub #1390: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551523.489683554] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551524.093669958] [path_follower]: cmd_vel pub #1400: RECOVERY idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.39) target=(1.92,-0.16) dist=2.74 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551525.091480342] [path_follower]: cmd_vel pub #1410: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.41) target=(1.92,-0.16) dist=2.78 ang_err=0.03 cmd=(0.15,0.12)
+[path_follower_node-14] [INFO] [1758551526.090583817] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551526.093112462] [path_follower]: cmd_vel pub #1420: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.44) target=(1.92,-0.16) dist=2.72 ang_err=0.01 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551527.090485936] [path_follower]: cmd_vel pub #1430: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551528.099225527] [path_follower]: cmd_vel pub #1440: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551528.688891598] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551529.091173469] [path_follower]: cmd_vel pub #1450: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.42) target=(1.92,-0.16) dist=2.73 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551530.092202058] [path_follower]: cmd_vel pub #1460: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.46) target=(1.92,-0.16) dist=2.79 ang_err=-0.02 cmd=(0.15,-0.07)
+[path_follower_node-14] [INFO] [1758551531.089787617] [path_follower]: cmd_vel pub #1470: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.48) target=(1.92,-0.16) dist=2.72 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551531.190167674] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551532.089027369] [path_follower]: cmd_vel pub #1480: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551533.090921758] [path_follower]: cmd_vel pub #1490: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551533.791494040] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551534.091633208] [path_follower]: cmd_vel pub #1500: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.45) target=(1.92,-0.16) dist=2.73 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551535.092870301] [path_follower]: cmd_vel pub #1510: idx=19/20 target_idx=19 pose=(-0.61,-1.36,0.43) target=(1.92,-0.16) dist=2.80 ang_err=0.02 cmd=(0.15,0.05)
+[path_follower_node-14] [INFO] [1758551536.089237224] [path_follower]: cmd_vel pub #1520: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.46) target=(1.92,-0.16) dist=2.74 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551536.388759749] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551537.091090623] [path_follower]: cmd_vel pub #1530: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.05 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551538.093199074] [path_follower]: cmd_vel pub #1540: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551538.988533726] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551539.090417087] [path_follower]: cmd_vel pub #1550: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551540.089645332] [path_follower]: cmd_vel pub #1560: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.42) target=(1.92,-0.16) dist=2.78 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551541.091282038] [path_follower]: cmd_vel pub #1570: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.46) target=(1.92,-0.16) dist=2.74 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551541.489370537] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551542.091681317] [path_follower]: cmd_vel pub #1580: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551543.092393085] [path_follower]: cmd_vel pub #1590: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.12)
+[path_follower_node-14] [INFO] [1758551544.088187217] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551544.088983668] [path_follower]: cmd_vel pub #1600: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551545.088174674] [path_follower]: cmd_vel pub #1610: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.41) target=(1.92,-0.16) dist=2.78 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551546.093766047] [path_follower]: cmd_vel pub #1620: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.53) target=(1.92,-0.16) dist=2.76 ang_err=-0.09 cmd=(0.15,-0.31)
+[path_follower_node-14] [INFO] [1758551546.589320796] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551547.090540393] [path_follower]: cmd_vel pub #1630: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551548.089998784] [path_follower]: cmd_vel pub #1640: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.09)
+[path_follower_node-14] [INFO] [1758551549.089329763] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551549.095309566] [path_follower]: cmd_vel pub #1650: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551550.090063115] [path_follower]: cmd_vel pub #1660: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.41) target=(1.92,-0.16) dist=2.78 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551551.090723882] [path_follower]: cmd_vel pub #1670: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.48) target=(1.92,-0.16) dist=2.76 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551551.593500991] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551552.091146006] [path_follower]: cmd_vel pub #1680: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551553.091824951] [path_follower]: cmd_vel pub #1690: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.09)
+[path_follower_node-14] [INFO] [1758551554.093988736] [path_follower]: cmd_vel pub #1700: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551554.190448852] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551555.090498538] [path_follower]: cmd_vel pub #1710: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.40) target=(1.92,-0.16) dist=2.76 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551556.089908251] [path_follower]: cmd_vel pub #1720: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.46) target=(1.92,-0.16) dist=2.75 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551556.790609887] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551557.090243393] [path_follower]: cmd_vel pub #1730: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551558.090821030] [path_follower]: cmd_vel pub #1740: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551559.094765268] [path_follower]: cmd_vel pub #1750: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.10)
+[path_follower_node-14] [INFO] [1758551559.391022558] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551560.090613323] [path_follower]: cmd_vel pub #1760: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.39) target=(1.92,-0.16) dist=2.75 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551561.091724834] [path_follower]: cmd_vel pub #1770: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.41) target=(1.92,-0.16) dist=2.77 ang_err=0.03 cmd=(0.15,0.10)
+[path_follower_node-14] [INFO] [1758551561.990404074] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551562.088909704] [path_follower]: cmd_vel pub #1780: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551563.091973794] [path_follower]: cmd_vel pub #1790: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551564.090920486] [path_follower]: cmd_vel pub #1800: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551564.589562925] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551565.089229303] [path_follower]: cmd_vel pub #1810: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.40) target=(1.92,-0.16) dist=2.74 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551566.095946681] [path_follower]: cmd_vel pub #1820: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.44) target=(1.92,-0.16) dist=2.76 ang_err=0.00 cmd=(0.15,0.01)
+[path_follower_node-14] [INFO] [1758551567.092991662] [path_follower]: cmd_vel pub #1830: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.11)
+[path_follower_node-14] [INFO] [1758551567.189532329] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551568.093265137] [path_follower]: cmd_vel pub #1840: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551569.089172978] [path_follower]: cmd_vel pub #1850: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551569.692009158] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551570.089601674] [path_follower]: cmd_vel pub #1860: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.74 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551571.093886929] [path_follower]: cmd_vel pub #1870: idx=19/20 target_idx=19 pose=(-0.61,-1.35,0.42) target=(1.92,-0.16) dist=2.79 ang_err=0.02 cmd=(0.15,0.07)
+[path_follower_node-14] [INFO] [1758551572.091246851] [path_follower]: cmd_vel pub #1880: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.44) target=(1.92,-0.16) dist=2.74 ang_err=0.00 cmd=(0.15,0.01)
+[path_follower_node-14] [INFO] [1758551572.288327218] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551573.089395311] [path_follower]: cmd_vel pub #1890: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551574.091667827] [path_follower]: cmd_vel pub #1900: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.05 cmd=(0.15,-0.18)
+[path_follower_node-14] [INFO] [1758551574.791415861] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551575.089246871] [path_follower]: cmd_vel pub #1910: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.73 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551576.092011095] [path_follower]: cmd_vel pub #1920: idx=19/20 target_idx=19 pose=(-0.62,-1.36,0.48) target=(1.92,-0.16) dist=2.81 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551577.094201487] [path_follower]: cmd_vel pub #1930: idx=19/20 target_idx=19 pose=(-0.57,-1.33,0.51) target=(1.92,-0.16) dist=2.76 ang_err=-0.07 cmd=(0.15,-0.23)
+[path_follower_node-14] [INFO] [1758551577.391835132] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551578.088407317] [path_follower]: cmd_vel pub #1940: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551579.088817280] [path_follower]: cmd_vel pub #1950: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.02)
+[path_follower_node-14] [INFO] [1758551579.890303420] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551580.090707097] [path_follower]: cmd_vel pub #1960: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.43) target=(1.92,-0.16) dist=2.72 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551581.090312241] [path_follower]: cmd_vel pub #1970: RECOVERY idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.46) target=(1.92,-0.16) dist=2.78 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551582.094570238] [path_follower]: cmd_vel pub #1980: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.46) target=(1.92,-0.16) dist=2.74 ang_err=-0.02 cmd=(0.15,-0.07)
+[path_follower_node-14] [INFO] [1758551582.489402380] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551583.091537876] [path_follower]: cmd_vel pub #1990: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551584.091396763] [path_follower]: cmd_vel pub #2000: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.11)
+[path_follower_node-14] [INFO] [1758551585.089123750] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551585.093249806] [path_follower]: cmd_vel pub #2010: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551586.092788359] [path_follower]: cmd_vel pub #2020: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.45) target=(1.92,-0.16) dist=2.77 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551587.091113963] [path_follower]: cmd_vel pub #2030: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.46) target=(1.92,-0.16) dist=2.75 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551587.589060477] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551588.089969907] [path_follower]: cmd_vel pub #2040: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551589.099647899] [path_follower]: cmd_vel pub #2050: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551590.088787517] [path_follower]: cmd_vel pub #2060: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551590.190554716] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551591.092436070] [path_follower]: cmd_vel pub #2070: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.39) target=(1.92,-0.16) dist=2.76 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551592.088100620] [path_follower]: cmd_vel pub #2080: idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.46) target=(1.92,-0.16) dist=2.75 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551592.789495565] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551593.089192937] [path_follower]: cmd_vel pub #2090: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551594.094395740] [path_follower]: cmd_vel pub #2100: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.02)
+[path_follower_node-14] [INFO] [1758551595.091162120] [path_follower]: cmd_vel pub #2110: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551595.389719700] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551596.091627787] [path_follower]: cmd_vel pub #2120: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.40) target=(1.92,-0.16) dist=2.75 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551597.088430272] [path_follower]: cmd_vel pub #2130: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.53) target=(1.92,-0.16) dist=2.78 ang_err=-0.09 cmd=(0.15,-0.30)
+[path_follower_node-14] [INFO] [1758551597.994809923] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551598.091147832] [path_follower]: cmd_vel pub #2140: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551599.089019575] [path_follower]: cmd_vel pub #2150: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551600.089592692] [path_follower]: cmd_vel pub #2160: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551600.589116609] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551601.089777625] [path_follower]: cmd_vel pub #2170: RECOVERY idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.43) target=(1.92,-0.16) dist=2.74 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551602.090647582] [path_follower]: cmd_vel pub #2180: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.48) target=(1.92,-0.16) dist=2.79 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551603.091359956] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551603.093153011] [path_follower]: cmd_vel pub #2190: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.45) target=(1.92,-0.16) dist=2.73 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551604.094252243] [path_follower]: cmd_vel pub #2200: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551605.089317287] [path_follower]: cmd_vel pub #2210: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551605.689722812] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551606.089837952] [path_follower]: cmd_vel pub #2220: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.42) target=(1.92,-0.16) dist=2.73 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551607.091840769] [path_follower]: cmd_vel pub #2230: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.49) target=(1.92,-0.16) dist=2.78 ang_err=-0.05 cmd=(0.15,-0.18)
+[path_follower_node-14] [INFO] [1758551608.089297102] [path_follower]: cmd_vel pub #2240: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.50) target=(1.92,-0.16) dist=2.72 ang_err=-0.06 cmd=(0.15,-0.19)
+[path_follower_node-14] [INFO] [1758551608.188137268] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551609.089852470] [path_follower]: cmd_vel pub #2250: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551610.094730546] [path_follower]: cmd_vel pub #2260: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551610.691367237] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551611.091565067] [path_follower]: cmd_vel pub #2270: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.42) target=(1.92,-0.16) dist=2.73 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551612.090213594] [path_follower]: cmd_vel pub #2280: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.48) target=(1.92,-0.16) dist=2.79 ang_err=-0.03 cmd=(0.15,-0.12)
+[path_follower_node-14] [INFO] [1758551613.092289339] [path_follower]: cmd_vel pub #2290: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.50) target=(1.92,-0.16) dist=2.72 ang_err=-0.06 cmd=(0.15,-0.19)
+[path_follower_node-14] [INFO] [1758551613.289066329] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551614.096857843] [path_follower]: cmd_vel pub #2300: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551615.090797851] [path_follower]: cmd_vel pub #2310: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551615.789609076] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551616.089011440] [path_follower]: cmd_vel pub #2320: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.42) target=(1.92,-0.16) dist=2.73 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551617.092776271] [path_follower]: cmd_vel pub #2330: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.46) target=(1.92,-0.16) dist=2.79 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551618.092126496] [path_follower]: cmd_vel pub #2340: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.47) target=(1.92,-0.16) dist=2.72 ang_err=-0.03 cmd=(0.15,-0.10)
+[path_follower_node-14] [INFO] [1758551618.388125003] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551619.090389502] [path_follower]: cmd_vel pub #2350: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551620.089405168] [path_follower]: cmd_vel pub #2360: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551620.889391487] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551621.090709710] [path_follower]: cmd_vel pub #2370: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.45) target=(1.92,-0.16) dist=2.72 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551622.094654443] [path_follower]: cmd_vel pub #2380: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.40) target=(1.92,-0.16) dist=2.76 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551623.123773559] [path_follower]: cmd_vel pub #2390: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.74 ang_err=0.01 cmd=(0.15,0.05)
+[path_follower_node-14] [INFO] [1758551623.496163200] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551624.094409020] [path_follower]: cmd_vel pub #2400: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.05 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551625.102116755] [path_follower]: cmd_vel pub #2410: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.15)
+[path_follower_node-14] [INFO] [1758551625.998382144] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551626.099907397] [path_follower]: cmd_vel pub #2420: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551627.120455156] [path_follower]: cmd_vel pub #2430: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.42) target=(1.92,-0.16) dist=2.74 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551628.090984195] [path_follower]: cmd_vel pub #2440: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.42) target=(1.92,-0.16) dist=2.71 ang_err=0.02 cmd=(0.15,0.07)
+[path_follower_node-14] [INFO] [1758551628.590424239] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551629.090582601] [path_follower]: cmd_vel pub #2450: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551630.092105835] [path_follower]: cmd_vel pub #2460: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551631.089914881] [path_follower]: cmd_vel pub #2470: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551631.189046238] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551632.091219533] [path_follower]: cmd_vel pub #2480: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.38) target=(1.92,-0.16) dist=2.76 ang_err=0.06 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551633.090546365] [path_follower]: cmd_vel pub #2490: idx=19/20 target_idx=19 pose=(-0.57,-1.33,0.43) target=(1.92,-0.16) dist=2.75 ang_err=0.01 cmd=(0.15,0.04)
+[path_follower_node-14] [INFO] [1758551633.689896152] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551634.089356031] [path_follower]: cmd_vel pub #2500: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551635.592250279] [path_follower]: cmd_vel pub #2510: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.10)
+[path_follower_node-14] [INFO] [1758551636.190079987] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551636.591155196] [path_follower]: cmd_vel pub #2520: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.73 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551637.603241073] [path_follower]: cmd_vel pub #2530: idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.49) target=(1.92,-0.16) dist=2.79 ang_err=-0.04 cmd=(0.15,-0.16)
+[path_follower_node-14] [INFO] [1758551638.589261933] [path_follower]: cmd_vel pub #2540: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.46) target=(1.92,-0.16) dist=2.74 ang_err=-0.02 cmd=(0.15,-0.07)
+[path_follower_node-14] [INFO] [1758551638.690416609] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551639.589421635] [path_follower]: cmd_vel pub #2550: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.05 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551640.589870914] [path_follower]: cmd_vel pub #2560: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551641.290050833] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551641.591232909] [path_follower]: cmd_vel pub #2570: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.73 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551642.590690274] [path_follower]: cmd_vel pub #2580: idx=19/20 target_idx=19 pose=(-0.61,-1.36,0.48) target=(1.92,-0.16) dist=2.80 ang_err=-0.03 cmd=(0.15,-0.12)
+[path_follower_node-14] [INFO] [1758551643.588331245] [path_follower]: cmd_vel pub #2590: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.48) target=(1.92,-0.16) dist=2.74 ang_err=-0.04 cmd=(0.15,-0.15)
+[path_follower_node-14] [INFO] [1758551643.789008655] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551644.588753176] [path_follower]: cmd_vel pub #2600: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551645.590446244] [path_follower]: cmd_vel pub #2610: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551646.389318613] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551646.591611202] [path_follower]: cmd_vel pub #2620: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.45) target=(1.92,-0.16) dist=2.72 ang_err=-0.00 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551647.591804862] [path_follower]: cmd_vel pub #2630: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.44) target=(1.92,-0.16) dist=2.78 ang_err=-0.00 cmd=(0.15,-0.01)
+[path_follower_node-14] [INFO] [1758551648.590574363] [path_follower]: cmd_vel pub #2640: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.46) target=(1.92,-0.16) dist=2.72 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551648.989411892] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551649.599508290] [path_follower]: cmd_vel pub #2650: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551650.598632337] [path_follower]: cmd_vel pub #2660: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.15)
+[path_follower_node-14] [INFO] [1758551651.491353008] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551651.589910494] [path_follower]: cmd_vel pub #2670: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551652.593358537] [path_follower]: cmd_vel pub #2680: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.40) target=(1.92,-0.16) dist=2.76 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551653.598807590] [path_follower]: cmd_vel pub #2690: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.44) target=(1.92,-0.16) dist=2.73 ang_err=-0.00 cmd=(0.15,-0.01)
+[path_follower_node-14] [INFO] [1758551654.095032805] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551654.597335342] [path_follower]: cmd_vel pub #2700: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551655.591406162] [path_follower]: cmd_vel pub #2710: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.02)
+[path_follower_node-14] [INFO] [1758551656.597295570] [path_follower]: cmd_vel pub #2720: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.10)
+[path_follower_node-14] [INFO] [1758551656.691207741] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551657.590057749] [path_follower]: cmd_vel pub #2730: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.44) target=(1.92,-0.16) dist=2.76 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551658.591361356] [path_follower]: cmd_vel pub #2740: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.47) target=(1.92,-0.16) dist=2.74 ang_err=-0.03 cmd=(0.15,-0.09)
+[path_follower_node-14] [INFO] [1758551659.190429278] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551659.589218952] [path_follower]: cmd_vel pub #2750: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551660.594710846] [path_follower]: cmd_vel pub #2760: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551661.592580494] [path_follower]: cmd_vel pub #2770: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551661.791309893] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551662.591261928] [path_follower]: cmd_vel pub #2780: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.40) target=(1.92,-0.16) dist=2.75 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551663.596751271] [path_follower]: cmd_vel pub #2790: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.51) target=(1.92,-0.16) dist=2.77 ang_err=-0.07 cmd=(0.15,-0.24)
+[path_follower_node-14] [INFO] [1758551664.392550652] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551664.592938527] [path_follower]: cmd_vel pub #2800: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.72 ang_err=-0.05 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551665.592772529] [path_follower]: cmd_vel pub #2810: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551666.599350414] [path_follower]: cmd_vel pub #2820: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-0.15)
+[path_follower_node-14] [INFO] [1758551666.889920416] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551667.590258887] [path_follower]: cmd_vel pub #2830: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.34) target=(1.92,-0.16) dist=2.75 ang_err=0.10 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551668.591262531] [path_follower]: cmd_vel pub #2840: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.38) target=(1.92,-0.16) dist=2.77 ang_err=0.06 cmd=(0.15,0.22)
+[path_follower_node-14] [INFO] [1758551669.488136115] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551669.589187189] [path_follower]: cmd_vel pub #2850: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551670.590653316] [path_follower]: cmd_vel pub #2860: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551671.590164841] [path_follower]: cmd_vel pub #2870: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551671.991414042] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551672.590015056] [path_follower]: cmd_vel pub #2880: RECOVERY idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.42) target=(1.92,-0.16) dist=2.74 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551673.591742407] [path_follower]: cmd_vel pub #2890: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.48) target=(1.92,-0.16) dist=2.77 ang_err=-0.04 cmd=(0.15,-0.13)
+[path_follower_node-14] [INFO] [1758551674.496422696] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551674.593779234] [path_follower]: cmd_vel pub #2900: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.50) target=(1.92,-0.16) dist=2.71 ang_err=-0.06 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551675.590713395] [path_follower]: cmd_vel pub #2910: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.61) target=(1.92,-0.16) dist=2.71 ang_err=-0.17 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551676.590938130] [path_follower]: cmd_vel pub #2920: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.62) target=(1.92,-0.16) dist=2.71 ang_err=-0.18 cmd=(0.15,-0.63)
+[path_follower_node-14] [INFO] [1758551677.091640697] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551677.590050346] [path_follower]: cmd_vel pub #2930: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.45) target=(1.92,-0.16) dist=2.74 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551678.592321505] [path_follower]: cmd_vel pub #2940: idx=19/20 target_idx=19 pose=(-0.61,-1.35,0.14) target=(1.92,-0.16) dist=2.79 ang_err=0.30 cmd=(0.15,1.06)
+[path_follower_node-14] [INFO] [1758551679.590018738] [path_follower]: cmd_vel pub #2950: idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.31) target=(1.92,-0.16) dist=2.72 ang_err=0.14 cmd=(0.15,0.48)
+[path_follower_node-14] [INFO] [1758551679.691921375] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551680.592180119] [path_follower]: cmd_vel pub #2960: RECOVERY idx=19/20 target_idx=19 pose=(-0.52,-1.32,0.12) target=(1.92,-0.16) dist=2.70 ang_err=0.32 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551681.589304309] [path_follower]: cmd_vel pub #2970: idx=19/20 target_idx=19 pose=(-0.52,-1.32,-0.00) target=(1.92,-0.16) dist=2.70 ang_err=0.44 cmd=(0.15,1.55)
+[path_follower_node-14] [INFO] [1758551682.289377420] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551682.590579148] [path_follower]: cmd_vel pub #2980: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.11) target=(1.92,-0.16) dist=2.71 ang_err=0.34 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551683.590745636] [path_follower]: cmd_vel pub #2990: idx=19/20 target_idx=19 pose=(-0.59,-1.34,0.60) target=(1.92,-0.16) dist=2.78 ang_err=-0.16 cmd=(0.15,-0.55)
+[path_follower_node-14] [INFO] [1758551684.589736509] [path_follower]: cmd_vel pub #3000: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.70) target=(1.92,-0.16) dist=2.71 ang_err=-0.26 cmd=(0.15,-0.91)
+[path_follower_node-14] [INFO] [1758551684.790407005] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551685.591260202] [path_follower]: cmd_vel pub #3010: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.62) target=(1.92,-0.16) dist=2.71 ang_err=-0.18 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551686.589275877] [path_follower]: cmd_vel pub #3020: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.62) target=(1.92,-0.16) dist=2.71 ang_err=-0.18 cmd=(0.15,-0.63)
+[path_follower_node-14] [INFO] [1758551687.388980425] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551687.589678610] [path_follower]: cmd_vel pub #3030: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.33,0.57) target=(1.92,-0.16) dist=2.72 ang_err=-0.13 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551688.589084022] [path_follower]: cmd_vel pub #3040: RECOVERY idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.20) target=(1.92,-0.16) dist=2.79 ang_err=0.24 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551689.595555666] [path_follower]: cmd_vel pub #3050: idx=19/20 target_idx=19 pose=(-0.56,-1.34,0.25) target=(1.92,-0.16) dist=2.74 ang_err=0.20 cmd=(0.15,0.70)
+[path_follower_node-14] [INFO] [1758551689.989547871] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551690.591349632] [path_follower]: cmd_vel pub #3060: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.42) target=(1.92,-0.16) dist=2.71 ang_err=0.02 cmd=(0.15,1.80)
+[path_follower_node-14] [INFO] [1758551691.591851397] [path_follower]: cmd_vel pub #3070: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551692.587943060] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551692.591245827] [path_follower]: cmd_vel pub #3080: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551693.591590700] [path_follower]: cmd_vel pub #3090: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.39) target=(1.92,-0.16) dist=2.77 ang_err=0.05 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551694.592263007] [path_follower]: cmd_vel pub #3100: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.44) target=(1.92,-0.16) dist=2.74 ang_err=-0.00 cmd=(0.15,-0.01)
+[path_follower_node-14] [INFO] [1758551695.089827307] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551695.590260295] [path_follower]: cmd_vel pub #3110: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551696.589212283] [path_follower]: cmd_vel pub #3120: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551697.590443816] [path_follower]: cmd_vel pub #3130: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551697.690360910] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551698.591784975] [path_follower]: cmd_vel pub #3140: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.35,0.46) target=(1.92,-0.16) dist=2.77 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551699.590421154] [path_follower]: cmd_vel pub #3150: idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.45) target=(1.92,-0.16) dist=2.76 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551700.289870207] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551700.589934474] [path_follower]: cmd_vel pub #3160: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551701.591983937] [path_follower]: cmd_vel pub #3170: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551702.588293982] [path_follower]: cmd_vel pub #3180: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551702.887952332] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551703.590324065] [path_follower]: cmd_vel pub #3190: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.44) target=(1.92,-0.16) dist=2.75 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551704.590670848] [path_follower]: cmd_vel pub #3200: idx=19/20 target_idx=19 pose=(-0.58,-1.35,0.45) target=(1.92,-0.16) dist=2.77 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551705.390170708] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551705.592190886] [path_follower]: cmd_vel pub #3210: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551706.588764634] [path_follower]: cmd_vel pub #3220: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551707.589396600] [path_follower]: cmd_vel pub #3230: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551707.990435315] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551708.600945106] [path_follower]: cmd_vel pub #3240: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.43) target=(1.92,-0.16) dist=2.74 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551709.596796339] [path_follower]: cmd_vel pub #3250: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.47) target=(1.92,-0.16) dist=2.76 ang_err=-0.03 cmd=(0.15,-0.10)
+[path_follower_node-14] [INFO] [1758551710.589237056] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551710.592761571] [path_follower]: cmd_vel pub #3260: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551711.590624196] [path_follower]: cmd_vel pub #3270: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551712.590164359] [path_follower]: cmd_vel pub #3280: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-0.11)
+[path_follower_node-14] [INFO] [1758551713.188504417] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551713.593780879] [path_follower]: cmd_vel pub #3290: RECOVERY idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.42) target=(1.92,-0.16) dist=2.73 ang_err=0.02 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551714.595097788] [path_follower]: cmd_vel pub #3300: idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.46) target=(1.92,-0.16) dist=2.78 ang_err=-0.02 cmd=(0.15,-0.06)
+[path_follower_node-14] [INFO] [1758551715.592572211] [path_follower]: cmd_vel pub #3310: idx=19/20 target_idx=19 pose=(-0.55,-1.33,0.47) target=(1.92,-0.16) dist=2.73 ang_err=-0.03 cmd=(0.15,-0.11)
+[path_follower_node-14] [INFO] [1758551715.689759935] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551716.589775079] [path_follower]: cmd_vel pub #3320: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551717.589111635] [path_follower]: cmd_vel pub #3330: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.49) target=(1.92,-0.16) dist=2.71 ang_err=-0.05 cmd=(0.15,-0.17)
+[path_follower_node-14] [INFO] [1758551718.297658963] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551718.591179092] [path_follower]: cmd_vel pub #3340: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.72 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551719.591182971] [path_follower]: cmd_vel pub #3350: idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.40) target=(1.92,-0.16) dist=2.77 ang_err=0.04 cmd=(0.15,0.14)
+[path_follower_node-14] [INFO] [1758551720.589128365] [path_follower]: cmd_vel pub #3360: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.43) target=(1.92,-0.16) dist=2.72 ang_err=0.01 cmd=(0.15,0.02)
+[path_follower_node-14] [INFO] [1758551720.888861944] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551721.593873713] [path_follower]: cmd_vel pub #3370: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551722.593081240] [path_follower]: cmd_vel pub #3380: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551723.389393977] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551723.588479485] [path_follower]: cmd_vel pub #3390: RECOVERY idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.45) target=(1.92,-0.16) dist=2.72 ang_err=-0.00 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551724.590885483] [path_follower]: cmd_vel pub #3400: RECOVERY idx=19/20 target_idx=19 pose=(-0.59,-1.35,0.44) target=(1.92,-0.16) dist=2.78 ang_err=0.01 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551725.590770328] [path_follower]: cmd_vel pub #3410: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.49) target=(1.92,-0.16) dist=2.74 ang_err=-0.05 cmd=(0.15,-0.17)
+[path_follower_node-14] [INFO] [1758551725.889355096] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551726.590710591] [path_follower]: cmd_vel pub #3420: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551727.593180395] [path_follower]: cmd_vel pub #3430: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551728.390659104] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551728.592306993] [path_follower]: cmd_vel pub #3440: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.00 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551729.589360455] [path_follower]: cmd_vel pub #3450: RECOVERY idx=19/20 target_idx=19 pose=(-0.58,-1.34,0.46) target=(1.92,-0.16) dist=2.77 ang_err=-0.02 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551730.591599254] [path_follower]: cmd_vel pub #3460: idx=19/20 target_idx=19 pose=(-0.54,-1.32,0.46) target=(1.92,-0.16) dist=2.72 ang_err=-0.01 cmd=(0.15,-0.05)
+[path_follower_node-14] [INFO] [1758551730.891426086] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551731.591654023] [path_follower]: cmd_vel pub #3470: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.48) target=(1.92,-0.16) dist=2.71 ang_err=-0.04 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551732.590033918] [path_follower]: cmd_vel pub #3480: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.45) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(0.15,-0.03)
+[path_follower_node-14] [INFO] [1758551733.490571913] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551733.588967196] [path_follower]: cmd_vel pub #3490: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551734.589806611] [path_follower]: cmd_vel pub #3500: RECOVERY idx=19/20 target_idx=19 pose=(-0.60,-1.35,0.41) target=(1.92,-0.16) dist=2.79 ang_err=0.03 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551735.590946468] [path_follower]: cmd_vel pub #3510: idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.45) target=(1.92,-0.16) dist=2.75 ang_err=-0.01 cmd=(0.15,-0.04)
+[path_follower_node-14] [INFO] [1758551736.088235490] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551736.591494636] [path_follower]: cmd_vel pub #3520: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.47) target=(1.92,-0.16) dist=2.71 ang_err=-0.03 cmd=(0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551737.591447483] [path_follower]: cmd_vel pub #3530: idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.02 cmd=(0.15,-0.08)
+[path_follower_node-14] [INFO] [1758551738.590520537] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551738.603120828] [path_follower]: cmd_vel pub #3540: RECOVERY idx=19/20 target_idx=19 pose=(-0.53,-1.32,0.46) target=(1.92,-0.16) dist=2.71 ang_err=-0.01 cmd=(-0.15,-1.80)
+[path_follower_node-14] [INFO] [1758551739.591730903] [path_follower]: cmd_vel pub #3550: RECOVERY idx=19/20 target_idx=19 pose=(-0.57,-1.34,0.41) target=(1.92,-0.16) dist=2.76 ang_err=0.04 cmd=(-0.15,1.80)
+[path_follower_node-14] [INFO] [1758551740.588656958] [path_follower]: cmd_vel pub #3560: idx=19/20 target_idx=19 pose=(-0.56,-1.33,0.44) target=(1.92,-0.16) dist=2.74 ang_err=-0.00 cmd=(0.15,-0.01)
+[path_follower_node-14] [INFO] [1758551741.190369335] [path_follower]: No progress detected; entering arc-turn recovery for 1.2s
+[path_follower_node-14] [INFO] [1758551741.590696501] [path_follower]: cmd_vel pub #3570: RECOVERY idx=19/20 target_idx=19 pose=
